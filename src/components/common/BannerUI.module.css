@@ -1,0 +1,314 @@
+/* ==========================================================================
+   Shared Banner UI Components (BannerUI.module.css)
+   Contains reusable SectionTags, EyebrowPills, CtaButtons, FeatureChips,
+   and InfoRows with multi-tone variant theming.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Section Tag (Numeric Badge: 01, 02, 3, etc.)
+   -------------------------------------------------------------------------- */
+.sectionTag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  height: 30px;
+  padding: 0 10px;
+  border-radius: 8px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  border: 1.5px solid currentColor;
+  line-height: 1;
+}
+
+/* --------------------------------------------------------------------------
+   2. Eyebrow Pill (Status / Category Indicator)
+   -------------------------------------------------------------------------- */
+.eyebrowPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 14px 0 12px;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.eyebrowPill svg {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+  animation: iconPulse 2.6s ease-in-out infinite;
+}
+
+/* --------------------------------------------------------------------------
+   3. Primary Action Button (CtaButton)
+   -------------------------------------------------------------------------- */
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 26px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 15.5px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+  min-height: 48px;
+}
+
+.ctaButton svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.18s ease;
+}
+
+.ctaButton:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+}
+
+.ctaButton:hover svg {
+  transform: translateX(3px);
+}
+
+.ctaButton:active {
+  transform: translateY(1px) scale(0.98);
+  filter: brightness(0.98);
+}
+
+.ctaButton:focus-visible {
+  outline: 2px solid var(--white);
+  outline-offset: 3px;
+}
+
+@keyframes iconPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.12) rotate(-4deg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. Secondary Feature Chip (FeatureChip)
+   -------------------------------------------------------------------------- */
+.featureChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 100%;
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-soft);
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-soft);
+  white-space: nowrap;
+}
+
+.featureChip svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   5. Info Panel Rows (Contact / Channel info)
+   -------------------------------------------------------------------------- */
+.infoRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-soft);
+  background: none;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  text-align: left;
+  color: inherit;
+}
+
+.infoRow:last-child {
+  border-bottom: none;
+}
+
+.infoRowInteractive {
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: background 0.15s ease;
+}
+
+.infoRowInteractive:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.infoRowIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--border-soft);
+  flex-shrink: 0;
+}
+
+.infoRowIcon svg {
+  width: 15px;
+  height: 15px;
+}
+
+.infoRowText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.infoRowTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.infoRowSubtitle {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  overflow-wrap: anywhere;
+  word-break: break-all; /* Safely breaks long email addresses on small viewports */
+}
+
+.infoRowAction {
+  display: inline-flex;
+  align-items: center;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.infoRowAction svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* --------------------------------------------------------------------------
+   6. Color Tone Variants
+   -------------------------------------------------------------------------- */
+.tone-gold {
+  color: var(--lb-gold);
+}
+.tone-blue {
+  color: var(--wa-blue-light);
+}
+.tone-navy {
+  color: var(--cu-blue);
+}
+.tone-purple {
+  color: var(--fe-purple-light);
+}
+.tone-bronze {
+  color: var(--db-gold);
+}
+
+.ctaButton.tone-gold {
+  background: linear-gradient(135deg, #ffd77a, #e8a83a);
+  color: #221503;
+  box-shadow: 0 10px 24px -10px rgba(232, 168, 58, 0.7);
+}
+.ctaButton.tone-blue {
+  background: linear-gradient(135deg, #3f8bff, #1c5fe0);
+  color: var(--white);
+  box-shadow: 0 10px 24px -10px rgba(47, 125, 251, 0.7);
+}
+.ctaButton.tone-navy {
+  background: rgba(91, 141, 239, 0.14);
+  color: var(--white);
+  border-color: rgba(91, 141, 239, 0.4);
+  box-shadow: none;
+}
+.ctaButton.tone-purple {
+  background: linear-gradient(135deg, #9a68ff, #6d3bd6);
+  color: var(--white);
+  box-shadow: 0 10px 24px -10px rgba(138, 92, 246, 0.7);
+}
+.ctaButton.tone-bronze {
+  background: linear-gradient(135deg, #ffcf72, #e0972c);
+  color: #241705;
+  box-shadow: 0 10px 24px -10px rgba(224, 151, 44, 0.7);
+}
+
+/* --------------------------------------------------------------------------
+   7. Responsive Breakpoint Overrides
+   -------------------------------------------------------------------------- */
+@media (max-width: 600px) {
+  .ctaButton {
+    width: 100%;
+    padding: 13px 18px;
+    font-size: 14.5px;
+  }
+
+  .featureChip {
+    white-space: normal;
+    line-height: 1.35;
+    font-size: 12.5px;
+    padding: 8px 12px;
+  }
+
+  .eyebrowPill {
+    padding: 0 12px 0 10px;
+    letter-spacing: 0.04em;
+    font-size: 10.5px;
+    height: 28px;
+  }
+
+  .sectionTag {
+    min-width: 30px;
+    height: 28px;
+    font-size: 13px;
+  }
+
+  .infoRow {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 360px) {
+  .ctaButton {
+    padding: 12px 14px;
+    font-size: 13.5px;
+  }
+
+  .featureChip {
+    padding: 7px 10px;
+    font-size: 12px;
+  }
+
+  .sectionTag {
+    min-width: 26px;
+    height: 24px;
+    font-size: 12px;
+    padding: 0 6px;
+  }
+
+  .eyebrowPill {
+    height: 24px;
+    font-size: 9.5px;
+    padding: 0 8px;
+  }
+}

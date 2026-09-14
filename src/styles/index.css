@@ -1,0 +1,225 @@
+/* ==========================================================================
+   VELOOP Rewards - Global Styles & Design System
+   ========================================================================== */
+
+:root {
+  /* --------------------------------------------------------------------------
+     1. Color System
+     -------------------------------------------------------------------------- */
+  /* Main dark application background */
+  --body-bg: #161827;
+
+  /* Shared neutral typography & border tokens */
+  --white: #ffffff;
+  --text-soft: #c7cadb;
+  --text-muted: #9799ad;
+  --border-soft: rgba(255, 255, 255, 0.1);
+
+  /* Banner 01: Leaderboard (Gold / Amber palette) */
+  --lb-surface: #0f0f0f;
+  --lb-gold: #f5b93e;
+  --lb-blue: #3fa2ff;
+  --lb-orange: #ff8a3d;
+
+  /* Banner 02: Watch & Earn (Electric Blue palette) */
+  --wa-surface: #020c1f;
+  --wa-blue-light: #6db2ff;
+
+  /* Banner 03: Contact Us (Deep Navy / Slate palette) */
+  --cu-surface: #0d1424;
+  --cu-blue: #5b8def;
+
+  /* Banner 04: Follow & Earn (Muted Purple palette) */
+  --fe-surface: #150f2a;
+  --fe-purple-light: #c7b3ff;
+
+  /* Banner 05: Daily Bonus (Warm Gold / Bronze palette) */
+  --db-surface: #17130a;
+  --db-gold: #f2a93b;
+
+  /* --------------------------------------------------------------------------
+     2. Geometric & Typography Tokens
+     -------------------------------------------------------------------------- */
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+
+  --font-display: 'Poppins', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', 'Poppins', system-ui, -apple-system, sans-serif;
+}
+
+/* --------------------------------------------------------------------------
+   3. Universal Reset & Horizontal Overflow Containment
+   Strict max-width and overflow containment prevents accidental right-side
+   scroll space across all browsers and devices.
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  position: relative;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--body-bg);
+  font-family: var(--font-body);
+  color: var(--white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  overflow-x: clip;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+/* --------------------------------------------------------------------------
+   4. Application Layout Container & Dynamic Ambient Glow
+   -------------------------------------------------------------------------- */
+.veloop-app {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 32px 24px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  overflow-x: clip; /* Clips glow animations horizontally to eliminate right-side scroll space */
+}
+
+/* Multi-colored atmospheric backdrop glow */
+.veloop-app::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: -14% 0% 6%; /* Bounded horizontally to 0% to prevent viewport overflow */
+  pointer-events: none;
+  background:
+    radial-gradient(42% 24% at 15% 10%, rgba(63, 162, 255, 0.2), transparent 72%),
+    radial-gradient(38% 22% at 85% 26%, rgba(154, 104, 255, 0.18), transparent 72%),
+    radial-gradient(46% 26% at 50% 74%, rgba(242, 169, 59, 0.14), transparent 72%);
+  filter: blur(34px);
+  opacity: 0.9;
+  animation: ambientGlowDrift 16s ease-in-out infinite alternate;
+}
+
+/* Ensure banner sections inside app retain full fluid width */
+.veloop-app > section {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  min-width: 0;
+  animation: bannerEntrance 0.7s ease-out both;
+}
+
+.veloop-app > section:nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+.veloop-app > section:nth-child(3) {
+  animation-delay: 0.16s;
+}
+
+.veloop-app > section:nth-child(4) {
+  animation-delay: 0.24s;
+}
+
+.veloop-app > section:nth-child(5) {
+  animation-delay: 0.32s;
+}
+
+/* Slow, organic background drift animation */
+@keyframes bannerEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ambientGlowDrift {
+  from {
+    transform: scale(0.96) translate3d(-0.5%, -0.5%, 0);
+  }
+  to {
+    transform: scale(1.02) translate3d(0.5%, 0.5%, 0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. Global Responsive Tiers for Container Layout
+   -------------------------------------------------------------------------- */
+/* Tablet Tier (<= 1024px) */
+@media (max-width: 1024px) {
+  .veloop-app {
+    padding: 24px 20px 64px;
+    gap: 24px;
+  }
+}
+
+/* Small Tablet / Phablet Tier (<= 768px) */
+@media (max-width: 768px) {
+  .veloop-app {
+    padding: 16px 14px 52px;
+    gap: 20px;
+  }
+}
+
+/* Mobile Tier (<= 600px) */
+@media (max-width: 600px) {
+  .veloop-app {
+    padding: 12px 12px 48px;
+    gap: 16px;
+  }
+}
+
+/* Compact Mobile Tier (<= 360px) */
+@media (max-width: 360px) {
+  .veloop-app {
+    padding: 10px 8px 40px;
+    gap: 14px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   6. Accessibility: Reduced Motion Support
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

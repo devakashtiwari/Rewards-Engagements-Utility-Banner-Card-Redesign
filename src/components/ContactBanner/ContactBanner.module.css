@@ -1,0 +1,375 @@
+/* ==========================================================================
+   Contact Us Banner (Banner 03) - ContactBanner.module.css
+   Deep Navy / Slate theme providing direct support access & email copy.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Main Banner Shell
+   -------------------------------------------------------------------------- */
+.banner {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  background: radial-gradient(120% 160% at 55% 20%, #14213f 0%, var(--cu-surface) 55%);
+  border: 1px solid rgba(91, 141, 239, 0.2);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  min-height: 410px;
+}
+
+.banner::before,
+.banner::after {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: 50%;
+  filter: blur(22px);
+  will-change: transform, opacity;
+}
+
+.banner::before {
+  top: -45%;
+  left: 22%;
+  width: 52%;
+  height: 145%;
+  background: radial-gradient(circle, rgba(91, 141, 239, 0.3), transparent 68%);
+  animation: supportGlowDrift 10s ease-in-out infinite alternate;
+}
+
+.banner::after {
+  right: -18%;
+  bottom: -55%;
+  width: 62%;
+  height: 135%;
+  background: radial-gradient(circle, rgba(56, 93, 176, 0.28), transparent 68%);
+  animation: supportGlowDrift 14s ease-in-out -4s infinite alternate-reverse;
+}
+
+/* --------------------------------------------------------------------------
+   2. Text Column (Heading, Description, CTA)
+   -------------------------------------------------------------------------- */
+.textCol {
+  position: relative;
+  z-index: 2;
+  width: 32%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+  padding: 32px 16px 32px 36px;
+}
+
+.eyebrowRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.eyebrowLabel {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--cu-blue);
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(22px, 2.1vw, 30px);
+  line-height: 1.18;
+  margin: 0;
+  color: var(--white);
+}
+
+.headingAccent {
+  color: var(--cu-blue);
+}
+
+.description {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 14px;
+  line-height: 1.55;
+  max-width: 32ch;
+}
+
+/* --------------------------------------------------------------------------
+   3. Visual Artwork Column
+   -------------------------------------------------------------------------- */
+.visualCol {
+  position: relative;
+  width: 34%;
+  overflow: hidden;
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.visualCol picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.bannerImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 30% center;
+  transform: scale(1.12);
+  animation: supportArtworkFloat 8s ease-in-out infinite alternate;
+}
+
+/* --------------------------------------------------------------------------
+   4. Support Panel & Copy Action
+   -------------------------------------------------------------------------- */
+.panelCol {
+  position: relative;
+  z-index: 2;
+  width: 34%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 24px 28px 24px 16px;
+}
+
+.panel {
+  width: 100%;
+  padding: 18px 18px 10px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(91, 141, 239, 0.28);
+  background: rgba(13, 20, 36, 0.55);
+  backdrop-filter: blur(2px);
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.panel:hover {
+  transform: translateY(-3px);
+  border-color: rgba(91, 141, 239, 0.52);
+  background: rgba(19, 29, 52, 0.7);
+}
+
+.copyButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin: 8px 0 4px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-soft);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--white);
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.copyButton:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
+}
+
+.copyButton:focus-visible {
+  outline: 2px solid var(--white);
+  outline-offset: 2px;
+}
+
+.copyButton svg {
+  width: 15px;
+  height: 15px;
+}
+
+/* --------------------------------------------------------------------------
+   5. Keyframe Animations
+   -------------------------------------------------------------------------- */
+@keyframes supportGlowDrift {
+  0% {
+    opacity: 0.4;
+    transform: translate3d(-6%, -2%, 0) scale(0.94);
+  }
+  50% {
+    opacity: 0.72;
+  }
+  100% {
+    opacity: 0.5;
+    transform: translate3d(7%, 5%, 0) scale(1.08);
+  }
+}
+
+@keyframes supportArtworkFloat {
+  from {
+    transform: scale(1.12) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.15) translate3d(-0.6%, -0.4%, 0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   6. Responsive Breakpoint Tiers
+   -------------------------------------------------------------------------- */
+/* Tablet Landscape & Standard Tablet (<= 1024px) */
+@media (max-width: 1024px) {
+  .banner {
+    flex-wrap: wrap;
+    min-height: auto;
+  }
+
+  .textCol {
+    width: 50%;
+    padding: 28px 20px 24px 28px;
+    gap: 14px;
+  }
+
+  .visualCol {
+    width: 50%;
+    min-height: 280px;
+    order: 2;
+    border-right: none;
+  }
+
+  .bannerImage {
+    object-position: 36% center;
+    transform: scale(1.06);
+  }
+
+  .panelCol {
+    width: 100%;
+    order: 3;
+    padding: 12px 28px 28px;
+  }
+
+  .heading {
+    font-size: clamp(22px, 2.4vw, 28px);
+  }
+
+  .description {
+    max-width: 100%;
+  }
+}
+
+/* ---------- Small Tablet / Phablet (<= 768px) ---------- */
+@media (max-width: 768px) {
+  .banner {
+    flex-direction: column;
+    min-height: auto;
+    background: radial-gradient(140% 120% at 55% 15%, #18284c 0%, var(--cu-surface) 60%);
+  }
+
+  .visualCol {
+    width: 100%;
+    order: 1;
+    height: clamp(180px, 44vw, 240px);
+    min-height: 180px;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .bannerImage {
+    object-position: 38% center;
+    transform: scale(1.04);
+  }
+
+  .textCol {
+    width: 100%;
+    order: 2;
+    padding: 22px 20px 10px;
+    gap: 12px;
+  }
+
+  .panelCol {
+    width: 100%;
+    order: 3;
+    padding: 8px 20px 24px;
+  }
+
+  .heading {
+    font-size: clamp(22px, 5.5vw, 28px);
+  }
+
+  .description {
+    max-width: 100%;
+    font-size: 13.5px;
+  }
+
+  .panel {
+    padding: 16px 16px 12px;
+  }
+}
+
+/* ---------- Mobile (<= 600px) ---------- */
+@media (max-width: 600px) {
+  .banner {
+    border-radius: var(--radius-md);
+  }
+
+  .visualCol {
+    height: clamp(160px, 46vw, 210px);
+    min-height: 0;
+  }
+
+  .textCol {
+    padding: 18px 16px 8px;
+    gap: 12px;
+  }
+
+  .panelCol {
+    padding: 6px 16px 20px;
+  }
+
+  .heading {
+    font-size: clamp(21px, 6vw, 26px);
+  }
+
+  .description {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .panel {
+    padding: 14px 14px 10px;
+  }
+
+  .copyButton {
+    min-height: 44px;
+    font-size: 13.5px;
+  }
+}
+
+/* ---------- Compact Phones (<= 360px) ---------- */
+@media (max-width: 360px) {
+  .visualCol {
+    height: 150px;
+  }
+
+  .textCol {
+    padding: 14px 12px 6px;
+    gap: 10px;
+  }
+
+  .panelCol {
+    padding: 4px 12px 16px;
+  }
+
+  .heading {
+    font-size: 20px;
+  }
+
+  .panel {
+    padding: 12px 10px 8px;
+  }
+
+  .copyButton {
+    min-height: 42px;
+    font-size: 12.5px;
+  }
+}

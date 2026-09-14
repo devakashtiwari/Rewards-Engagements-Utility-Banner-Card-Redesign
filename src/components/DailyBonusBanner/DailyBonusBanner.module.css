@@ -1,0 +1,454 @@
+/* ==========================================================================
+   Daily Bonus Banner (Banner 05) - DailyBonusBanner.module.css
+   Warm Gold / Bronze theme showcasing today's bonus and 7-day streak tracker.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Main Banner Shell
+   -------------------------------------------------------------------------- */
+.banner {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  background: radial-gradient(120% 160% at 55% 20%, #2a2008 0%, var(--db-surface) 55%);
+  border: 1px solid rgba(242, 169, 59, 0.26);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  min-height: 410px;
+}
+
+/* --------------------------------------------------------------------------
+   2. Text Column (Heading, Description, CTA)
+   -------------------------------------------------------------------------- */
+.textCol {
+  position: relative;
+  z-index: 2;
+  width: 32%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+  padding: 32px 16px 32px 36px;
+}
+
+.eyebrowRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.eyebrowLabel {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--db-gold);
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(22px, 2.1vw, 30px);
+  line-height: 1.2;
+  margin: 0;
+  color: var(--white);
+}
+
+.description {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 14px;
+  line-height: 1.55;
+  max-width: 32ch;
+}
+
+/* --------------------------------------------------------------------------
+   3. Visual Column (Overflowing Gold Gift Box Artwork)
+   -------------------------------------------------------------------------- */
+.visualCol {
+  position: relative;
+  width: 28%;
+  overflow: hidden;
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.visualCol picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.bannerImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 38% center;
+  transform: scale(1.15);
+  animation: giftPulse 3.6s ease-in-out infinite;
+}
+
+@keyframes giftPulse {
+  0%,
+  100% {
+    transform: scale(1.15);
+  }
+  50% {
+    transform: scale(1.19);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. Bonus & Streak Panels
+   -------------------------------------------------------------------------- */
+.panelCol {
+  position: relative;
+  z-index: 2;
+  width: 40%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 24px 28px 24px 16px;
+}
+
+.todayPanel,
+.streakPanel {
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  padding: 18px 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(242, 169, 59, 0.3);
+  background: rgba(23, 19, 10, 0.55);
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.todayPanel:hover,
+.streakPanel:hover {
+  transform: translateY(-3px);
+  border-color: rgba(242, 169, 59, 0.58);
+  background: rgba(35, 27, 12, 0.7);
+}
+
+.streakPanel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 86%;
+  height: 3px;
+  border-radius: 0 999px 999px 0;
+  background: linear-gradient(90deg, #f2a93b, #ffe09a);
+  transform-origin: left;
+  animation: streakProgress 1.2s ease-out both;
+}
+
+.panelLabel {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.gemAmount {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--white);
+  animation: rewardCounterPulse 3s ease-in-out infinite;
+}
+
+.availableNow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-soft);
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 8px rgba(74, 222, 128, 0.8);
+  animation: blink 1.8s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  @keyframes streakProgress {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  @keyframes rewardCounterPulse {
+    0%,
+    100% {
+      text-shadow: 0 0 0 rgba(242, 169, 59, 0);
+    }
+    50% {
+      text-shadow: 0 0 12px rgba(242, 169, 59, 0.55);
+    }
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. Fluid 7-Day Streak Indicator
+   Uses flex: 1 with max-width and min-width constraints to dynamically fit
+   all screen widths down to 320px without overflow.
+   -------------------------------------------------------------------------- */
+.streakRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  margin: 4px 0 2px;
+  width: 100%;
+}
+
+.streakDay {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  max-width: 28px;
+  height: 26px;
+  border-radius: 50%;
+  font-size: 10.5px;
+  font-weight: 700;
+}
+
+.streakDone {
+  background: var(--db-gold);
+  color: #241705;
+}
+
+.streakPending {
+  border: 1.5px dashed rgba(242, 169, 59, 0.5);
+  color: var(--text-muted);
+  background: transparent;
+}
+
+.streakStatus {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--db-gold);
+}
+
+.streakHint {
+  font-size: 11.5px;
+  color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   6. Responsive Breakpoint Tiers
+   -------------------------------------------------------------------------- */
+/* Tablet Landscape & Standard Tablet (<= 1024px) */
+@media (max-width: 1024px) {
+  .banner {
+    flex-wrap: wrap;
+    min-height: auto;
+  }
+
+  .textCol {
+    width: 52%;
+    padding: 28px 20px 24px 28px;
+    gap: 14px;
+  }
+
+  .visualCol {
+    width: 48%;
+    min-height: 280px;
+    order: 2;
+    border-right: none;
+  }
+
+  .bannerImage {
+    object-position: 30% center;
+    transform: scale(1.08);
+  }
+
+  .panelCol {
+    width: 100%;
+    order: 3;
+    display: flex;
+    flex-direction: row;
+    gap: 14px;
+    padding: 12px 28px 28px;
+  }
+
+  .todayPanel,
+  .streakPanel {
+    flex: 1;
+    height: auto;
+    min-height: 120px;
+  }
+
+  .heading {
+    font-size: clamp(22px, 2.4vw, 28px);
+  }
+
+  .description {
+    max-width: 100%;
+  }
+}
+
+/* ---------- Small Tablet / Phablet (<= 768px) ---------- */
+@media (max-width: 768px) {
+  .banner {
+    flex-direction: column;
+    min-height: auto;
+    background: radial-gradient(140% 120% at 55% 15%, #352709 0%, var(--db-surface) 60%);
+  }
+
+  .visualCol {
+    width: 100%;
+    order: 1;
+    height: clamp(180px, 44vw, 240px);
+    min-height: 180px;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .bannerImage {
+    object-position: 28% center;
+    transform: scale(1.04);
+  }
+
+  .textCol {
+    width: 100%;
+    order: 2;
+    padding: 22px 20px 10px;
+    gap: 12px;
+  }
+
+  .panelCol {
+    width: 100%;
+    order: 3;
+    flex-direction: column;
+    gap: 12px;
+    padding: 8px 20px 24px;
+  }
+
+  .heading {
+    font-size: clamp(22px, 5.5vw, 28px);
+  }
+
+  .description {
+    max-width: 100%;
+    font-size: 13.5px;
+  }
+
+  .todayPanel,
+  .streakPanel {
+    width: 100%;
+    padding: 16px 16px;
+  }
+}
+
+/* ---------- Mobile (<= 600px) ---------- */
+@media (max-width: 600px) {
+  .banner {
+    border-radius: var(--radius-md);
+  }
+
+  .visualCol {
+    height: clamp(160px, 46vw, 210px);
+    min-height: 0;
+  }
+
+  .textCol {
+    padding: 18px 16px 8px;
+    gap: 12px;
+  }
+
+  .panelCol {
+    padding: 6px 16px 20px;
+    gap: 10px;
+  }
+
+  .todayPanel,
+  .streakPanel {
+    padding: 14px 14px;
+  }
+
+  .heading {
+    font-size: clamp(21px, 6vw, 26px);
+  }
+
+  .description {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .gemAmount {
+    font-size: 22px;
+  }
+
+  .streakDay {
+    height: 24px;
+    font-size: 9.5px;
+  }
+}
+
+/* ---------- Compact Phones (<= 360px) ---------- */
+@media (max-width: 360px) {
+  .visualCol {
+    height: 150px;
+  }
+
+  .textCol {
+    padding: 14px 12px 6px;
+    gap: 10px;
+  }
+
+  .panelCol {
+    padding: 4px 12px 16px;
+    gap: 8px;
+  }
+
+  .todayPanel,
+  .streakPanel {
+    padding: 12px 10px;
+  }
+
+  .heading {
+    font-size: 20px;
+  }
+
+  .gemAmount {
+    font-size: 20px;
+  }
+
+  .streakDay {
+    height: 22px;
+    font-size: 9px;
+  }
+}

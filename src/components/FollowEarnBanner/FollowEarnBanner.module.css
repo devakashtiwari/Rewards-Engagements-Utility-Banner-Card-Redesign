@@ -1,0 +1,466 @@
+/* ==========================================================================
+   Follow & Earn Banner (Banner 04) - FollowEarnBanner.module.css
+   Muted Purple theme featuring a social profile mockup overlay and campaign reward panel.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Main Banner Shell
+   -------------------------------------------------------------------------- */
+.banner {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  min-height: 410px;
+  overflow: hidden;
+  border: 1px solid rgba(138, 92, 246, 0.24);
+  border-radius: var(--radius-lg);
+  background: radial-gradient(120% 160% at 55% 20%, #241a45 0%, var(--fe-surface) 55%);
+}
+
+.banner::before,
+.banner::after {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: 50%;
+  filter: blur(18px);
+  will-change: transform, opacity;
+}
+
+.banner::before {
+  top: -35%;
+  left: 38%;
+  width: 48%;
+  height: 125%;
+  background: radial-gradient(circle, rgba(154, 104, 255, 0.32), transparent 68%);
+  animation: purpleGlowDrift 9s ease-in-out infinite alternate;
+}
+
+.banner::after {
+  right: -12%;
+  bottom: -55%;
+  width: 58%;
+  height: 125%;
+  background: radial-gradient(circle, rgba(91, 55, 190, 0.28), transparent 68%);
+  animation: purpleGlowDrift 12s ease-in-out -3s infinite alternate-reverse;
+}
+
+/* --------------------------------------------------------------------------
+   2. Text Column (Heading, Description, CTA)
+   -------------------------------------------------------------------------- */
+.textCol,
+.panelCol {
+  position: relative;
+  z-index: 2;
+  width: 32%;
+  flex-shrink: 0;
+  display: flex;
+}
+
+.textCol {
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+  padding: 32px 16px 32px 36px;
+}
+
+.eyebrowRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.eyebrowLabel {
+  font: 600 12px var(--font-display);
+  letter-spacing: 0.08em;
+  color: var(--fe-purple-light);
+}
+
+.heading {
+  margin: 0;
+  color: var(--white);
+  font: 700 clamp(24px, 2.3vw, 32px)/1.15 var(--font-display);
+}
+
+.description {
+  margin: 0;
+  max-width: 32ch;
+  color: var(--text-soft);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+/* --------------------------------------------------------------------------
+   3. Visual Column & Phone Mockup Overlay
+   -------------------------------------------------------------------------- */
+.visualCol {
+  position: relative;
+  width: 36%;
+  overflow: hidden;
+  border-inline: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.visualCol picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.bannerImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 42% center;
+  transform: scale(1.08);
+}
+
+.phoneOverlay {
+  position: absolute;
+  top: 45%;
+  left: 43%;
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  text-align: center;
+  pointer-events: none;
+  transform: translate(-50%, -46%);
+}
+
+.phoneBrand {
+  margin-top: 120px;
+  color: var(--white);
+  font: 700 11.5px var(--font-display);
+}
+
+.phoneHandle {
+  margin-bottom: 4px;
+  color: var(--text-muted);
+  font-size: 9px;
+}
+
+.followingPill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 20px;
+  border-radius: 8px;
+  background: #2f7dfb;
+  color: var(--white);
+  font-size: 10.5px;
+  font-weight: 600;
+}
+
+.statsRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+  color: var(--text-muted);
+  font-size: 9px;
+}
+
+.statsRow strong {
+  display: block;
+  color: var(--white);
+  font: 700 11px var(--font-display);
+}
+
+/* --------------------------------------------------------------------------
+   4. Campaign Reward Panel
+   -------------------------------------------------------------------------- */
+.panelCol {
+  align-items: center;
+  padding: 24px 28px 24px 16px;
+}
+
+.panel {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 22px 20px;
+  border: 1px solid rgba(138, 92, 246, 0.32);
+  border-radius: var(--radius-md);
+  background: rgba(21, 15, 42, 0.5);
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.panel:hover {
+  transform: translateY(-3px);
+  border-color: rgba(154, 104, 255, 0.62);
+  background: rgba(29, 19, 57, 0.72);
+}
+
+.giftIcon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  margin-bottom: 6px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #9a68ff, #6d3bd6);
+  color: var(--white);
+}
+
+.sparkle {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  color: #e8d9ff;
+  animation: twinkle 2.4s ease-in-out infinite;
+}
+
+.panelCopy {
+  margin: 0;
+  max-width: 28ch;
+  color: var(--text-soft);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.panelReward {
+  margin-top: 4px;
+  color: var(--white);
+  font: 700 22px var(--font-display);
+}
+
+.panelCaption {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+/* --------------------------------------------------------------------------
+   5. Keyframe Animations
+   -------------------------------------------------------------------------- */
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes purpleGlowDrift {
+  0% {
+    opacity: 0.45;
+    transform: translate3d(-5%, -2%, 0) scale(0.92);
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0.55;
+    transform: translate3d(7%, 5%, 0) scale(1.08);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   6. Responsive Breakpoint Tiers
+   -------------------------------------------------------------------------- */
+/* Tablet Landscape & Standard Tablet (<= 1024px) */
+@media (max-width: 1024px) {
+  .banner {
+    flex-wrap: wrap;
+    min-height: auto;
+  }
+
+  .textCol {
+    width: 50%;
+    padding: 28px 20px 24px 28px;
+    gap: 14px;
+  }
+
+  .visualCol {
+    width: 50%;
+    min-height: 290px;
+    order: 2;
+    border-right: none;
+  }
+
+  .bannerImage {
+    object-position: 40% center;
+    transform: scale(1.05);
+  }
+
+  .phoneOverlay {
+    top: 48%;
+    left: 42%;
+    width: 52%;
+  }
+
+  .phoneBrand {
+    margin-top: 80px;
+    font-size: 10.5px;
+  }
+
+  .panelCol {
+    width: 100%;
+    order: 3;
+    padding: 12px 28px 28px;
+  }
+
+  .heading {
+    font-size: clamp(23px, 2.6vw, 30px);
+  }
+
+  .description {
+    max-width: 100%;
+  }
+}
+
+/* ---------- Small Tablet / Phablet (<= 768px) ---------- */
+@media (max-width: 768px) {
+  .banner {
+    flex-direction: column;
+    min-height: auto;
+    background: radial-gradient(140% 120% at 55% 15%, #342568 0%, var(--fe-surface) 60%);
+  }
+
+  .visualCol {
+    width: 100%;
+    order: 1;
+    height: clamp(190px, 46vw, 250px);
+    min-height: 180px;
+    border-inline: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .bannerImage {
+    object-position: 44% center;
+    transform: scale(1.02);
+  }
+
+  .phoneOverlay {
+    top: 56%;
+    left: 40%;
+    width: 66%;
+    gap: 2px;
+    rotate: 2deg;
+    transform: translate(-50%, -50%);
+  }
+
+  .phoneBrand {
+    margin-top: 32px;
+    font-size: clamp(7.5px, 2vw, 9.5px);
+  }
+
+  .phoneHandle {
+    margin-bottom: 2px;
+    font-size: 6.5px;
+  }
+
+  .followingPill {
+    padding: 2px 10px;
+    border-radius: 5px;
+    font-size: 7px;
+  }
+
+  .statsRow {
+    display: none;
+  }
+
+  .textCol {
+    width: 100%;
+    order: 2;
+    padding: 22px 20px 10px;
+    gap: 12px;
+  }
+
+  .panelCol {
+    width: 100%;
+    order: 3;
+    padding: 8px 20px 24px;
+  }
+
+  .heading {
+    font-size: clamp(22px, 5.5vw, 28px);
+  }
+
+  .description {
+    max-width: 100%;
+    font-size: 13.5px;
+  }
+
+  .panel {
+    padding: 18px 18px;
+  }
+}
+
+/* ---------- Mobile (<= 600px) ---------- */
+@media (max-width: 600px) {
+  .banner {
+    border-radius: var(--radius-md);
+  }
+
+  .visualCol {
+    height: clamp(165px, 48vw, 220px);
+    min-height: 0;
+  }
+
+  .textCol {
+    padding: 18px 16px 8px;
+    gap: 12px;
+  }
+
+  .panelCol {
+    padding: 6px 16px 20px;
+  }
+
+  .heading {
+    font-size: clamp(21px, 6vw, 26px);
+  }
+
+  .description {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .panel {
+    padding: 16px 14px;
+  }
+}
+
+/* ---------- Compact Phones (<= 360px) ---------- */
+@media (max-width: 360px) {
+  .visualCol {
+    height: 155px;
+  }
+
+  .phoneBrand {
+    margin-top: 26px;
+    font-size: 7.5px;
+  }
+
+  .textCol {
+    padding: 14px 12px 6px;
+    gap: 10px;
+  }
+
+  .panelCol {
+    padding: 4px 12px 16px;
+  }
+
+  .heading {
+    font-size: 20px;
+  }
+
+  .panel {
+    padding: 14px 12px;
+  }
+
+  .panelReward {
+    font-size: 19px;
+  }
+}
