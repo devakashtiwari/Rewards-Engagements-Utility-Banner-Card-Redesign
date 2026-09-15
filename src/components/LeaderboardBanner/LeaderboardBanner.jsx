@@ -1,6 +1,7 @@
 import { Trophy, ArrowRight } from 'lucide-react'
+import { useCountUp } from '../../hooks/useCountUp.js'
 import { SectionTag, EyebrowPill, CtaButton } from '../common/BannerUI.jsx'
-import bannerImage from '../../assets/B1_Leaderboard_Banner.avif'
+import bannerImage from '../../assets/B1_Leaderboard_Banner  .png'
 import mobileBannerImage from '../../assets/B1_Leaderboard_Banner-Mobile.png'
 import styles from './LeaderboardBanner.module.css'
 
@@ -22,6 +23,8 @@ const RANKERS = [
  * @param {Function} onViewLeaderboard - Callback invoked when "Check Rankings" CTA is clicked
  */
 export default function LeaderboardBanner({ onViewLeaderboard }) {
+  const { ref: poolAmountRef, value: prizePool } = useCountUp(50000)
+
   return (
     <section className={styles.banner} aria-labelledby="leaderboard-heading">
       {/* Left Column: Eyebrow, Heading, Description, Prize Pool, & CTA */}
@@ -47,7 +50,11 @@ export default function LeaderboardBanner({ onViewLeaderboard }) {
         <div className={styles.poolPill}>
           <Trophy size={16} strokeWidth={2.2} />
           <span>
-            Current pool: <strong className={styles.poolAmount}>50,000 VEs</strong> in prizes
+            Current pool:{' '}
+            <strong ref={poolAmountRef} className={styles.poolAmount}>
+              {prizePool.toLocaleString()} VEs
+            </strong>{' '}
+            in prizes
           </span>
         </div>
 

@@ -108,15 +108,7 @@
   height: 100%;
 }
 
-.bannerImage {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 42% center;
-  transform: scale(1.08);
-}
+
 
 .phoneOverlay {
   position: absolute;
@@ -240,15 +232,128 @@
 /* --------------------------------------------------------------------------
    5. Keyframe Animations
    -------------------------------------------------------------------------- */
+
+/* Subtle phone/image float for the social mockup artwork */
+@keyframes phoneFloat {
+  0%,
+  100% {
+    transform: scale(1.08) translateY(0);
+  }
+  50% {
+    transform: scale(1.08) translateY(-5px);
+  }
+}
+
+.bannerImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 42% center;
+  animation: phoneFloat 6s ease-in-out infinite;
+}
+
+/* Following pill: soft blue ring pulse */
+@keyframes followingPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(47, 125, 251, 0);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(47, 125, 251, 0.28),
+                0 0 14px rgba(47, 125, 251, 0.18);
+  }
+}
+
+.followingPill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 20px;
+  border-radius: 8px;
+  background: #2f7dfb;
+  color: var(--white);
+  font-size: 10.5px;
+  font-weight: 600;
+  animation: followingPulse 3s ease-in-out 1s infinite;
+}
+
+/* Stats numbers: purple shimmer glow */
+@keyframes statGlow {
+  0%,
+  100% {
+    text-shadow: none;
+  }
+  50% {
+    text-shadow: 0 0 8px rgba(154, 104, 255, 0.55);
+  }
+}
+
+.statsRow strong {
+  display: block;
+  color: var(--white);
+  font: 700 11px var(--font-display);
+  animation: statGlow 4s ease-in-out infinite;
+}
+
+/* Gift icon: gentle float */
+@keyframes giftFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.giftIcon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  margin-bottom: 6px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #9a68ff, #6d3bd6);
+  color: var(--white);
+  animation: giftFloat 3.5s ease-in-out infinite;
+}
+
+/* Reward amount: springy reveal on mount */
+@keyframes rewardReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.65) translateY(10px);
+  }
+  70% {
+    transform: scale(1.06) translateY(-2px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.panelReward {
+  margin-top: 4px;
+  color: var(--white);
+  font: 700 22px var(--font-display);
+  animation: rewardReveal 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
+}
+
+/* Sparkle: enhanced twinkle with rotation */
 @keyframes twinkle {
   0%,
   100% {
-    opacity: 0.4;
-    transform: scale(0.9);
+    opacity: 0.35;
+    transform: scale(0.85) rotate(0deg);
   }
   50% {
     opacity: 1;
-    transform: scale(1.15);
+    transform: scale(1.2) rotate(20deg);
   }
 }
 
@@ -263,6 +368,19 @@
   100% {
     opacity: 0.55;
     transform: translate3d(7%, 5%, 0) scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .banner::before,
+  .banner::after,
+  .bannerImage,
+  .followingPill,
+  .statsRow strong,
+  .giftIcon,
+  .panelReward,
+  .sparkle {
+    animation: none;
   }
 }
 

@@ -81,6 +81,7 @@
 .poolAmount {
   color: var(--lb-gold);
   font-weight: 500;
+  animation: prizeGlow 3.5s ease-in-out 1.2s infinite;
 }
 
 /* --------------------------------------------------------------------------
@@ -127,35 +128,36 @@
   align-items: center;
   gap: 4px;
   transform: translate(-50%, -50%);
-  animation: floatCard 4.5s ease-in-out infinite;
-  transition: filter 0.2s ease;
+  animation:
+    rankEnter 0.72s cubic-bezier(0.22, 1, 0.36, 1) both,
+    floatCard 6s ease-in-out infinite;
+  will-change: transform, opacity;
+  transition: filter 0.3s ease;
 }
+
+/* Stagger: delay for [entrance, float] */
+.rankCard:nth-child(1) { animation-delay: 0.08s, 0.8s; }
+.rankCard:nth-child(2) { animation-delay: 0.22s, 0.94s; }
+.rankCard:nth-child(3) { animation-delay: 0.36s, 1.08s; }
 
 .rankCard:hover {
   filter: brightness(1.18);
   animation-play-state: paused;
 }
 
-.rankCard:nth-child(2) {
-  animation-delay: 0.3s;
-}
-.rankCard:nth-child(3) {
-  animation-delay: 0.6s;
-}
-
 .rank-gold {
-  left: 69%;
+  left: 51%;
   top: 61%;
 }
 
 .rank-blue {
-  left: 49%;
+  left: 31%;
   top: 67%;
 }
 
 .rank-orange {
-  left: 89.9%;
-  top: 69%;
+  left: 72%;
+  top: 66%;
 }
 
 .rankBadge {
@@ -194,13 +196,41 @@
 /* --------------------------------------------------------------------------
    4. Animations
    -------------------------------------------------------------------------- */
+@keyframes rankEnter {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translate3d(0, 16px, 0) scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translate3d(0, 0, 0) scale(1);
+  }
+}
+
 @keyframes floatCard {
   0%,
   100% {
-    transform: translate(-50%, -50%) translateY(0) scale(1);
+    transform: translate(-50%, -50%) translate3d(0, 0, 0) scale(1);
   }
   50% {
-    transform: translate(-50%, -50%) translateY(-7px) scale(1.03);
+    transform: translate(-50%, -50%) translate3d(0, -4px, 0) scale(1.01);
+  }
+}
+
+@keyframes prizeGlow {
+  0%,
+  100% {
+    text-shadow: none;
+  }
+  50% {
+    text-shadow: 0 0 12px rgba(245, 185, 62, 0.55);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rankCard,
+  .poolAmount {
+    animation: none;
   }
 }
 

@@ -1,4 +1,5 @@
 import { ArrowRight, Gift, Sparkles } from 'lucide-react'
+import { useCountUp } from '../../hooks/useCountUp.js'
 import { SectionTag, CtaButton } from '../common/BannerUI.jsx'
 import bannerImage from '../../assets/B4_Follow_s_Earn_Banner.png'
 import mobileBannerImage from '../../assets/B4_Follow_s_Earn_Banner-mobile.png'
@@ -13,6 +14,8 @@ import styles from './FollowEarnBanner.module.css'
  * @param {Function} onExploreChannels - Callback invoked when "Explore Our Channels" CTA is clicked
  */
 export default function FollowEarnBanner({ onExploreChannels }) {
+  const { ref: followerCountRef, value: followerCount } = useCountUp(24500)
+
   return (
     <section className={styles.banner} aria-labelledby="follow-heading">
       {/* Left Column: Eyebrow, Heading, Description, & CTA */}
@@ -55,7 +58,10 @@ export default function FollowEarnBanner({ onExploreChannels }) {
               <strong>128</strong> Posts
             </span>
             <span>
-              <strong>24.5K</strong> Followers
+              <strong ref={followerCountRef}>
+                {(followerCount / 1000).toFixed(1)}K
+              </strong>{' '}
+              Followers
             </span>
             <span>
               <strong>8</strong> Following
