@@ -1,6 +1,7 @@
 import { Trophy, ArrowRight } from 'lucide-react'
 import { SectionTag, EyebrowPill, CtaButton } from '../common/BannerUI.jsx'
 import bannerImage from '../../assets/B1_Leaderboard_Banner.avif'
+import mobileBannerImage from '../../assets/B1_Leaderboard_Banner-Mobile.png'
 import styles from './LeaderboardBanner.module.css'
 
 /**
@@ -57,11 +58,17 @@ export default function LeaderboardBanner({ onViewLeaderboard }) {
 
       {/* Right Column: Trophy Visual Artwork & Floating Podium Badges */}
       <div className={styles.visualCol}>
-        <img
-          src={bannerImage}
-          alt="Gold trophy on a podium with three ranked user positions and a rising performance chart"
-          className={styles.bannerImage}
-        />
+        {/* imageWrap clips the image to the column without clipping the floating rank cards */}
+        <div className={styles.imageWrap}>
+          <picture>
+            <source media="(max-width: 1024px)" srcSet={mobileBannerImage} />
+            <img
+              src={bannerImage}
+              alt="Gold trophy on a podium with three ranked user positions and a rising performance chart"
+              className={styles.bannerImage}
+            />
+          </picture>
+        </div>
 
         <div className={styles.podiumOverlay}>
           {RANKERS.map((user) => (

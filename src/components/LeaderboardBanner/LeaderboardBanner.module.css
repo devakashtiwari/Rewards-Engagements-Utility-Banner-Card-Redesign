@@ -80,7 +80,7 @@
 
 .poolAmount {
   color: var(--lb-gold);
-  font-weight: 700;
+  font-weight: 500;
 }
 
 /* --------------------------------------------------------------------------
@@ -89,16 +89,29 @@
 .visualCol {
   position: relative;
   width: 64%;
+  /* overflow intentionally NOT hidden — rank cards must float above the column edge.
+     The parent .banner already clips content at its border-radius. */
+}
+
+/* Dedicated wrapper that clips the image to the column bounds */
+.imageWrap {
+  position: absolute;
+  inset: 0;
   overflow: hidden;
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+}
+
+.imageWrap picture {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .bannerImage {
-  position: absolute;
-  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 72% center;
+  object-position: center center;
 }
 
 .podiumOverlay {
@@ -131,24 +144,24 @@
 }
 
 .rank-gold {
-  left: 56.5%;
+  left: 69%;
   top: 61%;
 }
 
 .rank-blue {
-  left: 36.5%;
-  top: 66.5%;
+  left: 49%;
+  top: 67%;
 }
 
 .rank-orange {
-  left: 77%;
-  top: 65.5%;
+  left: 89.9%;
+  top: 69%;
 }
 
 .rankBadge {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 20px;
+  font-size: 15px;
   color: #120b00;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
   margin-bottom: 15px;
@@ -211,6 +224,10 @@
     min-height: 340px;
   }
 
+  .imageWrap {
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  }
+
   .heading {
     font-size: clamp(24px, 2.8vw, 32px);
   }
@@ -249,15 +266,15 @@
     min-height: 200px;
   }
 
+  .imageWrap {
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+
   .textCol {
     width: 100%;
     order: 2;
     padding: 24px 20px 28px;
     gap: 14px;
-  }
-
-  .bannerImage {
-    object-position: 60% center;
   }
 
   .heading {
@@ -274,7 +291,7 @@
   }
 
   .rankBadge {
-    font-size: 16px;
+    font-size: 10px;
     margin-bottom: 6px;
   }
 
@@ -319,22 +336,22 @@
   }
 
   .rank-blue {
-    left: 41%;
-    top: 67%;
+    left: 29%;
+    top: 68%;
   }
 
   .rank-gold {
-    left: 64%;
+    left: 52%;
     top: 62%;
   }
 
   .rank-orange {
-    left: 87%;
-    top: 66%;
+    left: 75%;
+    top: 69%;
   }
 
   .rankBadge {
-    font-size: 14px;
+    font-size: 12px;
     margin-bottom: 4px;
   }
 
