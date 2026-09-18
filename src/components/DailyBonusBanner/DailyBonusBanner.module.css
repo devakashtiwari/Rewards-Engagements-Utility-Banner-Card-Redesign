@@ -295,37 +295,23 @@
 .streakRow :nth-child(5) { animation-delay: 0.29s; }
 .streakRow :nth-child(6) { animation-delay: 0.35s; }
 
-@media (prefers-reduced-motion: reduce) {
-  .bannerImage,
-  .dot,
-  .gemAmount,
-  .streakPanel::before,
-  .streakDone {
-    animation: none;
-  }
-}
-
 /* --------------------------------------------------------------------------
-   6. Responsive Breakpoint Tiers
+   6. Height Requirements
    -------------------------------------------------------------------------- */
-/* Tablet Landscape & Standard Tablet (<= 1024px) */
-@media (max-width: 1024px) {
+/* Laptop / Desktop: 410px - 450px */
+@media (min-width: 1025px) {
   .banner {
-    flex-wrap: wrap;
-    min-height: auto;
+    height: 100%;
+    flex-wrap: nowrap;
+    min-height: 0;
   }
 
   .textCol {
-    width: 52%;
-    padding: 28px 20px 24px 28px;
-    gap: 14px;
+    width: 32%;
   }
 
   .visualCol {
-    width: 48%;
-    min-height: 280px;
-    order: 2;
-    border-right: none;
+    width: 28%;
   }
 
   .bannerImage {
@@ -334,12 +320,7 @@
   }
 
   .panelCol {
-    width: 100%;
-    order: 3;
-    display: flex;
-    flex-direction: row;
-    gap: 14px;
-    padding: 12px 28px 28px;
+    width: 40%;
   }
 
   .todayPanel,
@@ -358,17 +339,42 @@
   }
 }
 
-/* ---------- Small Tablet / Phablet (<= 768px) ---------- */
-@media (max-width: 768px) {
+/* Tablet: 380px - 540px */
+@media (max-width: 1024px) {
   .banner {
     flex-direction: column;
+    gap: 12px;
     min-height: auto;
     background: radial-gradient(140% 120% at 55% 15%, #352709 0%, var(--db-surface) 60%);
   }
 
-  .visualCol {
+  .textCol {
+    display: contents;
+  }
+
+  .visualCol,
+  .panelCol,
+  .textCol > * {
     width: 100%;
+  }
+
+  .textCol > .eyebrowRow {
     order: 1;
+    padding: 22px 20px 0;
+  }
+
+  .textCol > .heading {
+    order: 2;
+    padding: 0 20px;
+  }
+
+  .textCol > .description {
+    order: 3;
+    padding: 0 20px;
+  }
+
+  .visualCol {
+    order: 4;
     height: clamp(180px, 44vw, 240px);
     min-height: 180px;
     border-left: none;
@@ -381,16 +387,14 @@
     transform: scale(1.04);
   }
 
-  .textCol {
-    width: 100%;
-    order: 2;
-    padding: 22px 20px 10px;
-    gap: 12px;
+  .textCol > .claimButton {
+    order: 5;
+    width: calc(100% - 40px);
+    margin: 12px 20px 0;
   }
 
   .panelCol {
-    width: 100%;
-    order: 3;
+    order: 6;
     flex-direction: column;
     gap: 12px;
     padding: 8px 20px 24px;
@@ -410,10 +414,11 @@
     width: 100%;
     padding: 16px 16px;
   }
+
 }
 
-/* ---------- Mobile (<= 600px) ---------- */
-@media (max-width: 600px) {
+/* Mobile: 330px - 520px */
+@media (max-width: 767px) {
   .banner {
     border-radius: var(--radius-md);
   }
@@ -423,9 +428,8 @@
     min-height: 0;
   }
 
-  .textCol {
-    padding: 18px 16px 8px;
-    gap: 12px;
+  .textCol > .eyebrowRow {
+    padding: 18px 16px 0;
   }
 
   .panelCol {
@@ -438,56 +442,35 @@
     padding: 14px 14px;
   }
 
-  .heading {
-    font-size: clamp(21px, 6vw, 26px);
+  .textCol > .heading,
+  .textCol > .description {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
-  .description {
-    font-size: 13px;
-    line-height: 1.5;
-  }
-
-  .gemAmount {
-    font-size: 22px;
-  }
-
-  .streakDay {
-    height: 24px;
-    font-size: 9.5px;
+  .textCol > .claimButton {
+    width: calc(100% - 32px);
+    margin-right: 16px;
+    margin-left: 16px;
   }
 }
 
-/* ---------- Compact Phones (<= 360px) ---------- */
-@media (max-width: 360px) {
-  .visualCol {
-    height: 150px;
-  }
-
-  .textCol {
-    padding: 14px 12px 6px;
-    gap: 10px;
-  }
-
-  .panelCol {
-    padding: 4px 12px 16px;
-    gap: 8px;
+/* --------------------------------------------------------------------------
+   7. Final responsive adjustments (tablet/mobile)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .banner {
+    min-height: auto;
   }
 
   .todayPanel,
   .streakPanel {
-    padding: 12px 10px;
+    min-height: 0;
   }
+}
 
-  .heading {
-    font-size: 20px;
-  }
-
-  .gemAmount {
-    font-size: 20px;
-  }
-
-  .streakDay {
-    height: 22px;
-    font-size: 9px;
+@media (min-width: 1025px) {
+  .banner {
+    height: clamp(410px, 32vw, 450px);
   }
 }

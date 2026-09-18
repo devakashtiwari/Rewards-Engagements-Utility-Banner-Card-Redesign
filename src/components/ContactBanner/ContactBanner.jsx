@@ -60,7 +60,10 @@ export default function ContactBanner({ onContactSupport, onHelpCenter, onSubmit
       {/* Middle Column: Support Representative Visual Artwork */}
       <div className={styles.visualCol}>
         <picture>
-          <source media="(max-width: 1024px)" srcSet={mobileBannerImage} />
+          <source
+            media="(max-width: 1024px), (hover: none) and (pointer: coarse)"
+            srcSet={mobileBannerImage}
+          />
           <img
             src={bannerImage}
             alt="Friendly VELOOP support agent wearing a headset at a laptop"

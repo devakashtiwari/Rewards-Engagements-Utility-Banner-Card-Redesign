@@ -102,16 +102,15 @@ src/
 Each component folder contains a `.jsx` file and a matching `.module.css`
 file, keeping markup and styling co-located and scoped.
 
-## Responsive Breakpoints
+## 5. Height Requirements
 
-| Device | Width | Height range | Layout |
-|---|---|---|---|
-| Desktop / Laptop | 100% | 410px – 450px | Multi-column (text + illustration [+ info panel]) |
-| Tablet (≤1024px) | 100% | 380px – 540px | Adjusted column split, panel reflows below |
-| Mobile (≤768px) | 100% | 330px – 520px | Vertical stack: illustration → heading → description → reward info → CTA |
+| Device | Minimum height | Maximum height | Layout |
+|---|---:|---:|---|
+| Laptop / Desktop | 410px | 450px | Multi-column (text + illustration [+ info panel]) |
+| Tablet | 380px | 540px | Adjusted column split, panel reflows below |
+| Mobile | 330px | 520px | Vertical stack: illustration → heading → description → reward info → CTA |
 
-Breakpoints are implemented with plain CSS media queries per component
-(`max-width: 1024px` for tablet, `max-width: 768px` for mobile).
+Breakpoints are implemented with height-based CSS media queries per component using the ranges above.
 
 ## Animation Details
 

@@ -35,11 +35,11 @@ export function EyebrowPill({ icon, children, tone = 'gold' }) {
  * @param {'gold'|'blue'|'navy'|'purple'|'bronze'} [tone='gold'] - Theme color gradient variant
  * @param {Function} [onClick] - Click handler
  */
-export function CtaButton({ children, icon, tone = 'gold', onClick, ...rest }) {
+export function CtaButton({ children, icon, tone = 'gold', onClick, className = '', ...rest }) {
   return (
     <button
       type="button"
-      className={`${styles.ctaButton} ${styles[`tone-${tone}`]}`}
+      className={`${styles.ctaButton} ${styles[`tone-${tone}`]} ${className}`.trim()}
       onClick={onClick}
       {...rest}
     >

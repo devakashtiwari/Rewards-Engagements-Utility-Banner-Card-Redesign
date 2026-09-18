@@ -1,5 +1,5 @@
 import { Gift, Check } from 'lucide-react'
-import { SectionTag, CtaButton } from '../common/BannerUI.jsx'
+import { CtaButton, SectionTag } from '../common/BannerUI.jsx'
 import bannerImage from '../../assets/B5_Daily_Bonus_Banner.png'
 import mobileBannerImage from '../../assets/B5_Daily_Bonus_Banner-Mobiile Screen .png'
 import styles from './DailyBonusBanner.module.css'
@@ -37,7 +37,12 @@ export default function DailyBonusBanner({ onClaimBonus }) {
           Check in regularly and claim your available daily bonus before the opportunity resets.
         </p>
 
-        <CtaButton tone="bronze" icon={<Gift size={18} />} onClick={onClaimBonus}>
+        <CtaButton
+          tone="bronze"
+          className={styles.claimButton}
+          icon={<Gift size={18} />}
+          onClick={onClaimBonus}
+        >
           Claim Bonus
         </CtaButton>
       </div>
@@ -45,7 +50,10 @@ export default function DailyBonusBanner({ onClaimBonus }) {
       {/* Middle Column: Overflowing Gold Coin Gift Box Artwork */}
       <div className={styles.visualCol}>
         <picture>
-          <source media="(max-width: 1024px)" srcSet={mobileBannerImage} />
+          <source
+            media="(max-width: 1024px), (hover: none) and (pointer: coarse)"
+            srcSet={mobileBannerImage}
+          />
           <img
             src={bannerImage}
             alt="Open gift box overflowing with gold VE coins"

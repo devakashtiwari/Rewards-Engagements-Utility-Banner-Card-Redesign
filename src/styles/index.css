@@ -71,6 +71,8 @@ body {
 }
 
 body {
+  display: flex;
+  justify-content: center;
   background: var(--body-bg);
   font-family: var(--font-body);
   color: var(--white);
@@ -106,12 +108,13 @@ a {
   position: relative;
   isolation: isolate;
   width: 100%;
-  max-width: 1360px;
+  max-width: none;
+  min-width: 0;
   margin: 0 auto;
-  padding: 32px 24px 80px;
+  padding: 18px 8px 32px;
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 14px;
   overflow-x: clip; /* Clips glow animations horizontally to eliminate right-side scroll space */
 }
 
@@ -178,48 +181,46 @@ a {
 }
 
 /* --------------------------------------------------------------------------
-   5. Global Responsive Tiers for Container Layout
+   5. Height Requirements
+   Responsive card height by device range, without forcing a tiny fixed card.
    -------------------------------------------------------------------------- */
-/* Tablet Tier (<= 1024px) */
-@media (max-width: 1024px) {
+/* Laptop / Desktop: 410px - 450px */
+@media (min-width: 1025px) {
   .veloop-app {
     padding: 24px 20px 64px;
     gap: 24px;
   }
+
+  .veloop-app > section {
+    min-height: 410px;
+    max-height: 450px;
+    height: clamp(410px, 31vw, 450px);
+  }
 }
 
-/* Small Tablet / Phablet Tier (<= 768px) */
-@media (max-width: 768px) {
+/* Tablet: 380px - 540px */
+@media (min-width: 768px) and (max-width: 1024px) {
   .veloop-app {
     padding: 16px 14px 52px;
     gap: 20px;
   }
+
+  .veloop-app > section {
+    min-height: 380px;
+    max-height: 540px;
+    height: clamp(380px, 44vw, 540px);
+  }
 }
 
-/* Mobile Tier (<= 600px) */
-@media (max-width: 600px) {
+/* Mobile: 330px - 520px */
+@media (max-width: 767px) {
   .veloop-app {
     padding: 12px 12px 48px;
     gap: 16px;
   }
-}
 
-/* Compact Mobile Tier (<= 360px) */
-@media (max-width: 360px) {
-  .veloop-app {
-    padding: 10px 8px 40px;
-    gap: 14px;
-  }
-}
-
-/* --------------------------------------------------------------------------
-   6. Accessibility: Reduced Motion Support
-   -------------------------------------------------------------------------- */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-    scroll-behavior: auto !important;
+  .veloop-app > section {
+    min-height: 330px;
+    height: auto;
   }
 }

@@ -371,40 +371,23 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .banner::before,
-  .banner::after,
-  .bannerImage,
-  .followingPill,
-  .statsRow strong,
-  .giftIcon,
-  .panelReward,
-  .sparkle {
-    animation: none;
-  }
-}
-
 /* --------------------------------------------------------------------------
-   6. Responsive Breakpoint Tiers
+   6. Height Requirements
    -------------------------------------------------------------------------- */
-/* Tablet Landscape & Standard Tablet (<= 1024px) */
-@media (max-width: 1024px) {
+/* Laptop / Desktop: 410px - 450px */
+@media (min-width: 1025px) {
   .banner {
-    flex-wrap: wrap;
-    min-height: auto;
+    height: 100%;
+    flex-wrap: nowrap;
+    min-height: 0;
   }
 
   .textCol {
-    width: 50%;
-    padding: 28px 20px 24px 28px;
-    gap: 14px;
+    width: 32%;
   }
 
   .visualCol {
-    width: 50%;
-    min-height: 290px;
-    order: 2;
-    border-right: none;
+    width: 36%;
   }
 
   .bannerImage {
@@ -424,9 +407,7 @@
   }
 
   .panelCol {
-    width: 100%;
-    order: 3;
-    padding: 12px 28px 28px;
+    width: 32%;
   }
 
   .heading {
@@ -438,8 +419,8 @@
   }
 }
 
-/* ---------- Small Tablet / Phablet (<= 768px) ---------- */
-@media (max-width: 768px) {
+/* Tablet: 380px - 540px */
+@media (max-width: 767px) {
   .banner {
     flex-direction: column;
     min-height: auto;
@@ -516,8 +497,8 @@
   }
 }
 
-/* ---------- Mobile (<= 600px) ---------- */
-@media (max-width: 600px) {
+/* Mobile: 330px - 520px */
+@media (max-width: 767px) {
   .banner {
     border-radius: var(--radius-md);
   }
@@ -550,35 +531,137 @@
   }
 }
 
-/* ---------- Compact Phones (<= 360px) ---------- */
-@media (max-width: 360px) {
-  .visualCol {
-    height: 155px;
+/* --------------------------------------------------------------------------
+   7. Width-based Phone & Tablet Layout
+   -------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+  .banner {
+    flex-direction: column;
+    min-height: 0;
   }
 
-  .phoneBrand {
-    margin-top: 26px;
-    font-size: 7.5px;
+  .visualCol {
+    width: 100%;
+    order: 1;
+    height: clamp(220px, 42vw, 340px);
+    min-height: 0;
+    border-inline: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .bannerImage {
+    object-position: 42% center;
+  }
+
+  .phoneOverlay {
+    left: 43%;
+    width: clamp(180px, 26vw, 280px);
   }
 
   .textCol {
-    padding: 14px 12px 6px;
-    gap: 10px;
+    width: 100%;
+    order: 2;
+    padding: clamp(24px, 4vw, 34px) clamp(20px, 5vw, 40px) 14px;
   }
 
   .panelCol {
-    padding: 4px 12px 16px;
+    width: 100%;
+    order: 3;
+    padding: 10px clamp(20px, 5vw, 40px) clamp(24px, 4vw, 34px);
   }
 
   .heading {
-    font-size: 20px;
+    font-size: clamp(26px, 4vw, 34px);
+  }
+
+  .description {
+    max-width: 60ch;
+  }
+}
+
+@media (max-width: 767px) {
+  .banner {
+    border-radius: var(--radius-md);
+  }
+
+  .visualCol {
+    height: clamp(190px, 56vw, 250px);
+  }
+
+  .phoneOverlay {
+    top: 47%;
+    left: 43%;
+    width: min(48%, 190px);
+    gap: 3px;
+  }
+
+  .phoneBrand {
+    margin-top: 82px;
+    font-size: 10px;
+  }
+
+  .phoneHandle {
+    font-size: 8px;
+  }
+
+  .followingPill {
+    padding: 4px 14px;
+    font-size: 9px;
+  }
+
+  .statsRow {
+    gap: 6px;
+    margin-top: 5px;
+    font-size: 8px;
+  }
+
+  .statsRow strong {
+    font-size: 10px;
+  }
+
+  .textCol {
+    gap: 12px;
+    padding: 22px 16px 10px;
+  }
+
+  .heading {
+    font-size: clamp(24px, 8vw, 31px);
+    line-height: 1.12;
+  }
+
+  .description {
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+
+  .panelCol {
+    padding: 8px 16px 22px;
   }
 
   .panel {
-    padding: 14px 12px;
+    padding: 18px 16px;
   }
 
-  .panelReward {
-    font-size: 19px;
+  .panelCopy {
+    max-width: 36ch;
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .banner {
+    height: clamp(410px, 32vw, 450px);
+  }
+}
+
+@media (max-width: 767px) {
+  .banner {
+    height: clamp(380px, 52vw, 540px);
+  }
+}
+
+@media (max-width: 767px) {
+  .banner {
+    height: clamp(330px, 120vw, 520px);
   }
 }

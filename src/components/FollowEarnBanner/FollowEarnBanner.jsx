@@ -42,7 +42,10 @@ export default function FollowEarnBanner({ onExploreChannels }) {
       {/* Middle Column: Social Phone Mockup Visual & Live Profile Overlay */}
       <div className={styles.visualCol}>
         <picture>
-          <source media="(max-width: 1024px)" srcSet={mobileBannerImage} />
+          <source
+            media="(max-width: 1024px), (hover: none) and (pointer: coarse)"
+            srcSet={mobileBannerImage}
+          />
           <img
             src={bannerImage}
             alt="Phone showing the VELOOP Rewards social profile surrounded by community, star, and megaphone icons"

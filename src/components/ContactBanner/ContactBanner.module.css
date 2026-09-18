@@ -273,38 +273,23 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .banner::before,
-  .banner::after,
-  .bannerImage,
-  .panel > :nth-child(n),
-  .textCol button svg,
-  .copyButton svg {
-    animation: none;
-  }
-}
-
 /* --------------------------------------------------------------------------
-   6. Responsive Breakpoint Tiers
+   6. Height Requirements
    -------------------------------------------------------------------------- */
-/* Tablet Landscape & Standard Tablet (<= 1024px) */
-@media (max-width: 1024px) {
+/* Laptop / Desktop: 410px - 450px */
+@media (min-width: 1025px) {
   .banner {
-    flex-wrap: wrap;
-    min-height: auto;
+    height: 100%;
+    flex-wrap: nowrap;
+    min-height: 0;
   }
 
   .textCol {
-    width: 50%;
-    padding: 28px 20px 24px 28px;
-    gap: 14px;
+    width: 32%;
   }
 
   .visualCol {
-    width: 50%;
-    min-height: 280px;
-    order: 2;
-    border-right: none;
+    width: 34%;
   }
 
   .bannerImage {
@@ -313,9 +298,7 @@
   }
 
   .panelCol {
-    width: 100%;
-    order: 3;
-    padding: 12px 28px 28px;
+    width: 34%;
   }
 
   .heading {
@@ -327,8 +310,8 @@
   }
 }
 
-/* ---------- Small Tablet / Phablet (<= 768px) ---------- */
-@media (max-width: 768px) {
+/* Tablet: 380px - 540px */
+@media (max-width: 767px) {
   .banner {
     flex-direction: column;
     min-height: auto;
@@ -351,16 +334,38 @@
   }
 
   .textCol {
-    width: 100%;
-    order: 2;
+    display: contents;
+  }
+
+  .eyebrowRow {
+    order: 1;
+    margin: 22px 20px 0;
+  }
+
+  .heading {
+    order: 1;
+    margin: 12px 20px 0;
+  }
+
+  .description {
+    order: 1;
+    margin: 0 20px;
+  }
+
+  .textCol > button {
+    order: 3;
+    width: auto;
     padding: 22px 20px 10px;
-    gap: 12px;
   }
 
   .panelCol {
     width: 100%;
-    order: 3;
+    order: 4;
     padding: 8px 20px 24px;
+  }
+
+  .visualCol {
+    order: 2;
   }
 
   .heading {
@@ -377,8 +382,8 @@
   }
 }
 
-/* ---------- Mobile (<= 600px) ---------- */
-@media (max-width: 600px) {
+/* Mobile: 330px - 520px */
+@media (max-width: 767px) {
   .banner {
     border-radius: var(--radius-md);
   }
@@ -389,58 +394,187 @@
   }
 
   .textCol {
-    padding: 18px 16px 8px;
-    gap: 12px;
+    padding: 0;
   }
 
   .panelCol {
     padding: 6px 16px 20px;
   }
-
-  .heading {
-    font-size: clamp(21px, 6vw, 26px);
-  }
-
-  .description {
-    font-size: 13px;
-    line-height: 1.5;
-  }
-
-  .panel {
-    padding: 14px 14px 10px;
-  }
-
-  .copyButton {
-    min-height: 44px;
-    font-size: 13.5px;
-  }
 }
 
-/* ---------- Compact Phones (<= 360px) ---------- */
-@media (max-width: 360px) {
-  .visualCol {
-    height: 150px;
+@media (max-width: 767px) {
+  .banner {
+    height: auto;
+    align-items: stretch;
   }
 
   .textCol {
-    padding: 14px 12px 6px;
-    gap: 10px;
+    display: contents;
   }
 
-  .panelCol {
-    padding: 4px 12px 16px;
+  .eyebrowRow,
+  .heading,
+  .description {
+    order: 1;
+    margin-inline: 20px;
+  }
+
+  .eyebrowRow {
+    margin-top: 22px;
   }
 
   .heading {
-    font-size: 20px;
+    margin-top: 12px;
+  }
+
+  .visualCol {
+    order: 2;
+    height: clamp(220px, 58vw, 330px);
+  }
+
+  .textCol > button {
+    order: 3;
+    width: auto;
+    margin: 0 20px;
+    padding: 13px 18px;
+  }
+
+  .panelCol {
+    order: 4;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   7. Width-based Phone & Tablet Layout
+   -------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+  .banner {
+    flex-direction: column;
+    min-height: 0;
+    height: auto;
+    align-items: stretch;
+    gap: 0;
+    background: radial-gradient(140% 120% at 50% 8%, #142746 0%, var(--cu-surface) 58%);
+  }
+
+  .textCol {
+    display: contents;
+  }
+
+  .eyebrowRow {
+    order: 1;
+    padding: clamp(24px, 4vw, 34px) clamp(20px, 5vw, 40px) 0;
+  }
+
+  .heading {
+    order: 1;
+    margin: 12px clamp(20px, 5vw, 40px) 0;
+  }
+
+  .description {
+    order: 1;
+    margin: 0 clamp(20px, 5vw, 40px);
+  }
+
+  .visualCol {
+    width: 100%;
+    order: 2;
+    height: clamp(210px, 38vw, 320px);
+    min-height: 0;
+    flex: 0 0 clamp(210px, 38vw, 320px);
+    border-left: none;
+    border-right: none;
+    border: 0;
+  }
+
+  .bannerImage {
+    object-position: 50% center;
+    transform: scale(1.02);
+  }
+
+  .textCol {
+    width: 100%;
+    order: 1;
+  }
+
+  .textCol button {
+    order: 3;
+    width: auto;
+    align-self: stretch;
+    margin: 8px clamp(20px, 5vw, 40px) 20px;
+  }
+
+  .panelCol {
+    width: 100%;
+    order: 4;
+    padding: 0 clamp(20px, 5vw, 40px) clamp(24px, 4vw, 34px);
+  }
+
+  .heading {
+    font-size: clamp(25px, 4vw, 32px);
+  }
+
+  .description {
+    max-width: 60ch;
+  }
+}
+
+@media (max-width: 767px) {
+  .banner {
+    border-radius: var(--radius-md);
+    min-height: 330px;
+  }
+
+  .visualCol {
+    height: clamp(190px, 56vw, 255px);
+    flex-basis: clamp(190px, 56vw, 255px);
+  }
+
+  .textCol {
+    gap: 0;
+  }
+
+  .eyebrowRow {
+    padding: 20px 16px 0;
+  }
+
+  .heading {
+    margin: 10px 16px 0;
+  }
+
+  .heading {
+    font-size: clamp(23px, 7.5vw, 30px);
+    line-height: 1.14;
+  }
+
+  .description {
+    margin: 0 16px;
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+
+  .textCol button {
+    margin: 8px 16px 18px;
+  }
+
+  .panelCol {
+    padding: 0 16px 22px;
   }
 
   .panel {
-    padding: 12px 10px 8px;
+    padding: 15px 14px 8px;
   }
 
-  .copyButton {
-    min-height: 42px;
-    font-size: 12.5px;
+}
+
+@media (min-width: 1025px) {
+  .banner {
+    height: clamp(410px, 32vw, 450px);
+  }
+}
+
+@media (max-width: 767px) {
+  .banner {
+    min-height: 380px;
   }
 }

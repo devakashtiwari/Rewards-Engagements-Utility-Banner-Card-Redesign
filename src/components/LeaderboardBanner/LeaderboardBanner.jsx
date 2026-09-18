@@ -68,7 +68,10 @@ export default function LeaderboardBanner({ onViewLeaderboard }) {
         {/* imageWrap clips the image to the column without clipping the floating rank cards */}
         <div className={styles.imageWrap}>
           <picture>
-            <source media="(max-width: 1024px)" srcSet={mobileBannerImage} />
+            <source
+              media="(max-width: 1024px), (hover: none) and (pointer: coarse)"
+              srcSet={mobileBannerImage}
+            />
             <img
               src={bannerImage}
               alt="Gold trophy on a podium with three ranked user positions and a rising performance chart"
