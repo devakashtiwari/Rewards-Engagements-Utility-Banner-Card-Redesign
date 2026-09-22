@@ -64,6 +64,11 @@
   max-width: 32ch;
 }
 
+.claimButton {
+  position: relative;
+  top: -3px;
+}
+
 /* --------------------------------------------------------------------------
    3. Visual Column (Overflowing Gold Gift Box Artwork)
    -------------------------------------------------------------------------- */
@@ -452,6 +457,7 @@
     width: calc(100% - 32px);
     margin-right: 16px;
     margin-left: 16px;
+    margin-bottom: 24px;
   }
 }
 
@@ -474,3 +480,33 @@
     height: clamp(410px, 32vw, 450px);
   }
 }
+
+/* Keep the banner fluid while honoring the requested device height ranges. */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .banner {
+    width: 100%;
+    min-height: 380px;
+    max-height: 540px;
+    height: clamp(380px, 44vw, 540px);
+  }
+}
+
+@media (max-width: 767px) {
+  .banner {
+    width: 100%;
+    min-height: 330px;
+    max-height: 520px;
+    height: clamp(330px, 120vw, 520px);
+  }
+
+  /* Hide the Today's Bonus & 7-Day Streak panel on mobile */
+  .panelCol {
+    display: none;
+  }
+
+  /* Hide "before the opportunity resets" on mobile */
+  .hiddenPhrase {
+    display: none;
+  }
+}
+

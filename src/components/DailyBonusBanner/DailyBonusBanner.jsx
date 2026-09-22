@@ -34,7 +34,8 @@ export default function DailyBonusBanner({ onClaimBonus }) {
         </h2>
 
         <p className={styles.description}>
-          Check in regularly and claim your available daily bonus before the opportunity resets.
+          Check in regularly and claim your available daily bonus
+          <span className={styles.hiddenPhrase}> before the opportunity resets</span>.
         </p>
 
         <CtaButton

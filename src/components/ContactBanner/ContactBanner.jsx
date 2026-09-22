@@ -48,7 +48,7 @@ export default function ContactBanner({ onContactSupport, onHelpCenter, onSubmit
         </h2>
 
         <p className={styles.description}>
-          Have a question, concern, or need assistance? Get in touch with the VELOOP Rewards
+          <span className={styles.hiddenPhrase}>Have a question, concern, or need assistance? </span>Get in touch with the VELOOP Rewards
           team.
         </p>
 

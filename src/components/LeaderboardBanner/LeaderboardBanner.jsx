@@ -43,8 +43,8 @@ export default function LeaderboardBanner({ onViewLeaderboard }) {
         </h2>
 
         <p className={styles.description}>
-          Complete activities, earn rewards, gain XP, and compete with other users to climb the
-          leaderboard.
+          Complete activities, earn rewards, gain XP
+          <span className={styles.hiddenPhrase}>, and compete with other users to climb the leaderboard</span>.
         </p>
 
         <div className={styles.poolPill}>

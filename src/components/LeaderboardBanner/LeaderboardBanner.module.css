@@ -646,3 +646,28 @@
     height: clamp(330px, 120vw, 520px);
   }
 }
+
+/* Keep the banner fluid while honoring the requested device height ranges. */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .banner {
+    width: 100%;
+    min-height: 380px;
+    max-height: 540px;
+    height: clamp(380px, 44vw, 540px);
+  }
+}
+
+@media (max-width: 767px) {
+  .banner {
+    width: 100%;
+    min-height: 330px;
+    max-height: 520px;
+    height: clamp(330px, 120vw, 520px);
+  }
+
+  /* Hide the trailing phrase on mobile only */
+  .hiddenPhrase {
+    display: none;
+  }
+}
+
