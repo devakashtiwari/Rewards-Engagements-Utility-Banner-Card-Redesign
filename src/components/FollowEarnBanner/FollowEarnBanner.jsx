@@ -5,20 +5,11 @@ import bannerImage from '../../assets/B4_Follow_s_Earn_Banner.png'
 import mobileBannerImage from '../../assets/B4_Follow_s_Earn_Banner-mobile.png'
 import styles from './FollowEarnBanner.module.css'
 
-/**
- * FollowEarnBanner Component (Banner 04)
- *
- * Promotes following official VELOOP social channels and participating in social campaigns.
- * Features a phone mockup with interactive-styled channel statistics and a reward unlock card.
- *
- * @param {Function} onExploreChannels - Callback invoked when "Explore Our Channels" CTA is clicked
- */
 export default function FollowEarnBanner({ onExploreChannels }) {
   const { ref: followerCountRef, value: followerCount } = useCountUp(24500)
 
   return (
     <section className={styles.banner} aria-labelledby="follow-heading">
-      {/* Left Column: Eyebrow, Heading, Description, & CTA */}
       <div className={styles.textCol}>
         <div className={styles.eyebrowRow}>
           <SectionTag tone="purple">4</SectionTag>
@@ -26,7 +17,8 @@ export default function FollowEarnBanner({ onExploreChannels }) {
         </div>
 
         <h2 id="follow-heading" className={styles.heading}>
-          Follow &amp; Earn
+          Follow. Engage.
+          <span>Get rewarded.</span>
         </h2>
 
         <p className={styles.description}>
@@ -34,12 +26,23 @@ export default function FollowEarnBanner({ onExploreChannels }) {
           campaigns to unlock rewards.
         </p>
 
+        <div className={styles.communityProof}>
+          <span className={styles.avatarStack} aria-hidden="true">
+            <span>V</span>
+            <span>R</span>
+            <span>+</span>
+          </span>
+          <span>
+            <strong>24.5K members</strong>
+            <small>already following VELOOP</small>
+          </span>
+        </div>
+
         <CtaButton tone="purple" icon={<ArrowRight />} onClick={onExploreChannels}>
           Explore Our Channels
         </CtaButton>
       </div>
 
-      {/* Middle Column: Social Phone Mockup Visual & Live Profile Overlay */}
       <div className={styles.visualCol}>
         <picture>
           <source
@@ -73,18 +76,26 @@ export default function FollowEarnBanner({ onExploreChannels }) {
         </div>
       </div>
 
-      {/* Right Column: Campaign Reward Preview Panel */}
       <div className={styles.panelCol}>
         <div className={styles.panel}>
+          <span className={styles.panelBadge}>
+            <Sparkles size={13} /> Live campaign
+          </span>
           <span className={styles.giftIcon}>
             <Sparkles size={13} className={styles.sparkle} />
             <Gift strokeWidth={2} size={22} />
           </span>
-          <p className={styles.panelCopy}>
-            Participate in eligible social campaigns and unlock rewards.
-          </p>
-          <span className={styles.panelReward}>+500 SVEs</span>
-          <span className={styles.panelCaption}>Demo Campaign</span>
+          <p className={styles.panelCopy}>Complete eligible social actions to unlock your reward.</p>
+          <div className={styles.rewardRow}>
+            <span className={styles.panelReward}>+500 SVEs</span>
+            <span className={styles.panelCaption}>Demo Campaign</span>
+          </div>
+          <div className={styles.progressMeta}>
+            <span>2 of 3 actions complete</span>
+            <span className={styles.progressTrack} aria-hidden="true">
+              <span />
+            </span>
+          </div>
         </div>
       </div>
     </section>

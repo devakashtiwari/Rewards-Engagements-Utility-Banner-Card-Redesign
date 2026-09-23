@@ -1,26 +1,15 @@
-import { Gift, Check } from 'lucide-react'
+import { Gift, Check, Sparkles } from 'lucide-react'
 import { CtaButton, SectionTag } from '../common/BannerUI.jsx'
 import bannerImage from '../../assets/B5_Daily_Bonus_Banner.png'
-import mobileBannerImage from '../../assets/B5_Daily_Bonus_Banner-Mobiile Screen .png'
+import mobileBannerImage from '../../assets/B5_Daily_Bonus_Banner mini.png'
 import styles from './DailyBonusBanner.module.css'
 
-/** 7-day streak calendar progression */
 const STREAK_DAYS = [1, 2, 3, 4, 5, 6, 7]
-/** Current completed streak days counter */
 const DAYS_COMPLETED = 6
 
-/**
- * DailyBonusBanner Component (Banner 05)
- *
- * Highlights the daily reward check-in system, showing today's gem bonus
- * and a 7-day streak visual progress indicator.
- *
- * @param {Function} onClaimBonus - Callback invoked when "Claim Bonus" CTA is clicked
- */
 export default function DailyBonusBanner({ onClaimBonus }) {
   return (
     <section className={styles.banner} aria-labelledby="dailybonus-heading">
-      {/* Left Column: Eyebrow, Heading, Description, & CTA */}
       <div className={styles.textCol}>
         <div className={styles.eyebrowRow}>
           <SectionTag tone="bronze">5</SectionTag>
@@ -28,15 +17,20 @@ export default function DailyBonusBanner({ onClaimBonus }) {
         </div>
 
         <h2 id="dailybonus-heading" className={styles.heading}>
-          Your Daily Bonus
-          <br />
-          Is Waiting
+          Your daily reward
+          <span>is ready to claim.</span>
         </h2>
 
         <p className={styles.description}>
           Check in regularly and claim your available daily bonus
           <span className={styles.hiddenPhrase}> before the opportunity resets</span>.
         </p>
+
+        <span className={styles.mobileReward}>Today: +25 Gems</span>
+
+        <span className={styles.streakChip}>
+          <Sparkles size={14} /> 6-day streak in progress
+        </span>
 
         <CtaButton
           tone="bronze"
@@ -48,7 +42,6 @@ export default function DailyBonusBanner({ onClaimBonus }) {
         </CtaButton>
       </div>
 
-      {/* Middle Column: Overflowing Gold Coin Gift Box Artwork */}
       <div className={styles.visualCol}>
         <picture>
           <source
@@ -61,21 +54,27 @@ export default function DailyBonusBanner({ onClaimBonus }) {
             className={styles.bannerImage}
           />
         </picture>
+        <span className={styles.visualCaption}>Daily rewards</span>
       </div>
 
-      {/* Right Column: Today's Bonus Card & 7-Day Streak Tracker */}
       <div className={styles.panelCol}>
         <div className={styles.todayPanel}>
-          <span className={styles.panelLabel}>Today&apos;s Bonus</span>
-          <span className={styles.gemAmount}>+25 Gems</span>
+          <span className={styles.panelLabel}>Today&apos;s bonus</span>
+          <span className={styles.gemAmount}>
+            +25 <small>Gems</small>
+          </span>
           <span className={styles.availableNow}>
             <span className={styles.dot} />
-            Available Now
+            Available now
           </span>
+          <span className={styles.nextReward}>Tomorrow: +40 Gems</span>
         </div>
 
         <div className={styles.streakPanel}>
-          <span className={styles.panelLabel}>7-Day Streak</span>
+          <div className={styles.streakHeader}>
+            <span className={styles.panelLabel}>7-day streak</span>
+            <span className={styles.streakStatus}>{DAYS_COMPLETED}/7</span>
+          </div>
           <div className={styles.streakRow}>
             {STREAK_DAYS.map((day) => {
               const done = day <= DAYS_COMPLETED
@@ -89,8 +88,7 @@ export default function DailyBonusBanner({ onClaimBonus }) {
               )
             })}
           </div>
-          <span className={styles.streakStatus}>{DAYS_COMPLETED} Days Completed</span>
-          <span className={styles.streakHint}>Come back tomorrow!</span>
+          <span className={styles.streakHint}>One more day unlocks your weekly boost.</span>
         </div>
       </div>
     </section>

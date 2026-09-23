@@ -318,3 +318,16 @@
     padding: 0 8px;
   }
 }
+
+@media (min-width: 380px) and (max-width: 540px) {
+  .ctaButton {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  .featureChip {
+    flex: 1 1 140px;
+    white-space: normal;
+    line-height: 1.35;
+  }
+}

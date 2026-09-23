@@ -468,3 +468,38 @@
     height: clamp(330px, 120vw, 520px);
   }
 }
+
+@media (min-width: 380px) and (max-width: 540px) {
+  .banner {
+    height: 100%;
+    min-height: 0;
+    flex-direction: column;
+  }
+
+  .visualCol {
+    width: 100%;
+    order: 1;
+    height: clamp(220px, 46vw, 270px);
+    min-height: 220px;
+  }
+
+  .textCol {
+    width: 100%;
+    order: 2;
+    padding: 24px 20px 28px;
+    gap: 14px;
+  }
+
+  .heading {
+    font-size: clamp(24px, 5.5vw, 30px);
+  }
+
+  .description {
+    max-width: 100%;
+    font-size: 13.5px;
+  }
+
+  .chipRow {
+    align-items: stretch;
+  }
+}

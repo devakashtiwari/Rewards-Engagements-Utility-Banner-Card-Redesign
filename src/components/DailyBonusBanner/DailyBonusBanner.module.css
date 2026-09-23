@@ -1,83 +1,139 @@
-/* ==========================================================================
-   Daily Bonus Banner (Banner 05) - DailyBonusBanner.module.css
-   Warm Gold / Bronze theme showcasing today's bonus and 7-day streak tracker.
-   ========================================================================== */
-
-/* --------------------------------------------------------------------------
-   1. Main Banner Shell
-   -------------------------------------------------------------------------- */
 .banner {
   position: relative;
-  width: 100%;
+  isolation: isolate;
   display: flex;
-  align-items: stretch;
-  background: radial-gradient(120% 160% at 55% 20%, #2a2008 0%, var(--db-surface) 55%);
-  border: 1px solid rgba(242, 169, 59, 0.26);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
+  width: 100%;
   min-height: 410px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 196, 95, 0.28);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(circle at 51% 28%, rgba(255, 183, 54, 0.2), transparent 29%),
+    radial-gradient(circle at 100% 100%, rgba(185, 104, 20, 0.2), transparent 36%),
+    linear-gradient(118deg, #171006 0%, #251707 51%, #130d05 100%);
+  box-shadow: 0 22px 60px rgba(13, 8, 1, 0.32);
 }
 
-/* --------------------------------------------------------------------------
-   2. Text Column (Heading, Description, CTA)
-   -------------------------------------------------------------------------- */
-.textCol {
+.banner::before,
+.banner::after {
+  position: absolute;
+  z-index: -1;
+  content: '';
+  pointer-events: none;
+}
+
+.banner::before {
+  top: -230px;
+  right: 22%;
+  width: 430px;
+  height: 430px;
+  border: 1px solid rgba(255, 221, 154, 0.12);
+  border-radius: 50%;
+  box-shadow: 0 0 0 48px rgba(255, 194, 75, 0.035), 0 0 0 98px rgba(255, 194, 75, 0.022);
+}
+
+.banner::after {
+  right: -135px;
+  bottom: -170px;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(239, 156, 34, 0.22), transparent 68%);
+  filter: blur(16px);
+}
+
+.textCol,
+.panelCol {
   position: relative;
-  z-index: 2;
-  width: 32%;
+  z-index: 1;
   flex-shrink: 0;
+}
+
+.textCol {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 14px;
-  padding: 32px 16px 32px 36px;
+  width: 31%;
+  padding: 38px 18px 38px 40px;
 }
 
 .eyebrowRow {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 11px;
+  margin-bottom: 16px;
 }
 
 .eyebrowLabel {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  color: var(--db-gold);
+  color: #ffd276;
+  font: 700 11px/1 var(--font-display);
+  letter-spacing: 0.13em;
 }
 
 .heading {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(22px, 2.1vw, 30px);
-  line-height: 1.2;
+  max-width: 11ch;
   margin: 0;
   color: var(--white);
+  font: 700 clamp(27px, 2.35vw, 35px)/1.08 var(--font-display);
+  letter-spacing: -0.045em;
+}
+
+.heading span {
+  display: block;
+  color: #ffd271;
 }
 
 .description {
-  margin: 0;
-  color: var(--text-soft);
-  font-size: 14px;
-  line-height: 1.55;
   max-width: 32ch;
+  margin: 16px 0 0;
+  color: #d8d0c3;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.mobileReward {
+  display: none;
+}
+
+.streakChip {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 6px;
+  margin: 18px 0 20px;
+  padding: 7px 10px;
+  border: 1px solid rgba(255, 207, 111, 0.2);
+  border-radius: 999px;
+  background: rgba(255, 184, 52, 0.08);
+  color: #ffd477;
+  font: 700 10px var(--font-display);
 }
 
 .claimButton {
-  position: relative;
-  top: -3px;
+  align-self: flex-start;
 }
 
-/* --------------------------------------------------------------------------
-   3. Visual Column (Overflowing Gold Gift Box Artwork)
-   -------------------------------------------------------------------------- */
 .visualCol {
   position: relative;
-  width: 28%;
+  isolation: isolate;
+  width: 34%;
   overflow: hidden;
-  border-left: 1px solid rgba(255, 255, 255, 0.05);
-  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  border-inline: 1px solid rgba(255, 255, 255, 0.07);
+  background: linear-gradient(180deg, rgba(255, 185, 55, 0.1), rgba(24, 14, 4, 0.15));
+}
+
+.visualCol::before {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  width: min(29vw, 320px);
+  aspect-ratio: 1;
+  content: '';
+  border: 1px solid rgba(255, 225, 165, 0.24);
+  border-radius: 50%;
+  box-shadow: 0 0 0 30px rgba(255, 192, 62, 0.055), 0 0 50px rgba(255, 184, 50, 0.36);
+  transform: translate(-50%, -50%);
 }
 
 .visualCol picture {
@@ -92,105 +148,193 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 38% center;
-  transform: scale(1.15);
-  animation: giftPulse 3.6s ease-in-out infinite;
+  object-position: 43% center;
+  filter: drop-shadow(0 17px 24px rgba(35, 15, 0, 0.4));
+  animation: giftFloat 5.5s ease-in-out infinite;
 }
 
-@keyframes giftPulse {
-  0%,
-  100% {
-    transform: scale(1.15);
-  }
-  50% {
-    transform: scale(1.19);
-  }
+.visualCaption {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  padding: 6px 10px;
+  border: 1px solid rgba(255, 222, 151, 0.2);
+  border-radius: 999px;
+  background: rgba(49, 29, 3, 0.67);
+  color: #ffe0a1;
+  font: 700 9px var(--font-display);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+  backdrop-filter: blur(10px);
 }
 
-/* --------------------------------------------------------------------------
-   4. Bonus & Streak Panels
-   -------------------------------------------------------------------------- */
 .panelCol {
-  position: relative;
-  z-index: 2;
-  width: 40%;
-  flex-shrink: 0;
   display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 24px 28px 24px 16px;
+  flex-direction: column;
+  justify-content: center;
+  width: 35%;
+  gap: 13px;
+  padding: 28px 36px 28px 20px;
 }
 
 .todayPanel,
 .streakPanel {
   position: relative;
   overflow: hidden;
-  flex: 1;
-  height: 100%;
-  min-height: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 6px;
-  padding: 18px 16px;
-  border-radius: var(--radius-md);
-  border: 1px solid rgba(242, 169, 59, 0.3);
-  background: rgba(23, 19, 10, 0.55);
-  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  min-height: 0;
+  padding: 17px 18px;
+  border: 1px solid rgba(255, 203, 99, 0.22);
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(82, 51, 8, 0.58), rgba(33, 20, 4, 0.7));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 16px 32px rgba(18, 10, 0, 0.2);
+  backdrop-filter: blur(14px);
+  transition: transform 180ms ease, border-color 180ms ease;
 }
 
 .todayPanel:hover,
 .streakPanel:hover {
+  border-color: rgba(255, 215, 133, 0.48);
   transform: translateY(-3px);
-  border-color: rgba(242, 169, 59, 0.58);
-  background: rgba(35, 27, 12, 0.7);
 }
 
-.streakPanel::before {
-  content: '';
+.todayPanel {
+  gap: 7px;
+}
+
+.todayPanel::after {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 86%;
-  height: 3px;
-  border-radius: 0 999px 999px 0;
-  background: linear-gradient(90deg, #f2a93b, #ffe09a);
-  transform-origin: left;
-  animation: streakProgress 1.2s ease-out both;
+  right: -24px;
+  bottom: -33px;
+  width: 100px;
+  height: 100px;
+  content: '';
+  border: 1px solid rgba(255, 223, 153, 0.18);
+  border-radius: 50%;
+  box-shadow: 0 0 0 17px rgba(255, 194, 65, 0.045);
 }
 
 .panelLabel {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  color: var(--text-muted);
+  color: #b9a98c;
+  font: 700 10px var(--font-display);
+  letter-spacing: 0.11em;
   text-transform: uppercase;
 }
 
 .gemAmount {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 24px;
+  position: relative;
+  z-index: 1;
   color: var(--white);
-  animation: rewardCounterPulse 3s ease-in-out infinite;
+  font: 700 clamp(24px, 2.2vw, 30px)/1 var(--font-display);
+  letter-spacing: -0.045em;
+  text-shadow: 0 0 18px rgba(255, 188, 54, 0.2);
+}
+
+.gemAmount small {
+  color: #ffd271;
+  font: 700 13px var(--font-display);
+  letter-spacing: 0;
 }
 
 .availableNow {
+  position: relative;
+  z-index: 1;
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 12px;
-  color: var(--text-soft);
+  color: #ddd3c0;
+  font-size: 11px;
 }
 
 .dot {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #4ade80;
-  box-shadow: 0 0 8px rgba(74, 222, 128, 0.8);
+  background: #69e69b;
+  box-shadow: 0 0 10px rgba(105, 230, 155, 0.88);
   animation: blink 1.8s ease-in-out infinite;
+}
+
+.nextReward {
+  position: relative;
+  z-index: 1;
+  align-self: flex-start;
+  margin-top: 2px;
+  padding-top: 9px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #bdb2a0;
+  font-size: 10px;
+}
+
+.streakPanel {
+  gap: 12px;
+}
+
+.streakHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.streakStatus {
+  color: #ffd271;
+  font: 700 12px var(--font-display);
+}
+
+.streakRow {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 5px;
+  width: 100%;
+}
+
+.streakDay {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  min-width: 0;
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.streakDone {
+  background: linear-gradient(135deg, #ffd77a, #e69a2c);
+  color: #3a2100;
+  box-shadow: 0 4px 10px rgba(233, 158, 42, 0.28);
+  animation: streakDotPop 420ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.streakRow :nth-child(1) { animation-delay: 50ms; }
+.streakRow :nth-child(2) { animation-delay: 110ms; }
+.streakRow :nth-child(3) { animation-delay: 170ms; }
+.streakRow :nth-child(4) { animation-delay: 230ms; }
+.streakRow :nth-child(5) { animation-delay: 290ms; }
+.streakRow :nth-child(6) { animation-delay: 350ms; }
+
+.streakPending {
+  border: 1px dashed rgba(255, 210, 111, 0.5);
+  color: #c5b99f;
+}
+
+.streakHint {
+  color: #c0b5a1;
+  font-size: 10px;
+  line-height: 1.35;
+}
+
+@keyframes giftFloat {
+  0%,
+  100% {
+    transform: scale(1.08) translateY(0);
+  }
+  50% {
+    transform: scale(1.08) translateY(-7px);
+  }
 }
 
 @keyframes blink {
@@ -203,310 +347,160 @@
   }
 }
 
-@keyframes streakProgress {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
-}
-
-@keyframes rewardCounterPulse {
-  0%,
-  100% {
-    text-shadow: 0 0 0 rgba(242, 169, 59, 0);
-  }
-  50% {
-    text-shadow: 0 0 12px rgba(242, 169, 59, 0.55);
-  }
-}
-
-/* --------------------------------------------------------------------------
-   5. Fluid 7-Day Streak Indicator
-   Uses flex: 1 with max-width and min-width constraints to dynamically fit
-   all screen widths down to 320px without overflow.
-   -------------------------------------------------------------------------- */
-.streakRow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 4px;
-  margin: 4px 0 2px;
-  width: 100%;
-}
-
-.streakDay {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
-  max-width: 28px;
-  height: 26px;
-  border-radius: 50%;
-  font-size: 10.5px;
-  font-weight: 700;
-}
-
-.streakDone {
-  background: var(--db-gold);
-  color: #241705;
-}
-
-.streakPending {
-  border: 1.5px dashed rgba(242, 169, 59, 0.5);
-  color: var(--text-muted);
-  background: transparent;
-}
-
-.streakStatus {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 13px;
-  color: var(--db-gold);
-}
-
-.streakHint {
-  font-size: 11.5px;
-  color: var(--text-muted);
-}
-
-/* --------------------------------------------------------------------------
-   Streak dot pop-in: staggered bounce for each completed day dot
-   -------------------------------------------------------------------------- */
 @keyframes streakDotPop {
   0% {
-    transform: scale(0);
     opacity: 0;
+    transform: scale(0.5);
   }
-  65% {
-    transform: scale(1.3);
+  70% {
+    transform: scale(1.14);
   }
   100% {
-    transform: scale(1);
     opacity: 1;
+    transform: scale(1);
   }
 }
 
-.streakDone {
-  animation: streakDotPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-}
-
-/* Stagger each dot by position in the row */
-.streakRow :nth-child(1) { animation-delay: 0.05s; }
-.streakRow :nth-child(2) { animation-delay: 0.11s; }
-.streakRow :nth-child(3) { animation-delay: 0.17s; }
-.streakRow :nth-child(4) { animation-delay: 0.23s; }
-.streakRow :nth-child(5) { animation-delay: 0.29s; }
-.streakRow :nth-child(6) { animation-delay: 0.35s; }
-
-/* --------------------------------------------------------------------------
-   6. Height Requirements
-   -------------------------------------------------------------------------- */
-/* Laptop / Desktop: 410px - 450px */
 @media (min-width: 1025px) {
   .banner {
     height: 100%;
-    flex-wrap: nowrap;
     min-height: 0;
   }
+}
 
+@media (min-width: 768px) and (max-width: 1024px) {
   .textCol {
     width: 32%;
+    padding: 32px 14px 32px 28px;
   }
 
   .visualCol {
-    width: 28%;
-  }
-
-  .bannerImage {
-    object-position: 30% center;
-    transform: scale(1.08);
+    width: 34%;
   }
 
   .panelCol {
-    width: 40%;
+    width: 34%;
+    padding: 22px 24px 22px 14px;
+  }
+
+  .heading {
+    font-size: clamp(24px, 3vw, 30px);
   }
 
   .todayPanel,
   .streakPanel {
-    flex: 1;
-    height: auto;
-    min-height: 120px;
+    padding: 15px;
   }
 
-  .heading {
-    font-size: clamp(22px, 2.4vw, 28px);
-  }
-
-  .description {
-    max-width: 100%;
+  .streakChip {
+    margin: 15px 0 17px;
   }
 }
 
-/* Tablet: 380px - 540px */
-@media (max-width: 1024px) {
-  .banner {
-    flex-direction: column;
-    gap: 12px;
-    min-height: auto;
-    background: radial-gradient(140% 120% at 55% 15%, #352709 0%, var(--db-surface) 60%);
-  }
-
-  .textCol {
-    display: contents;
-  }
-
-  .visualCol,
-  .panelCol,
-  .textCol > * {
-    width: 100%;
-  }
-
-  .textCol > .eyebrowRow {
-    order: 1;
-    padding: 22px 20px 0;
-  }
-
-  .textCol > .heading {
-    order: 2;
-    padding: 0 20px;
-  }
-
-  .textCol > .description {
-    order: 3;
-    padding: 0 20px;
-  }
-
-  .visualCol {
-    order: 4;
-    height: clamp(180px, 44vw, 240px);
-    min-height: 180px;
-    border-left: none;
-    border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  }
-
-  .bannerImage {
-    object-position: 28% center;
-    transform: scale(1.04);
-  }
-
-  .textCol > .claimButton {
-    order: 5;
-    width: calc(100% - 40px);
-    margin: 12px 20px 0;
-  }
-
-  .panelCol {
-    order: 6;
-    flex-direction: column;
-    gap: 12px;
-    padding: 8px 20px 24px;
-  }
-
-  .heading {
-    font-size: clamp(22px, 5.5vw, 28px);
-  }
-
-  .description {
-    max-width: 100%;
-    font-size: 13.5px;
-  }
-
-  .todayPanel,
-  .streakPanel {
-    width: 100%;
-    padding: 16px 16px;
-  }
-
-}
-
-/* Mobile: 330px - 520px */
 @media (max-width: 767px) {
   .banner {
+    height: 100%;
+    min-height: 0;
+    flex-direction: column;
     border-radius: var(--radius-md);
   }
 
+  .textCol,
   .visualCol {
-    height: clamp(160px, 46vw, 210px);
-    min-height: 0;
-  }
-
-  .textCol > .eyebrowRow {
-    padding: 18px 16px 0;
-  }
-
-  .panelCol {
-    padding: 6px 16px 20px;
-    gap: 10px;
-  }
-
-  .todayPanel,
-  .streakPanel {
-    padding: 14px 14px;
-  }
-
-  .textCol > .heading,
-  .textCol > .description {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
-  .textCol > .claimButton {
-    width: calc(100% - 32px);
-    margin-right: 16px;
-    margin-left: 16px;
-    margin-bottom: 24px;
-  }
-}
-
-/* --------------------------------------------------------------------------
-   7. Final responsive adjustments (tablet/mobile)
-   -------------------------------------------------------------------------- */
-@media (max-width: 1024px) {
-  .banner {
-    min-height: auto;
-  }
-
-  .todayPanel,
-  .streakPanel {
-    min-height: 0;
-  }
-}
-
-@media (min-width: 1025px) {
-  .banner {
-    height: clamp(410px, 32vw, 450px);
-  }
-}
-
-/* Keep the banner fluid while honoring the requested device height ranges. */
-@media (min-width: 768px) and (max-width: 1024px) {
-  .banner {
     width: 100%;
-    min-height: 380px;
-    max-height: 540px;
-    height: clamp(380px, 44vw, 540px);
-  }
-}
-
-@media (max-width: 767px) {
-  .banner {
-    width: 100%;
-    min-height: 330px;
-    max-height: 520px;
-    height: clamp(330px, 120vw, 520px);
   }
 
-  /* Hide the Today's Bonus & 7-Day Streak panel on mobile */
-  .panelCol {
-    display: none;
+  .textCol {
+    flex: 0 0 auto;
+    justify-content: flex-start;
+    padding: 16px 16px 14px;
   }
 
-  /* Hide "before the opportunity resets" on mobile */
+  .eyebrowRow {
+    margin-bottom: 8px;
+  }
+
+  .heading {
+    max-width: 18ch;
+    font-size: clamp(23px, 6.8vw, 30px);
+  }
+
+  .description {
+    max-width: 42ch;
+    margin-top: 8px;
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
   .hiddenPhrase {
     display: none;
   }
+
+  .mobileReward {
+    display: inline-flex;
+    align-self: flex-start;
+    margin-top: 8px;
+    color: #ffd271;
+    font: 700 12px var(--font-display);
+  }
+
+  .streakChip {
+    margin: 10px 0 12px;
+    padding: 6px 9px;
+  }
+
+  .claimButton {
+    width: 100%;
+  }
+
+  .visualCol {
+    flex: 1 1 auto;
+    min-height: 150px;
+    height: auto;
+    border-block: 1px solid rgba(255, 255, 255, 0.07);
+    border-inline: 0;
+  }
+
+  .visualCol::before {
+    width: min(64vw, 280px);
+  }
+
+  .bannerImage {
+    object-position: 44% center;
+  }
+
+  .panelCol {
+    display: none;
+  }
 }
 
+@media (min-width: 480px) and (max-width: 767px) {
+  .heading {
+    max-width: none;
+  }
+
+  .heading span {
+    display: inline;
+    margin-left: 0.25em;
+  }
+}
+
+@media (max-width: 379px) {
+  .textCol,
+  .panelCol {
+    padding-inline: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bannerImage,
+  .dot,
+  .streakDone {
+    animation: none;
+  }
+
+  .todayPanel,
+  .streakPanel {
+    transition: none;
+  }
+}
