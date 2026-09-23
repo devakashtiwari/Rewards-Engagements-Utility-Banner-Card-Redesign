@@ -232,31 +232,116 @@
   color: var(--db-gold);
 }
 
+/* SectionTag background and borders per tone */
+.sectionTag.tone-gold {
+  color: #f5b93e;
+  border-color: rgba(245, 185, 62, 0.45);
+  background: rgba(245, 185, 62, 0.1);
+}
+.sectionTag.tone-blue {
+  color: #7cc6ff;
+  border-color: rgba(124, 198, 255, 0.5);
+  background: rgba(124, 198, 255, 0.12);
+}
+.sectionTag.tone-navy {
+  color: #6d9fff;
+  border-color: rgba(109, 159, 255, 0.45);
+  background: rgba(109, 159, 255, 0.1);
+}
+.sectionTag.tone-purple {
+  color: #c7b3ff;
+  border-color: rgba(199, 179, 255, 0.45);
+  background: rgba(199, 179, 255, 0.1);
+}
+.sectionTag.tone-bronze {
+  color: #f2a93b;
+  border-color: rgba(242, 169, 59, 0.45);
+  background: rgba(242, 169, 59, 0.1);
+}
+
+/* EyebrowPill background and borders per tone */
+.eyebrowPill.tone-gold {
+  color: #f5b93e;
+  border-color: rgba(245, 185, 62, 0.4);
+  background: rgba(245, 185, 62, 0.08);
+}
+.eyebrowPill.tone-blue {
+  color: #7cc6ff;
+  border-color: rgba(124, 198, 255, 0.46);
+  background: rgba(124, 198, 255, 0.1);
+}
+.eyebrowPill.tone-navy {
+  color: #6d9fff;
+  border-color: rgba(109, 159, 255, 0.4);
+  background: rgba(109, 159, 255, 0.08);
+}
+.eyebrowPill.tone-purple {
+  color: #c7b3ff;
+  border-color: rgba(199, 179, 255, 0.4);
+  background: rgba(199, 179, 255, 0.08);
+}
+.eyebrowPill.tone-bronze {
+  color: #f2a93b;
+  border-color: rgba(242, 169, 59, 0.4);
+  background: rgba(242, 169, 59, 0.08);
+}
+
+/* CTA Buttons per banner style */
 .ctaButton.tone-gold {
-  background: linear-gradient(135deg, #ffd77a, #e8a83a);
-  color: #221503;
-  box-shadow: 0 10px 24px -10px rgba(232, 168, 58, 0.7);
+  background: rgba(245, 185, 62, 0.08);
+  color: #f5b93e;
+  border: 1.5px solid rgba(245, 185, 62, 0.7);
+  box-shadow: 0 4px 16px rgba(245, 185, 62, 0.15);
 }
+.ctaButton.tone-gold:hover {
+  background: rgba(245, 185, 62, 0.18);
+  border-color: #f5b93e;
+  box-shadow: 0 6px 22px rgba(245, 185, 62, 0.3);
+}
+
 .ctaButton.tone-blue {
-  background: linear-gradient(135deg, #3f8bff, #1c5fe0);
+  background: linear-gradient(135deg, #2d83ff 0%, #0d64d0 100%);
   color: var(--white);
-  box-shadow: 0 10px 24px -10px rgba(47, 125, 251, 0.7);
+  border: 1px solid rgba(162, 214, 255, 0.35);
+  box-shadow: 0 10px 26px -10px rgba(25, 116, 255, 0.9);
 }
+.ctaButton.tone-blue:hover {
+  background: linear-gradient(135deg, #3b93ff 0%, #0f6ae2 100%);
+  box-shadow: 0 12px 30px -8px rgba(25, 116, 255, 0.95);
+}
+
 .ctaButton.tone-navy {
   background: rgba(91, 141, 239, 0.14);
   color: var(--white);
-  border-color: rgba(91, 141, 239, 0.4);
-  box-shadow: none;
+  border: 1.5px solid rgba(91, 141, 239, 0.45);
+  box-shadow: 0 4px 16px rgba(10, 20, 40, 0.4);
 }
+.ctaButton.tone-navy:hover {
+  background: rgba(91, 141, 239, 0.24);
+  border-color: rgba(121, 166, 251, 0.7);
+}
+
 .ctaButton.tone-purple {
-  background: linear-gradient(135deg, #9a68ff, #6d3bd6);
+  background: linear-gradient(135deg, #8a5cf6, #632cd2);
   color: var(--white);
-  box-shadow: 0 10px 24px -10px rgba(138, 92, 246, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 24px -6px rgba(138, 92, 246, 0.65);
 }
+.ctaButton.tone-purple:hover {
+  background: linear-gradient(135deg, #9d74ff, #733ce0);
+  box-shadow: 0 10px 28px -4px rgba(138, 92, 246, 0.8);
+}
+
 .ctaButton.tone-bronze {
-  background: linear-gradient(135deg, #ffcf72, #e0972c);
-  color: #241705;
-  box-shadow: 0 10px 24px -10px rgba(224, 151, 44, 0.7);
+  background: linear-gradient(135deg, #ffcd63, #e29c29);
+  color: #241602;
+  font-weight: 700;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 24px -6px rgba(226, 156, 41, 0.7);
+}
+.ctaButton.tone-bronze:hover {
+  background: linear-gradient(135deg, #ffd77a, #eda935);
+  box-shadow: 0 10px 28px -4px rgba(226, 156, 41, 0.85);
 }
 
 /* --------------------------------------------------------------------------

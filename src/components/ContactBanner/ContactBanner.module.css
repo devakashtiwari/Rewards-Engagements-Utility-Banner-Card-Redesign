@@ -3,52 +3,28 @@
    Deep Navy / Slate theme providing direct support access & email copy.
    ========================================================================== */
 
-/* --------------------------------------------------------------------------
-   1. Main Banner Shell
-   -------------------------------------------------------------------------- */
 .banner {
   position: relative;
   width: 100%;
   display: flex;
   align-items: stretch;
-  background: radial-gradient(120% 160% at 55% 20%, #14213f 0%, var(--cu-surface) 55%);
-  border: 1px solid rgba(91, 141, 239, 0.2);
+  background:
+    radial-gradient(90% 140% at 64% 18%, rgba(23, 78, 112, 0.72) 0%, rgba(10, 25, 54, 0.35) 42%, transparent 72%),
+    linear-gradient(115deg, #030817 0%, #07152d 56%, #0a2039 100%);
+  border: 1px solid rgba(70, 194, 238, 0.28);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  min-height: 410px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-.banner::before,
-.banner::after {
-  content: '';
-  position: absolute;
-  z-index: 0;
-  pointer-events: none;
-  border-radius: 50%;
-  filter: blur(22px);
-  will-change: transform, opacity;
-}
-
-.banner::before {
-  top: -45%;
-  left: 22%;
-  width: 52%;
-  height: 145%;
-  background: radial-gradient(circle, rgba(91, 141, 239, 0.3), transparent 68%);
-  animation: supportGlowDrift 10s ease-in-out infinite alternate;
-}
-
-.banner::after {
-  right: -18%;
-  bottom: -55%;
-  width: 62%;
-  height: 135%;
-  background: radial-gradient(circle, rgba(56, 93, 176, 0.28), transparent 68%);
-  animation: supportGlowDrift 14s ease-in-out -4s infinite alternate-reverse;
+.banner:hover {
+  border-color: rgba(70, 194, 238, 0.58);
+  box-shadow: 0 20px 48px rgba(35, 170, 227, 0.14), 0 16px 40px rgba(0, 0, 0, 0.5);
 }
 
 /* --------------------------------------------------------------------------
-   2. Text Column (Heading, Description, CTA)
+   Left Text Column
    -------------------------------------------------------------------------- */
 .textCol {
   position: relative;
@@ -58,31 +34,33 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 14px;
-  padding: 32px 16px 32px 36px;
+  gap: 15px;
+  padding: 34px 16px 34px 38px;
 }
 
 .eyebrowRow {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .eyebrowLabel {
   font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 12px;
-  letter-spacing: 0.08em;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
   color: var(--cu-blue);
+  text-transform: uppercase;
 }
 
 .heading {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(22px, 2.1vw, 30px);
-  line-height: 1.18;
+  font-size: clamp(24px, 2.3vw, 32px);
+  line-height: 1.15;
   margin: 0;
   color: var(--white);
+  letter-spacing: -0.02em;
 }
 
 .headingAccent {
@@ -98,14 +76,15 @@
 }
 
 /* --------------------------------------------------------------------------
-   3. Visual Artwork Column
+   Middle Visual Artwork Column
    -------------------------------------------------------------------------- */
 .visualCol {
   position: relative;
   width: 34%;
   overflow: hidden;
-  border-left: 1px solid rgba(255, 255, 255, 0.05);
-  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .visualCol picture {
@@ -120,13 +99,18 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 30% center;
-  transform: scale(1.12);
-  animation: supportArtworkFloat 8s ease-in-out infinite alternate;
+  object-position: 45% center;
+  transform: scale(1.05);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.4));
+}
+
+.banner:hover .bannerImage {
+  transform: scale(1.08);
 }
 
 /* --------------------------------------------------------------------------
-   4. Support Panel & Copy Action
+   Right Support Panel
    -------------------------------------------------------------------------- */
 .panelCol {
   position: relative;
@@ -135,23 +119,23 @@
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  padding: 24px 28px 24px 16px;
+  padding: 24px 32px 24px 16px;
 }
 
 .panel {
   width: 100%;
-  padding: 18px 18px 10px;
+  padding: 16px 18px 12px;
   border-radius: var(--radius-md);
   border: 1px solid rgba(91, 141, 239, 0.28);
-  background: rgba(13, 20, 36, 0.55);
-  backdrop-filter: blur(2px);
-  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  background: rgba(13, 20, 36, 0.65);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
 .panel:hover {
-  transform: translateY(-3px);
-  border-color: rgba(91, 141, 239, 0.52);
-  background: rgba(19, 29, 52, 0.7);
+  transform: translateY(-2px);
+  border-color: rgba(91, 141, 239, 0.5);
 }
 
 .copyButton {
@@ -160,26 +144,27 @@
   justify-content: center;
   gap: 8px;
   width: 100%;
-  margin: 8px 0 4px;
-  padding: 10px 14px;
+  margin: 8px 0 6px;
+  padding: 9px 14px;
   border-radius: var(--radius-sm);
-  border: 1px solid var(--border-soft);
-  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(91, 141, 239, 0.35);
+  background: rgba(91, 141, 239, 0.12);
   color: var(--white);
-  font-size: 13.5px;
+  font-family: var(--font-display);
+  font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.15s ease, transform 0.15s ease;
+  transition: background 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
 }
 
 .copyButton:hover {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(91, 141, 239, 0.22);
+  border-color: rgba(91, 141, 239, 0.6);
   transform: translateY(-1px);
 }
 
-.copyButton:focus-visible {
-  outline: 2px solid var(--white);
-  outline-offset: 2px;
+.copyButton:active {
+  transform: scale(0.98);
 }
 
 .copyButton svg {
@@ -188,471 +173,123 @@
 }
 
 /* --------------------------------------------------------------------------
-   5. Keyframe Animations
+   Responsive Layout: Laptop / Desktop (min-width: 1025px)
    -------------------------------------------------------------------------- */
-@keyframes supportGlowDrift {
-  0% {
-    opacity: 0.4;
-    transform: translate3d(-6%, -2%, 0) scale(0.94);
-  }
-  50% {
-    opacity: 0.72;
-  }
-  100% {
-    opacity: 0.5;
-    transform: translate3d(7%, 5%, 0) scale(1.08);
-  }
-}
-
-@keyframes supportArtworkFloat {
-  from {
-    transform: scale(1.12) translate3d(0, 0, 0);
-  }
-  to {
-    transform: scale(1.15) translate3d(-0.6%, -0.4%, 0);
-  }
-}
-
-/* Staggered slide-in from the right for each panel row */
-@keyframes rowSlideIn {
-  from {
-    opacity: 0;
-    transform: translateX(14px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.panel > :nth-child(1) { animation: rowSlideIn 0.38s ease-out 0.05s both; }
-.panel > :nth-child(2) { animation: rowSlideIn 0.38s ease-out 0.13s both; }
-.panel > :nth-child(3) { animation: rowSlideIn 0.38s ease-out 0.21s both; }
-.panel > :nth-child(4) { animation: rowSlideIn 0.38s ease-out 0.29s both; }
-.panel > :nth-child(5) { animation: rowSlideIn 0.38s ease-out 0.37s both; }
-
-/* MessageCircle icon: periodic wiggle on CTA button */
-.textCol button svg {
-  animation: iconWiggle 6s ease-in-out 2s infinite;
-  transform-origin: center bottom;
-}
-
-@keyframes iconWiggle {
-  0%,
-  78%,
-  100% {
-    transform: rotate(0deg);
-  }
-  82% {
-    transform: rotate(-15deg);
-  }
-  86% {
-    transform: rotate(12deg);
-  }
-  90% {
-    transform: rotate(-9deg);
-  }
-  94% {
-    transform: rotate(5deg);
-  }
-}
-
-/* Copy / Check icon: bouncy swap-in whenever icon changes */
-.copyButton svg {
-  animation: iconSwapIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-}
-
-@keyframes iconSwapIn {
-  from {
-    transform: scale(0.4) rotate(-20deg);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1) rotate(0deg);
-    opacity: 1;
-  }
-}
-
-/* --------------------------------------------------------------------------
-   6. Height Requirements
-   -------------------------------------------------------------------------- */
-/* Laptop / Desktop: 410px - 450px */
 @media (min-width: 1025px) {
   .banner {
     height: 100%;
-    flex-wrap: nowrap;
-    min-height: 0;
   }
 
   .textCol {
     width: 32%;
+    padding: 32px 16px 32px 38px;
   }
 
   .visualCol {
     width: 34%;
   }
 
-  .bannerImage {
-    object-position: 36% center;
-    transform: scale(1.06);
-  }
-
   .panelCol {
     width: 34%;
-  }
-
-  .heading {
-    font-size: clamp(22px, 2.4vw, 28px);
-  }
-
-  .description {
-    max-width: 100%;
-  }
-}
-
-/* Tablet: 380px - 540px */
-@media (max-width: 767px) {
-  .banner {
-    flex-direction: column;
-    min-height: auto;
-    background: radial-gradient(140% 120% at 55% 15%, #18284c 0%, var(--cu-surface) 60%);
-  }
-
-  .visualCol {
-    width: 100%;
-    order: 1;
-    height: clamp(180px, 44vw, 240px);
-    min-height: 180px;
-    border-left: none;
-    border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  }
-
-  .bannerImage {
-    object-position: 38% center;
-    transform: scale(1.04);
-  }
-
-  .textCol {
-    display: contents;
-  }
-
-  .eyebrowRow {
-    order: 1;
-    margin: 22px 20px 0;
-  }
-
-  .heading {
-    order: 1;
-    margin: 12px 20px 0;
-  }
-
-  .description {
-    order: 1;
-    margin: 0 20px;
-  }
-
-  .textCol > button {
-    order: 3;
-    width: auto;
-    padding: 22px 20px 10px;
-  }
-
-  .panelCol {
-    width: 100%;
-    order: 4;
-    padding: 8px 20px 24px;
-  }
-
-  .visualCol {
-    order: 2;
-  }
-
-  .heading {
-    font-size: clamp(22px, 5.5vw, 28px);
-  }
-
-  .description {
-    max-width: 100%;
-    font-size: 13.5px;
-  }
-
-  .panel {
-    padding: 16px 16px 12px;
-  }
-}
-
-/* Mobile: 330px - 520px */
-@media (max-width: 767px) {
-  .banner {
-    border-radius: var(--radius-md);
-  }
-
-  .visualCol {
-    height: clamp(160px, 46vw, 210px);
-    min-height: 0;
-  }
-
-  .textCol {
-    padding: 0;
-  }
-
-  .panelCol {
-    padding: 6px 16px 20px;
-  }
-}
-
-@media (max-width: 767px) {
-  .banner {
-    height: 100%;
-    align-items: stretch;
-  }
-
-  .textCol {
-    display: contents;
-  }
-
-  .eyebrowRow,
-  .heading,
-  .description {
-    order: 1;
-    margin-inline: 20px;
-  }
-
-  .eyebrowRow {
-    margin-top: 22px;
-  }
-
-  .heading {
-    margin-top: 12px;
-  }
-
-  .visualCol {
-    order: 2;
-    height: clamp(220px, 58vw, 330px);
-  }
-
-  .textCol > button {
-    order: 3;
-    width: auto;
-    margin: 0 20px;
-    padding: 13px 18px;
-  }
-
-  .panelCol {
-    order: 4;
+    padding: 24px 34px 24px 16px;
   }
 }
 
 /* --------------------------------------------------------------------------
-   7. Width-based Phone & Tablet Layout
+   Responsive Layout: Tablet (768px to 1024px)
+   -------------------------------------------------------------------------- */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .banner {
+    height: 100%;
+  }
+
+  .textCol {
+    width: 35%;
+    padding: 24px 12px 24px 24px;
+    gap: 12px;
+  }
+
+  .visualCol {
+    width: 30%;
+  }
+
+  .bannerImage {
+    object-position: 40% center;
+  }
+
+  .panelCol {
+    width: 35%;
+    padding: 20px 20px 20px 12px;
+  }
+
+  .heading {
+    font-size: clamp(20px, 2.6vw, 26px);
+  }
+
+  .description {
+    font-size: 12.5px;
+  }
+
+  .panel {
+    padding: 12px 14px 10px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Layout: Mobile (max-width: 767px)
    -------------------------------------------------------------------------- */
 @media (max-width: 767px) {
   .banner {
     flex-direction: column;
-    min-height: 0;
-    height: 100%;
-    align-items: stretch;
-    gap: 0;
-    background: radial-gradient(140% 120% at 50% 8%, #142746 0%, var(--cu-surface) 58%);
-  }
-
-  .textCol {
-    display: contents;
-  }
-
-  .eyebrowRow {
-    order: 1;
-    padding: clamp(24px, 4vw, 34px) clamp(20px, 5vw, 40px) 0;
-  }
-
-  .heading {
-    order: 1;
-    margin: 12px clamp(20px, 5vw, 40px) 0;
-  }
-
-  .description {
-    order: 1;
-    margin: 0 clamp(20px, 5vw, 40px);
+    min-height: 330px;
+    max-height: none;
+    height: auto;
+    border-radius: var(--radius-md);
   }
 
   .visualCol {
     width: 100%;
-    order: 2;
-    height: clamp(210px, 38vw, 320px);
-    min-height: 0;
-    flex: 0 0 clamp(210px, 38vw, 320px);
-    border-left: none;
-    border-right: none;
-    border: 0;
+    order: 1;
+    height: 40%;
+    min-height: 140px;
   }
 
   .bannerImage {
-    object-position: 50% center;
+    object-position: 45% center;
     transform: scale(1.02);
   }
 
   .textCol {
     width: 100%;
-    order: 1;
-  }
-
-  .textCol button {
-    order: 3;
-    width: auto;
-    align-self: stretch;
-    margin: 8px clamp(20px, 5vw, 40px) 20px;
-  }
-
-  .panelCol {
-    width: 100%;
-    order: 4;
-    padding: 0 clamp(20px, 5vw, 40px) clamp(24px, 4vw, 34px);
-  }
-
-  .heading {
-    font-size: clamp(25px, 4vw, 32px);
-  }
-
-  .description {
-    max-width: 60ch;
-  }
-}
-
-@media (max-width: 767px) {
-  .banner {
-    border-radius: var(--radius-md);
-    min-height: 330px;
-  }
-
-  .visualCol {
-    height: clamp(190px, 56vw, 255px);
-    flex-basis: clamp(190px, 56vw, 255px);
-  }
-
-  .textCol {
-    gap: 0;
+    order: 2;
+    height: 60%;
+    padding: 14px 16px 16px;
+    gap: 10px;
+    justify-content: flex-start;
   }
 
   .eyebrowRow {
-    padding: 20px 16px 0;
+    gap: 8px;
   }
 
   .heading {
-    margin: 10px 16px 0;
-  }
-
-  .heading {
-    font-size: clamp(23px, 7.5vw, 30px);
-    line-height: 1.14;
+    font-size: clamp(20px, 6vw, 26px);
   }
 
   .description {
-    margin: 0 16px;
-    font-size: 13.5px;
-    line-height: 1.5;
+    font-size: 12.5px;
+    line-height: 1.4;
   }
 
-  .textCol button {
-    margin: 8px 16px 18px;
-  }
-
-  .panelCol {
-    padding: 0 16px 22px;
-  }
-
-  .panel {
-    padding: 15px 14px 8px;
-  }
-
-}
-
-@media (min-width: 1025px) {
-  .banner {
-    height: clamp(410px, 32vw, 450px);
-  }
-}
-
-@media (max-width: 767px) {
-  .banner {
-    min-height: 380px;
-  }
-}
-
-/* Keep the banner fluid while honoring the requested device height ranges. */
-@media (min-width: 768px) and (max-width: 1024px) {
-  .banner {
-    width: 100%;
-    min-height: 380px;
-    max-height: 540px;
-    height: clamp(380px, 44vw, 540px);
-  }
-}
-
-@media (max-width: 767px) {
-  .banner {
-    width: 100%;
-    min-height: 330px;
-    max-height: 520px;
-    height: clamp(330px, 120vw, 520px);
-  }
-
-  /* Hide the Support Action Panel on mobile */
-  .panelCol {
-    display: none;
-  }
-
-  /* Hide "Have a question, concern, or need assistance?" on mobile */
   .hiddenPhrase {
     display: none;
   }
-}
 
-@media (min-width: 380px) and (max-width: 540px) {
-  .banner {
-    height: 100%;
-    min-height: 0;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .textCol {
-    display: contents;
-  }
-
-  .eyebrowRow,
-  .heading,
-  .description {
-    margin-inline: 20px;
-  }
-
-  .eyebrowRow {
-    padding: 24px 0 0;
-  }
-
-  .heading {
-    font-size: clamp(24px, 5.5vw, 30px);
-  }
-
-  .description {
-    max-width: 100%;
-    font-size: 13.5px;
-  }
-
-  .visualCol {
+  .textCol :global(button) {
     width: 100%;
-    order: 2;
-    height: clamp(220px, 44vw, 270px);
-    flex: 0 0 clamp(220px, 44vw, 270px);
-  }
-
-  .textCol button {
-    width: auto;
-    margin: 8px 20px 20px;
   }
 
   .panelCol {
-    width: 100%;
-    padding: 0 20px 28px;
+    display: none;
   }
 }

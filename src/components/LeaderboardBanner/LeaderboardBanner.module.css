@@ -3,34 +3,37 @@
    Gold / Amber theme displaying top rankers on an interactive podium.
    ========================================================================== */
 
-/* --------------------------------------------------------------------------
-   1. Main Banner Shell
-   -------------------------------------------------------------------------- */
 .banner {
   position: relative;
   width: 100%;
   display: flex;
   align-items: stretch;
   background: var(--lb-surface);
-  border: 1px solid rgba(245, 185, 62, 0.18);
+  border: 1px solid rgba(245, 185, 62, 0.22);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  min-height: 410px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.banner:hover {
+  border-color: rgba(245, 185, 62, 0.4);
+  box-shadow: 0 20px 48px rgba(245, 185, 62, 0.08), 0 16px 40px rgba(0, 0, 0, 0.5);
 }
 
 /* --------------------------------------------------------------------------
-   2. Text Column (Heading, Description, Pool Pill, CTA)
+   Left Text Column
    -------------------------------------------------------------------------- */
 .textCol {
   position: relative;
   z-index: 2;
-  width: 36%;
+  width: 38%;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 16px;
-  padding: 36px 20px 36px 40px;
+  gap: 15px;
+  padding: 34px 20px 34px 38px;
 }
 
 .eyebrowRow {
@@ -44,9 +47,10 @@
   font-family: var(--font-display);
   font-weight: 700;
   font-size: clamp(26px, 2.6vw, 36px);
-  line-height: 1.12;
+  line-height: 1.14;
   margin: 0;
   color: var(--white);
+  letter-spacing: -0.02em;
 }
 
 .headingAccent {
@@ -56,9 +60,9 @@
 .description {
   margin: 0;
   color: var(--text-soft);
-  font-size: 14.5px;
+  font-size: 14px;
   line-height: 1.55;
-  max-width: 34ch;
+  max-width: 36ch;
 }
 
 .poolPill {
@@ -66,44 +70,37 @@
   align-items: center;
   gap: 8px;
   align-self: flex-start;
-  padding: 9px 16px;
+  padding: 8px 16px;
   border-radius: 999px;
   border: 1px solid rgba(245, 185, 62, 0.35);
   background: rgba(245, 185, 62, 0.08);
   color: var(--text-soft);
   font-size: 13px;
+  backdrop-filter: blur(8px);
 }
 
 .poolPill svg {
+  color: var(--lb-gold);
   flex-shrink: 0;
 }
 
 .poolAmount {
   color: var(--lb-gold);
-  font-weight: 550;
-  animation: prizeGlow 3.5s ease-in-out 1.2s infinite;
+  font-weight: 700;
 }
 
 /* --------------------------------------------------------------------------
-   3. Visual Column & Floating Podium Cards
+   Right Visual Column & Podium Badges
    -------------------------------------------------------------------------- */
 .visualCol {
   position: relative;
-  width: 64%;
-  /* overflow intentionally NOT hidden — rank cards must float above the column edge.
-     The parent .banner already clips content at its border-radius. */
+  width: 62%;
+  overflow: hidden;
 }
 
-/* Dedicated wrapper that clips the image to the column bounds */
 .imageWrap {
   position: absolute;
   inset: 0;
-  overflow: hidden;
-  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
-}
-
-.imageWrap picture {
-  display: block;
   width: 100%;
   height: 100%;
 }
@@ -113,6 +110,11 @@
   height: 100%;
   object-fit: cover;
   object-position: center center;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.banner:hover .bannerImage {
+  transform: scale(1.02);
 }
 
 .podiumOverlay {
@@ -126,322 +128,167 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 3px;
   transform: translate(-50%, -50%);
-  animation:
-    rankEnter 0.72s cubic-bezier(0.22, 1, 0.36, 1) both,
-    floatCard 6s ease-in-out infinite;
-  will-change: transform, opacity;
-  transition: filter 0.3s ease;
+  text-align: center;
+  pointer-events: auto;
+  cursor: default;
+  transition: transform 0.25s ease, filter 0.25s ease;
+  animation: floatRank 5s ease-in-out infinite;
 }
-
-/* Stagger: delay for [entrance, float] */
-.rankCard:nth-child(1) { animation-delay: 0.08s, 0.8s; }
-.rankCard:nth-child(2) { animation-delay: 0.22s, 0.94s; }
-.rankCard:nth-child(3) { animation-delay: 0.36s, 1.08s; }
 
 .rankCard:hover {
-  filter: brightness(1.18);
-  animation-play-state: paused;
+  transform: translate(-50%, -54%) scale(1.06);
+  filter: brightness(1.15);
 }
 
+/* Specific pedestal positions */
 .rank-gold {
-  left:51%;
-  top: 57.5%;
+  left: 51.5%;
+  top: 56%;
+  animation-delay: 0s;
 }
 
 .rank-blue {
-  left: 32.5%;
-  top: 64%;
+  left: 28.5%;
+  top: 63%;
+  animation-delay: 1.2s;
 }
 
 .rank-orange {
-  left: 70%;
-  top: 65%;
+  left: 74.2%;
+  top: 64%;
+  animation-delay: 2.4s;
 }
 
 .rankBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: auto;
   font-family: var(--font-display);
-  font-weight: 950;
-  font-size: 15px;
-  color: #120b00;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
-  margin-bottom: 15px;
+  font-weight: 800;
+  font-size: 13px;
+  line-height: 1;
+  margin-bottom: 3px;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
 }
 
 .rankName {
   font-family: var(--font-display);
-  font-weight: 900;
-  font-size: 17px;
+  font-weight: 700;
+  font-size: 14.5px;
   color: var(--white);
   white-space: nowrap;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
 }
 
 .rankPoints {
-  font-size: 12.5px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 800;
   white-space: nowrap;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
 }
 
 .rank-blue .rankPoints {
-  color: var(--lb-blue);
+  color: #4da2ff;
 }
+
 .rank-gold .rankPoints {
-  color: var(--lb-gold);
+  color: #f5b93e;
 }
+
 .rank-orange .rankPoints {
-  color: var(--lb-orange);
+  color: #ff9d47;
+}
+
+@keyframes floatRank {
+  0%, 100% {
+    transform: translate(-50%, -50%);
+  }
+  50% {
+    transform: translate(-50%, -53%);
+  }
 }
 
 /* --------------------------------------------------------------------------
-   4. Phone Layout
-   Width-based rules are needed here because many phones are taller than the
-   existing height-based breakpoint and would otherwise keep the desktop split.
+   Responsive Layout: Laptop / Desktop (min-width: 1025px)
    -------------------------------------------------------------------------- */
-@media (max-width: 767px) {
+@media (min-width: 1025px) {
   .banner {
-    flex-direction: column;
-    min-height: 0;
-    border-radius: var(--radius-md);
-  }
-
-  .visualCol {
-    width: 100%;
-    order: 1;
-    height: clamp(190px, 56vw, 250px);
-    min-height: 0;
-  }
-
-  .imageWrap {
-    border-radius: var(--radius-md) var(--radius-md) 0 0;
-  }
-
-  .bannerImage {
-    object-position: center center;
+    height: 100%;
   }
 
   .textCol {
-    width: 100%;
-    order: 2;
-    gap: 13px;
-    padding: 24px 18px 26px;
+    width: 38%;
+    padding: 32px 20px 32px 38px;
+  }
+
+  .visualCol {
+    width: 62%;
+  }
+
+  .rankName,
+  .rankPoints {
+    position: relative;
+    top: 8px;
+  }
+
+  .rankName {
+    margin-top: 8px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Layout: Tablet (768px to 1024px)
+   -------------------------------------------------------------------------- */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .banner {
+    height: 100%;
+  }
+
+  .textCol {
+    width: 44%;
+    padding: 24px 16px 24px 28px;
+    gap: 12px;
+  }
+
+  .visualCol {
+    width: 56%;
   }
 
   .heading {
-    font-size: clamp(25px, 8vw, 32px);
-    line-height: 1.1;
+    font-size: clamp(22px, 3vw, 28px);
   }
 
   .description {
-    max-width: none;
-    font-size: 14px;
-    line-height: 1.5;
-  }
-
-  .poolPill {
-    max-width: 100%;
-    padding: 8px 12px;
-    font-size: 12.5px;
-    line-height: 1.35;
-  }
-
-  .textCol button {
-    width: 100%;
-  }
-
-  .rankCard {
-    gap: 2px;
-  }
-
-  .rank-blue {
-    left: 29%;
-    top: 67%;
+    font-size: 13px;
   }
 
   .rank-gold {
     left: 51%;
-    top: 61%;
+    top: 56%;
+  }
+
+  .rank-blue {
+    left: 36%;
+    top: 63%;
   }
 
   .rank-orange {
-    left: 73%;
-    top: 67%;
+    left: 66%;
+    top: 64%;
   }
 
   .rankBadge {
-    margin-bottom: 6px;
-    font-size: clamp(11px, 3.4vw, 14px);
+    font-size: 11px;
   }
 
   .rankName {
-    font-size: clamp(11px, 3.4vw, 15px);
-  }
-
-  .rankPoints {
-    font-size: clamp(9px, 2.8vw, 12px);
-  }
-}
-
-@media (max-width: 380px) {
-  .visualCol {
-    height: 190px;
-  }
-
-  .textCol {
-    padding: 20px 14px 22px;
-  }
-
-  .eyebrowRow {
-    gap: 7px;
-  }
-
-  .rankBadge {
-    margin-bottom: 4px;
-  }
-}
-
-@media (max-width: 767px) {
-  .banner {
-    min-height: 0;
-  }
-
-  .visualCol {
-    height: clamp(250px, 34vw, 340px);
-  }
-
-  .textCol {
-    padding-left: clamp(24px, 4vw, 40px);
-  }
-}
-
-/* --------------------------------------------------------------------------
-   5. Animations
-   -------------------------------------------------------------------------- */
-@keyframes rankEnter {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -50%) translate3d(0, 16px, 0) scale(0.92);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(-50%, -50%) translate3d(0, 0, 0) scale(1);
-  }
-}
-
-@keyframes floatCard {
-  0%,
-  100% {
-    transform: translate(-50%, -50%) translate3d(0, 0, 0) scale(1);
-  }
-  50% {
-    transform: translate(-50%, -50%) translate3d(0, -4px, 0) scale(1.01);
-  }
-}
-
-@keyframes prizeGlow {
-  0%,
-  100% {
-    text-shadow: none;
-  }
-  50% {
-    text-shadow: 0 0 12px rgba(245, 185, 62, 0.55);
-  }
-}
-
-/* --------------------------------------------------------------------------
-   6. Height Requirements
-   -------------------------------------------------------------------------- */
-/* Laptop / Desktop: 410px - 450px */
-@media (min-width: 1025px) {
-  .banner {
-    height: 100%;
-    min-height: 410px;
-  }
-
-  .textCol {
-    width: 46%;
-    padding: 30px 18px 30px 28px;
-    gap: 14px;
-  }
-
-  .visualCol {
-    width: 54%;
-    min-height: 340px;
-  }
-
-  .imageWrap {
-    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
-  }
-
-  .heading {
-    font-size: clamp(24px, 2.8vw, 32px);
-  }
-
-  .description {
-    max-width: 100%;
-    font-size: 14px;
-  }
-
-  .rankBadge {
-    font-size: 17px;
-    margin-bottom: 8px;
-  }
-
-  .rankName {
-    font-size: 15px;
-  }
-
-  .rankPoints {
-    font-size: 11.5px;
-  }
-}
-
-/* Tablet: 380px - 540px */
-@media (max-width: 767px) {
-  .banner {
-    flex-direction: column;
-    min-height: auto;
-    background: var(--lb-surface);
-  }
-
-  .visualCol {
-    width: 100%;
-    order: 1;
-    height: clamp(210px, 48vw, 270px);
-    min-height: 200px;
-  }
-
-  .imageWrap {
-    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  }
-
-  .textCol {
-    width: 100%;
-    order: 2;
-    padding: 24px 20px 28px;
-    gap: 14px;
-  }
-
-  .heading {
-    font-size: clamp(23px, 5.5vw, 30px);
-  }
-
-  .description {
-    max-width: 100%;
-    font-size: 13.5px;
-  }
-
-  .rankCard {
-    top: 66%;
-  }
-
-  .rankBadge {
-    font-size: 10px;
-    margin-bottom: 6px;
-  }
-
-  .rankName {
-    font-size: 13px;
+    font-size: 12.5px;
   }
 
   .rankPoints {
@@ -449,260 +296,82 @@
   }
 }
 
-/* Mobile: 330px - 520px */
-@media (max-width: 767px) {
-  .banner {
-    border-radius: var(--radius-md);
-  }
-
-  .visualCol {
-    height: clamp(180px, 52vw, 240px);
-    min-height: 0;
-  }
-
-  .textCol {
-    padding: 20px 16px 24px;
-    gap: 12px;
-  }
-
-  .heading {
-    font-size: clamp(22px, 6.5vw, 28px);
-  }
-
-  .description {
-    font-size: 13px;
-    line-height: 1.5;
-  }
-
-  .poolPill {
-    font-size: 12px;
-    padding: 6px 12px;
-    gap: 6px;
-  }
-
-  .rank-blue {
-    left: 29%;
-    top: 68%;
-  }
-
-  .rank-gold {
-    left: 52%;
-    top: 62%;
-  }
-
-  .rank-orange {
-    left: 75%;
-    top: 69%;
-  }
-
-  .rankBadge {
-    font-size: 12px;
-    margin-bottom: 4px;
-  }
-
-  .rankName {
-    font-size: 11px;
-  }
-
-  .rankPoints {
-    font-size: 9.5px;
-  }
-}
-
 /* --------------------------------------------------------------------------
-   7. Width-based Phone & Tablet Layout
+   Responsive Layout: Mobile (max-width: 767px)
    -------------------------------------------------------------------------- */
 @media (max-width: 767px) {
   .banner {
     flex-direction: column;
-    min-height: 0;
-  }
-
-  .visualCol {
-    width: 100%;
-    order: 1;
-    height: clamp(220px, 42vw, 340px);
-    min-height: 0;
-  }
-
-  .imageWrap {
-    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  }
-
-  .textCol {
-    width: 100%;
-    order: 2;
-    padding: clamp(24px, 4vw, 36px) clamp(20px, 5vw, 40px);
-    gap: 14px;
-  }
-
-  .heading {
-    font-size: clamp(26px, 4vw, 36px);
-  }
-
-  .description {
-    max-width: 60ch;
-  }
-}
-
-@media (max-width: 767px) {
-  .banner {
+    min-height: 330px;
+    max-height: none;
+    height: auto;
     border-radius: var(--radius-md);
   }
 
   .visualCol {
-    height: clamp(190px, 56vw, 250px);
-  }
-
-  .imageWrap {
-    border-radius: var(--radius-md) var(--radius-md) 0 0;
-  }
-
-  .textCol {
-    gap: 13px;
-    padding: 22px 16px 24px;
-  }
-
-  .heading {
-    font-size: clamp(25px, 8vw, 32px);
-    line-height: 1.1;
-  }
-
-  .description {
-    max-width: none;
-    font-size: 14px;
-    line-height: 1.5;
-  }
-
-  .poolPill {
-    max-width: 100%;
-    padding: 8px 12px;
-    font-size: 12.5px;
-    line-height: 1.35;
-  }
-
-  .textCol button {
-    width: 100%;
-  }
-
-  .rankCard {
-    gap: 2px;
-  }
-
-  .rank-blue {
-    left: 27%;
-    top: 68%;
-  }
-
-  .rank-gold {
-    left: 52%;
-    top: 61%;
-  }
-
-  .rank-orange {
-    left: 77%;
-    top: 68%;
-  }
-
-  .rankBadge {
-    margin-bottom: 6px;
-    font-size: clamp(11px, 3.4vw, 14px);
-  }
-
-  .rankName {
-    font-size: clamp(11px, 3.4vw, 15px);
-  }
-
-  .rankPoints {
-    font-size: clamp(9px, 2.8vw, 12px);
-  }
-}
-
-@media (max-width: 380px) {
-  .visualCol {
-    height: 190px;
-  }
-
-  .textCol {
-    padding-inline: 14px;
-  }
-}
-
-/* Keep the banner within the requested responsive height range. */
-@media (min-width: 1025px) {
-  .banner {
-    height: clamp(410px, 32vw, 450px);
-  }
-}
-
-@media (max-width: 767px) {
-  .banner {
-    height: clamp(380px, 52vw, 540px);
-  }
-}
-
-@media (max-width: 767px) {
-  .banner {
-    height: clamp(330px, 120vw, 520px);
-  }
-}
-
-/* Keep the banner fluid while honoring the requested device height ranges. */
-@media (min-width: 768px) and (max-width: 1024px) {
-  .banner {
-    width: 100%;
-    min-height: 380px;
-    max-height: 540px;
-    height: clamp(380px, 44vw, 540px);
-  }
-}
-
-@media (max-width: 767px) {
-  .banner {
-    width: 100%;
-    min-height: 330px;
-    max-height: 520px;
-    height: clamp(330px, 120vw, 520px);
-  }
-
-  /* Hide the trailing phrase on mobile only */
-  .hiddenPhrase {
-    display: none;
-  }
-}
-
-/* Tablet: retain the readable stacked card and avoid the phone-only height cap. */
-@media (min-width: 380px) and (max-width: 540px) {
-  .banner {
-    height: 100%;
-    min-height: 0;
-    flex-direction: column;
-  }
-
-  .visualCol {
     width: 100%;
     order: 1;
-    height: clamp(220px, 48vw, 270px);
-    min-height: 220px;
+    height: 52%;
+    min-height: 180px;
   }
 
   .textCol {
     width: 100%;
     order: 2;
-    padding: 24px 20px 28px;
-    gap: 14px;
-  }
-
-  .textCol button {
-    width: 100%;
+    height: 48%;
+    padding: 16px 16px 18px;
+    gap: 10px;
+    justify-content: flex-start;
   }
 
   .heading {
-    font-size: clamp(24px, 5.5vw, 30px);
+    font-size: clamp(20px, 6vw, 26px);
   }
 
   .description {
+    font-size: 12.5px;
+    line-height: 1.4;
     max-width: 100%;
-    font-size: 13.5px;
+  }
+
+  .hiddenPhrase {
+    display: none;
+  }
+
+  .poolPill {
+    font-size: 11.5px;
+    padding: 6px 12px;
+  }
+
+  .textCol :global(button) {
+    width: 100%;
+  }
+
+  .rank-gold {
+    left: 51.5%;
+    top: 60.5%;
+  }
+
+  .rank-blue {
+    left:33.5%;
+    top: 68%;
+  }
+
+  .rank-orange {
+    left: 70%;
+    top: 70%;
+  }
+
+  .rankBadge {
+    font-size: 10px;
+    margin-bottom: 2px;
+  }
+
+  .rankName {
+    font-size: 10.5px;
+  }
+
+  .rankPoints {
+    font-size: 9px;
   }
 }

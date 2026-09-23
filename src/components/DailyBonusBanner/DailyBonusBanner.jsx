@@ -1,15 +1,34 @@
-import { Gift, Check, Sparkles } from 'lucide-react'
+import { useState } from 'react'
+import { Gift, Check, Lock } from 'lucide-react'
 import { CtaButton, SectionTag } from '../common/BannerUI.jsx'
-import bannerImage from '../../assets/B5_Daily_Bonus_Banner.png'
-import mobileBannerImage from '../../assets/B5_Daily_Bonus_Banner mini.png'
+import bannerImage from '../../assets/5.Daily Bonus Banner-IP4_pqcH.jpg'
+import mobileBannerImage from '../../assets/5.Daily Bonus Banner-IP4_pqcH.jpg'
 import styles from './DailyBonusBanner.module.css'
 
 const STREAK_DAYS = [1, 2, 3, 4, 5, 6, 7]
 const DAYS_COMPLETED = 6
 
+/**
+ * DailyBonusBanner Component (Banner 05)
+ *
+ * Promotes daily streak check-in, showcasing today's gem bonus and a
+ * 7-day streak progress tracker matching Page 25.
+ *
+ * @param {Function} onClaimBonus - Optional callback when claim button is clicked
+ */
 export default function DailyBonusBanner({ onClaimBonus }) {
+  const [claimed, setClaimed] = useState(false)
+
+  const handleClaim = () => {
+    setClaimed(true)
+    if (onClaimBonus) {
+      onClaimBonus()
+    }
+  }
+
   return (
     <section className={styles.banner} aria-labelledby="dailybonus-heading">
+      {/* Left Column: Eyebrow, Heading, Description, & CTA */}
       <div className={styles.textCol}>
         <div className={styles.eyebrowRow}>
           <SectionTag tone="bronze">5</SectionTag>
@@ -17,31 +36,27 @@ export default function DailyBonusBanner({ onClaimBonus }) {
         </div>
 
         <h2 id="dailybonus-heading" className={styles.heading}>
-          Your daily reward
-          <span>is ready to claim.</span>
+          Your Daily Bonus
+          <br />
+          <span className={styles.headingAccent}>Is Waiting</span>
         </h2>
 
         <p className={styles.description}>
-          Check in regularly and claim your available daily bonus
-          <span className={styles.hiddenPhrase}> before the opportunity resets</span>.
+          Check in regularly and claim your available daily bonus before the opportunity resets.
         </p>
-
-        <span className={styles.mobileReward}>Today: +25 Gems</span>
-
-        <span className={styles.streakChip}>
-          <Sparkles size={14} /> 6-day streak in progress
-        </span>
 
         <CtaButton
           tone="bronze"
           className={styles.claimButton}
           icon={<Gift size={18} />}
-          onClick={onClaimBonus}
+          onClick={handleClaim}
+          disabled={claimed}
         >
-          Claim Bonus
+          {claimed ? 'Claimed (+25 Gems)' : 'Claim Bonus'}
         </CtaButton>
       </div>
 
+      {/* Center Visual: Open Gift Box with Gold VE Coins */}
       <div className={styles.visualCol}>
         <picture>
           <source
@@ -50,45 +65,59 @@ export default function DailyBonusBanner({ onClaimBonus }) {
           />
           <img
             src={bannerImage}
-            alt="Open gift box overflowing with gold VE coins"
+            alt="3D open gift box overflowing with sparkling golden VE coins"
             className={styles.bannerImage}
           />
         </picture>
-        <span className={styles.visualCaption}>Daily rewards</span>
       </div>
 
+      {/* Right Column: Today's Bonus Card & 7-Day Streak Card */}
       <div className={styles.panelCol}>
+        {/* Today's Bonus Card */}
         <div className={styles.todayPanel}>
-          <span className={styles.panelLabel}>Today&apos;s bonus</span>
-          <span className={styles.gemAmount}>
-            +25 <small>Gems</small>
-          </span>
+          <span className={styles.panelLabel}>TODAY&apos;S BONUS</span>
+          <span className={styles.gemAmount}>+25 GEMS</span>
           <span className={styles.availableNow}>
-            <span className={styles.dot} />
-            Available now
+            {claimed ? 'Claimed Today' : 'Available Now'}
+            <span className={claimed ? styles.claimedDot : styles.availableDot} />
           </span>
-          <span className={styles.nextReward}>Tomorrow: +40 Gems</span>
         </div>
 
+        {/* 7-Day Streak Card */}
         <div className={styles.streakPanel}>
           <div className={styles.streakHeader}>
-            <span className={styles.panelLabel}>7-day streak</span>
-            <span className={styles.streakStatus}>{DAYS_COMPLETED}/7</span>
+            <span className={styles.panelLabel}>7-DAY STREAK</span>
           </div>
+
           <div className={styles.streakRow}>
             {STREAK_DAYS.map((day) => {
               const done = day <= DAYS_COMPLETED
+              const isLocked = day === 7
               return (
-                <span
-                  key={day}
-                  className={`${styles.streakDay} ${done ? styles.streakDone : styles.streakPending}`}
-                >
-                  {done ? <Check size={12} strokeWidth={3} /> : day}
-                </span>
+                <div key={day} className={styles.streakItem}>
+                  <span className={styles.dayNumber}>{day}</span>
+                  <span
+                    className={`${styles.streakDayCircle} ${
+                      done ? styles.streakDone : styles.streakPending
+                    }`}
+                  >
+                    {done ? (
+                      <Check size={11} strokeWidth={3} />
+                    ) : isLocked ? (
+                      <Lock size={10} strokeWidth={2.5} />
+                    ) : (
+                      day
+                    )}
+                  </span>
+                </div>
               )
             })}
           </div>
-          <span className={styles.streakHint}>One more day unlocks your weekly boost.</span>
+
+          <div className={styles.streakFooter}>
+            <span className={styles.streakCompletedText}>6 Days Completed</span>
+            <span className={styles.streakSubText}>Come back tomorrow!</span>
+          </div>
         </div>
       </div>
     </section>

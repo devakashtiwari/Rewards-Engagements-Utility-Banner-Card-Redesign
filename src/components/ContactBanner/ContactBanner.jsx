@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { MessageCircle, User, Mail, Copy, Check, BookOpen, ChevronRight, MailPlus } from 'lucide-react'
 import { SectionTag, CtaButton, InfoRow } from '../common/BannerUI.jsx'
-import bannerImage from '../../assets/B3_Contact_Us_Banner.png'
-import mobileBannerImage from '../../assets/B3_Contact_Us_Banner-Mobile.png'
+import bannerImage from '../../assets/3.Contact Us Banner-Cs2c-h28.jpg'
+import mobileBannerImage from '../../assets/3.Contact Us Banner-Cs2c-h28.jpg'
 import styles from './ContactBanner.module.css'
 
 /** Official support contact email address */

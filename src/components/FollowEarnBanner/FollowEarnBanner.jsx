@@ -1,15 +1,24 @@
-import { ArrowRight, Gift, Sparkles } from 'lucide-react'
+import { ArrowRight, Gift } from 'lucide-react'
 import { useCountUp } from '../../hooks/useCountUp.js'
 import { SectionTag, CtaButton } from '../common/BannerUI.jsx'
-import bannerImage from '../../assets/B4_Follow_s_Earn_Banner.png'
-import mobileBannerImage from '../../assets/B4_Follow_s_Earn_Banner-mobile.png'
+import bannerImage from '../../assets/4.Follow s Earn Banner--Toly6Q3.jpg'
+import mobileBannerImage from '../../assets/4.Follow s Earn Banner--Toly6Q3.jpg'
 import styles from './FollowEarnBanner.module.css'
 
+/**
+ * FollowEarnBanner Component (Banner 04)
+ *
+ * Promotes following official VELOOP Rewards social channels and
+ * participating in social engagement reward campaigns.
+ *
+ * @param {Function} onExploreChannels - Callback invoked when "Explore Our Channels" CTA is clicked
+ */
 export default function FollowEarnBanner({ onExploreChannels }) {
   const { ref: followerCountRef, value: followerCount } = useCountUp(24500)
 
   return (
     <section className={styles.banner} aria-labelledby="follow-heading">
+      {/* Left Column: Eyebrow, Heading, Description, & CTA */}
       <div className={styles.textCol}>
         <div className={styles.eyebrowRow}>
           <SectionTag tone="purple">4</SectionTag>
@@ -17,8 +26,7 @@ export default function FollowEarnBanner({ onExploreChannels }) {
         </div>
 
         <h2 id="follow-heading" className={styles.heading}>
-          Follow. Engage.
-          <span>Get rewarded.</span>
+          Follow &amp; Earn
         </h2>
 
         <p className={styles.description}>
@@ -26,23 +34,12 @@ export default function FollowEarnBanner({ onExploreChannels }) {
           campaigns to unlock rewards.
         </p>
 
-        <div className={styles.communityProof}>
-          <span className={styles.avatarStack} aria-hidden="true">
-            <span>V</span>
-            <span>R</span>
-            <span>+</span>
-          </span>
-          <span>
-            <strong>24.5K members</strong>
-            <small>already following VELOOP</small>
-          </span>
-        </div>
-
         <CtaButton tone="purple" icon={<ArrowRight />} onClick={onExploreChannels}>
           Explore Our Channels
         </CtaButton>
       </div>
 
+      {/* Middle Column: Smartphone Mockup with Social Profile & Floating Icons */}
       <div className={styles.visualCol}>
         <picture>
           <source
@@ -51,14 +48,22 @@ export default function FollowEarnBanner({ onExploreChannels }) {
           />
           <img
             src={bannerImage}
-            alt="Phone showing the VELOOP Rewards social profile surrounded by community, star, and megaphone icons"
+            alt="Smartphone showing VELOOP Rewards social profile surrounded by floating engagement icons"
             className={styles.bannerImage}
           />
         </picture>
+
+        {/* Dynamic overlay inside the smartphone screen */}
         <div className={styles.phoneOverlay}>
-          <span className={styles.phoneBrand}>VELOOP Rewards</span>
-          <span className={styles.phoneHandle}>@veloopreward</span>
-          <span className={styles.followingPill}>Following</span>
+          <div className={styles.phoneHeader}>
+            <span className={styles.phoneAvatar}>V</span>
+            <div className={styles.phoneMeta}>
+              <span className={styles.phoneBrand}>VELOP Rewards</span>
+              <span className={styles.phoneHandle}>@velooprewards</span>
+            </div>
+            <span className={styles.followingPill}>Following</span>
+          </div>
+
           <div className={styles.statsRow}>
             <span>
               <strong>128</strong> Posts
@@ -76,25 +81,21 @@ export default function FollowEarnBanner({ onExploreChannels }) {
         </div>
       </div>
 
+      {/* Right Column: Social Campaign Reward Card */}
       <div className={styles.panelCol}>
         <div className={styles.panel}>
-          <span className={styles.panelBadge}>
-            <Sparkles size={13} /> Live campaign
-          </span>
-          <span className={styles.giftIcon}>
-            <Sparkles size={13} className={styles.sparkle} />
-            <Gift strokeWidth={2} size={22} />
-          </span>
-          <p className={styles.panelCopy}>Complete eligible social actions to unlock your reward.</p>
-          <div className={styles.rewardRow}>
-            <span className={styles.panelReward}>+500 SVEs</span>
-            <span className={styles.panelCaption}>Demo Campaign</span>
+          <div className={styles.campaignHeader}>
+            <div className={styles.giftIconWrap}>
+              <Gift size={22} strokeWidth={2.2} />
+            </div>
+            <p className={styles.campaignText}>
+              Participate in eligible social campaigns and unlock rewards.
+            </p>
           </div>
-          <div className={styles.progressMeta}>
-            <span>2 of 3 actions complete</span>
-            <span className={styles.progressTrack} aria-hidden="true">
-              <span />
-            </span>
+
+          <div className={styles.rewardSection}>
+            <span className={styles.rewardAmount}>+500 SVEs</span>
+            <span className={styles.rewardSub}>Demo Campaign</span>
           </div>
         </div>
       </div>
