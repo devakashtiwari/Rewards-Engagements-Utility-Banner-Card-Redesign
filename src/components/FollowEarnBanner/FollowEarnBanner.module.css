@@ -1,410 +1,50 @@
-/* ==========================================================================
-   Follow & Earn Banner (Banner 04) - FollowEarnBanner.module.css
-   Muted Purple theme displaying official channels, phone mockup, and campaign rewards.
-   ========================================================================== */
-
 .banner {
+  --banner-purple: #9d7bea;
+  --banner-lilac: #d7c4ff;
+  --banner-blue: #47caff;
   position: relative;
-  width: 100%;
   display: flex;
+  width: 100%;
   align-items: stretch;
-  background:
-    radial-gradient(90% 140% at 60% 18%, rgba(91, 47, 161, 0.7) 0%, rgba(41, 20, 82, 0.32) 44%, transparent 74%),
-    linear-gradient(115deg, #0b061c 0%, #180d35 56%, #25114a 100%);
+  overflow: hidden;
   border: 1px solid rgba(168, 120, 255, 0.3);
   border-radius: var(--radius-lg);
-  overflow: hidden;
+  background: radial-gradient(62% 120% at 52% 18%, rgba(101, 75, 194, 0.58) 0%, rgba(48, 32, 106, 0.3) 52%, transparent 82%), linear-gradient(115deg, #0a0a18 0%, #17112d 52%, #2c1d58 100%);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-.banner:hover {
-  border-color: rgba(196, 155, 255, 0.62);
-  box-shadow: 0 20px 48px rgba(132, 77, 235, 0.16), 0 16px 40px rgba(0, 0, 0, 0.5);
-}
-
-/* --------------------------------------------------------------------------
-   Left Text Column
-   -------------------------------------------------------------------------- */
-.textCol {
-  position: relative;
-  z-index: 2;
-  width: 33%;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 16px;
-  padding: 34px 16px 34px 38px;
-}
-
-.eyebrowRow {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.eyebrowLabel {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  color: var(--fe-purple-light);
-  text-transform: uppercase;
-}
-
-.heading {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(26px, 2.6vw, 36px);
-  line-height: 1.15;
-  margin: 0;
-  color: var(--white);
-  letter-spacing: -0.02em;
-}
-
-.description {
-  margin: 0;
-  color: var(--text-soft);
-  font-size: 14px;
-  line-height: 1.55;
-  max-width: 32ch;
-}
-
-/* --------------------------------------------------------------------------
-   Middle Visual Artwork Column & Smartphone Mockup
-   -------------------------------------------------------------------------- */
-.visualCol {
-  position: relative;
-  width: 34%;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.visualCol picture {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.bannerImage {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 48% center;
-  transform: scale(1.05);
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.45));
-}
-
-.banner:hover .bannerImage {
-  transform: scale(1.08);
-}
-
-/* Phone Screen Dynamic Profile Overlay */
-.phoneOverlay {
-  position: absolute;
-  left: 50%;
-  bottom: 18%;
-  transform: translateX(-50%);
-  width: min(230px, 85%);
-  padding: 10px 12px;
-  border: 1px solid rgba(220, 200, 255, 0.22);
-  border-radius: 12px;
-  background: rgba(18, 10, 38, 0.85);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.45);
-}
-
-.phoneHeader {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 8px;
-}
-
-.phoneAvatar {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #a879ff, #6f34eb);
-  color: var(--white);
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 12px;
-  box-shadow: 0 0 10px rgba(168, 120, 255, 0.5);
-  flex-shrink: 0;
-}
-
-.phoneMeta {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  min-width: 0;
-}
-
-.phoneBrand {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 11px;
-  color: var(--white);
-  line-height: 1.2;
-}
-
-.phoneHandle {
-  font-size: 9px;
-  color: var(--fe-purple-light);
-  line-height: 1.2;
-}
-
-.followingPill {
-  display: inline-flex;
-  align-items: center;
-  padding: 4px 8px;
-  border-radius: 6px;
-  background: linear-gradient(135deg, #8a5cf6, #6025d8);
-  color: var(--white);
-  font-family: var(--font-display);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  box-shadow: 0 2px 8px rgba(138, 92, 246, 0.4);
-}
-
-.statsRow {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 4px;
-  padding-top: 6px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  text-align: center;
-  color: #b7accf;
-  font-size: 8px;
-}
-
-.statsRow span + span {
-  border-left: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.statsRow strong {
-  display: block;
-  font-family: var(--font-display);
-  font-size: 10px;
-  font-weight: 700;
-  color: var(--white);
-}
-
-/* --------------------------------------------------------------------------
-   Right Campaign Reward Card
-   -------------------------------------------------------------------------- */
-.panelCol {
-  position: relative;
-  z-index: 2;
-  width: 33%;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  padding: 24px 34px 24px 16px;
-}
-
-.panel {
-  width: 100%;
-  padding: 22px 20px;
-  border-radius: var(--radius-md);
-  border: 1px solid rgba(168, 120, 255, 0.28);
-  background: rgba(22, 12, 45, 0.7);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-  transition: transform 0.2s ease, border-color 0.2s ease;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.panel:hover {
-  transform: translateY(-2px);
-  border-color: rgba(168, 120, 255, 0.5);
-}
-
-.campaignHeader {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.giftIconWrap {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #a779ff, #6b2fdb);
-  color: var(--white);
-  box-shadow: 0 6px 16px rgba(138, 92, 246, 0.4);
-  flex-shrink: 0;
-}
-
-.campaignText {
-  margin: 0;
-  font-size: 13px;
-  line-height: 1.45;
-  color: #dcd4f2;
-}
-
-.rewardSection {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  padding-top: 14px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.rewardAmount {
-  font-family: var(--font-display);
-  font-size: 26px;
-  font-weight: 800;
-  color: var(--white);
-  letter-spacing: -0.02em;
-  line-height: 1.1;
-}
-
-.rewardSub {
-  font-size: 12px;
-  color: var(--fe-purple-light);
-  letter-spacing: 0.02em;
-}
-
-/* --------------------------------------------------------------------------
-   Responsive Layout: Laptop / Desktop (min-width: 1025px)
-   -------------------------------------------------------------------------- */
-@media (min-width: 1025px) {
-  .banner {
-    height: 100%;
-  }
-
-  .textCol {
-    width: 33%;
-    padding: 32px 16px 32px 38px;
-  }
-
-  .visualCol {
-    width: 34%;
-  }
-
-  .panelCol {
-    width: 33%;
-    padding: 24px 34px 24px 16px;
-  }
-}
-
-/* --------------------------------------------------------------------------
-   Responsive Layout: Tablet (768px to 1024px)
-   -------------------------------------------------------------------------- */
-@media (min-width: 768px) and (max-width: 1024px) {
-  .banner {
-    height: 100%;
-  }
-
-  .textCol {
-    width: 36%;
-    padding: 24px 12px 24px 24px;
-    gap: 12px;
-  }
-
-  .visualCol {
-    width: 30%;
-  }
-
-  .panelCol {
-    width: 34%;
-    padding: 20px 20px 20px 12px;
-  }
-
-  .heading {
-    font-size: clamp(22px, 2.6vw, 28px);
-  }
-
-  .description {
-    font-size: 12.5px;
-  }
-
-  .phoneOverlay {
-    bottom: 12%;
-    width: 90%;
-    padding: 8px 10px;
-  }
-
-  .panel {
-    padding: 16px;
-    gap: 12px;
-  }
-
-  .rewardAmount {
-    font-size: 22px;
-  }
-}
-
-/* --------------------------------------------------------------------------
-   Responsive Layout: Mobile (max-width: 767px)
-   -------------------------------------------------------------------------- */
-@media (max-width: 767px) {
-  .banner {
-    flex-direction: column;
-    min-height: 330px;
-    max-height: none;
-    height: auto;
-    border-radius: var(--radius-md);
-  }
-
-  .visualCol {
-    width: 100%;
-    order: 1;
-    height: 48%;
-    min-height: 160px;
-  }
-
-  .bannerImage {
-    object-position: 50% center;
-    transform: scale(1.02);
-  }
-
-  .phoneOverlay {
-    bottom: 10%;
-    width: min(220px, 80%);
-    padding: 8px 10px;
-  }
-
-  .textCol {
-    width: 100%;
-    order: 2;
-    height: 52%;
-    padding: 16px 16px 18px;
-    gap: 10px;
-    justify-content: flex-start;
-  }
-
-  .heading {
-    font-size: clamp(20px, 6vw, 26px);
-  }
-
-  .description {
-    font-size: 12.5px;
-    line-height: 1.4;
-  }
-
-  .textCol :global(button) {
-    width: 100%;
-  }
-
-  .panelCol {
-    display: none;
-  }
-}
+.banner::after { display: none; }
+.banner:hover { border-color: rgba(196, 155, 255, 0.62); box-shadow: 0 20px 48px rgba(132, 77, 235, 0.16), 0 16px 40px rgba(0, 0, 0, 0.5); }
+.textCol, .visualCol, .panelCol { position: relative; z-index: 1; }
+.textCol { display: flex; width: 33%; flex-shrink: 0; flex-direction: column; justify-content: center; gap: 16px; padding: 34px 16px 34px 38px; }
+.eyebrowRow { display: flex; align-items: center; gap: 10px; }
+.eyebrowLabel { color: var(--banner-lilac); font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; }
+.heading { margin: 0; color: var(--white); font-family: var(--font-display); font-size: clamp(26px, 2.6vw, 36px); font-weight: 700; line-height: 1.12; letter-spacing: -0.02em; }
+.description { max-width: 32ch; margin: 0; color: var(--text-soft); font-size: 14px; line-height: 1.55; }
+.visualCol { display: flex; width: 35%; align-items: center; justify-content: center; overflow: hidden; }
+.visualCol picture { display: block; width: 100%; height: 100%; }
+.bannerImage { width: 100%; height: 100%; object-fit: cover; object-position: 48% center; filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.45)); transform: scale(1.05); transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+.banner:hover .bannerImage { transform: scale(1.08); }
+.phoneOverlay { position: absolute; bottom: 18%; left: 50%; width: min(218px, 78%); padding: 10px 12px; border: 1px solid rgba(185, 177, 255, 0.32); border-radius: 12px; background: rgba(7, 10, 23, 0.82); box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5); backdrop-filter: blur(14px); transform: translateX(-50%); }
+.phoneHeader { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.phoneAvatar { display: inline-flex; width: 26px; height: 26px; align-items: center; justify-content: center; flex-shrink: 0; border-radius: 50%; background: linear-gradient(135deg, #8d7cff, #4c63e8); color: var(--white); font-family: var(--font-display); font-size: 12px; font-weight: 800; box-shadow: 0 0 16px rgba(104, 104, 255, 0.55); }
+.phoneMeta { display: flex; min-width: 0; flex: 1; flex-direction: column; }
+.phoneBrand { color: var(--white); font-family: var(--font-display); font-size: 11px; font-weight: 700; line-height: 1.2; }
+.phoneHandle { color: var(--banner-blue); font-size: 9px; line-height: 1.2; }
+.followingPill { display: inline-flex; padding: 4px 8px; border: 1px solid rgba(185, 177, 255, 0.42); border-radius: 6px; background: rgba(141, 124, 255, 0.18); color: var(--accent-bright); font-family: var(--font-display); font-size: 9px; font-weight: 700; }
+.statsRow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; padding-top: 6px; border-top: 1px solid rgba(255, 255, 255, 0.1); color: #aeb3c8; font-size: 8px; text-align: center; }
+.statsRow span + span { border-left: 1px solid rgba(255, 255, 255, 0.1); }
+.statsRow strong { display: block; color: var(--white); font-family: var(--font-display); font-size: 10px; }
+.panelCol { display: flex; width: 32%; flex-shrink: 0; align-items: center; padding: 24px 34px 24px 12px; }
+.panel { display: flex; width: 100%; flex-direction: column; gap: 18px; padding: 22px 20px; border: 1px solid rgba(141, 124, 255, 0.28); border-radius: var(--radius-md); background: rgba(8, 11, 25, 0.72); box-shadow: 0 16px 32px rgba(0, 0, 0, 0.28); backdrop-filter: blur(14px); transition: transform 0.2s ease, border-color 0.2s ease; }
+.panel:hover { border-color: rgba(185, 177, 255, 0.56); transform: translateY(-2px); }
+.campaignHeader { display: flex; align-items: center; gap: 14px; }
+.giftIconWrap { display: inline-flex; width: 44px; height: 44px; align-items: center; justify-content: center; flex-shrink: 0; border: 1px solid rgba(185, 177, 255, 0.36); border-radius: 12px; background: linear-gradient(135deg, #7466ef, #394fc2); color: var(--white); box-shadow: 0 8px 18px rgba(73, 78, 214, 0.35); }
+.campaignText { margin: 0; color: #d1d4e2; font-size: 13px; line-height: 1.45; }
+.rewardSection { display: flex; flex-direction: column; gap: 3px; padding-top: 14px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+.rewardAmount { color: var(--white); font-family: var(--font-display); font-size: 26px; font-weight: 800; line-height: 1.1; }
+.rewardSub { color: var(--banner-lilac); font-size: 12px; letter-spacing: 0.03em; }
+@media (min-width: 1025px) { .banner { height: 100%; } }
+@media (min-width: 768px) and (max-width: 1024px) { .textCol { width: 36%; padding: 24px 12px 24px 24px; gap: 12px; } .visualCol { width: 30%; } .panelCol { width: 34%; padding: 20px 20px 20px 12px; } .heading { font-size: clamp(22px, 2.6vw, 28px); } .description { font-size: 12.5px; } .phoneOverlay { bottom: 12%; width: 90%; padding: 8px 10px; } .panel { padding: 16px; gap: 12px; } .rewardAmount { font-size: 22px; } }
+@media (max-width: 767px) { .banner { min-height: 330px; flex-direction: column; border-radius: var(--radius-md); } .visualCol { width: 100%; height: 48%; min-height: 160px; order: 1; } .bannerImage { transform: scale(1.02); } .textCol { width: 100%; height: 52%; padding: 16px 16px 18px; gap: 10px; justify-content: flex-start; order: 2; } .heading { font-size: clamp(20px, 6vw, 26px); } .description { font-size: 12.5px; line-height: 1.4; } .textCol :global(button) { width: 100%; } .phoneOverlay { bottom: 10%; width: min(220px, 80%); padding: 8px 10px; } .panelCol { display: none; } }
