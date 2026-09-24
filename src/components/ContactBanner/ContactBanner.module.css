@@ -18,9 +18,30 @@
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
+.banner::before {
+  position: absolute;
+  z-index: 0;
+  inset: -35%;
+  content: '';
+  background:
+    radial-gradient(32% 42% at 28% 42%, rgba(70, 194, 238, 0.18), transparent 72%),
+    radial-gradient(28% 38% at 78% 68%, rgba(91, 141, 239, 0.14), transparent 72%);
+  animation: contactBackgroundDrift 14s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes contactBackgroundDrift {
+  from { transform: translate3d(-3%, -2%, 0) rotate(-2deg); }
+  to { transform: translate3d(4%, 3%, 0) rotate(2deg); }
+}
+
 .banner:hover {
   border-color: rgba(70, 194, 238, 0.58);
   box-shadow: 0 20px 48px rgba(35, 170, 227, 0.14), 0 16px 40px rgba(0, 0, 0, 0.5);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .banner::before { animation: none; }
 }
 
 /* --------------------------------------------------------------------------
@@ -291,5 +312,12 @@
 
   .panelCol {
     display: none;
+  }
+}
+
+@media (max-width: 767px) and (prefers-reduced-motion: no-preference) {
+  .banner::before {
+    inset: -20%;
+    animation-duration: 10s;
   }
 }

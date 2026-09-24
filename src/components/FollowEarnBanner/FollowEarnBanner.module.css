@@ -14,8 +14,29 @@
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
+.banner::before {
+  position: absolute;
+  z-index: 0;
+  inset: -35%;
+  content: '';
+  background:
+    radial-gradient(30% 40% at 30% 62%, rgba(157, 123, 234, 0.2), transparent 72%),
+    radial-gradient(26% 34% at 76% 30%, rgba(71, 202, 255, 0.14), transparent 72%);
+  animation: followBackgroundDrift 16s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes followBackgroundDrift {
+  from { transform: translate3d(3%, -3%, 0) rotate(2deg); }
+  to { transform: translate3d(-4%, 4%, 0) rotate(-2deg); }
+}
+
 .banner::after { display: none; }
 .banner:hover { border-color: rgba(196, 155, 255, 0.62); box-shadow: 0 20px 48px rgba(132, 77, 235, 0.16), 0 16px 40px rgba(0, 0, 0, 0.5); }
+
+@media (prefers-reduced-motion: reduce) {
+  .banner::before { animation: none; }
+}
 .textCol, .visualCol, .panelCol { position: relative; z-index: 1; }
 .textCol { display: flex; width: 33%; flex-shrink: 0; flex-direction: column; justify-content: center; gap: 16px; padding: 34px 16px 34px 38px; }
 .eyebrowRow { display: flex; align-items: center; gap: 10px; }
@@ -48,3 +69,4 @@
 @media (min-width: 1025px) { .banner { height: 100%; } }
 @media (min-width: 768px) and (max-width: 1024px) { .textCol { width: 36%; padding: 24px 12px 24px 24px; gap: 12px; } .visualCol { width: 30%; } .panelCol { width: 34%; padding: 20px 20px 20px 12px; } .heading { font-size: clamp(22px, 2.6vw, 28px); } .description { font-size: 12.5px; } .phoneOverlay { bottom: 12%; width: 90%; padding: 8px 10px; } .panel { padding: 16px; gap: 12px; } .rewardAmount { font-size: 22px; } }
 @media (max-width: 767px) { .banner { min-height: 330px; flex-direction: column; border-radius: var(--radius-md); } .visualCol { width: 100%; height: 48%; min-height: 160px; order: 1; } .bannerImage { transform: scale(1.02); } .textCol { width: 100%; height: 52%; padding: 16px 16px 18px; gap: 10px; justify-content: flex-start; order: 2; } .heading { font-size: clamp(20px, 6vw, 26px); } .description { font-size: 12.5px; line-height: 1.4; } .textCol :global(button) { width: 100%; } .phoneOverlay { bottom: 10%; width: min(220px, 80%); padding: 8px 10px; } .panelCol { display: none; } }
+@media (max-width: 767px) and (prefers-reduced-motion: no-preference) { .banner::before { inset: -20%; animation-duration: 11s; } }

@@ -1,6 +1,9 @@
 .banner { --banner-gold: #f2b84b; --banner-champagne: #ffe1a0; position: relative; display: flex; width: 100%; align-items: stretch; overflow: hidden; border: 1px solid rgba(242, 169, 59, 0.3); border-radius: var(--radius-lg); background: radial-gradient(62% 120% at 52% 40%, rgba(184, 112, 22, 0.48) 0%, rgba(74, 38, 8, 0.25) 48%, transparent 82%), linear-gradient(115deg, #070708 0%, #17100a 54%, #2b1908 100%); box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45); transition: border-color 0.25s ease, box-shadow 0.25s ease; }
+.banner::before { position: absolute; z-index: 0; inset: -35%; content: ''; background: radial-gradient(30% 40% at 28% 36%, rgba(242, 184, 75, 0.18), transparent 72%), radial-gradient(26% 34% at 78% 68%, rgba(255, 225, 160, 0.12), transparent 72%); animation: dailyBackgroundDrift 15s ease-in-out infinite alternate; pointer-events: none; }
+@keyframes dailyBackgroundDrift { from { transform: translate3d(-4%, 3%, 0) rotate(-2deg); } to { transform: translate3d(4%, -3%, 0) rotate(2deg); } }
 .banner::after { display: none; }
 .banner:hover { border-color: rgba(255, 194, 84, 0.62); box-shadow: 0 20px 48px rgba(224, 137, 32, 0.16), 0 16px 40px rgba(0, 0, 0, 0.5); }
+.banner > * { position: relative; z-index: 1; }
 .textCol, .visualCol, .panelCol { position: relative; z-index: 1; }
 .textCol { display: flex; width: 32%; flex-shrink: 0; flex-direction: column; justify-content: center; gap: 16px; padding: 34px 16px 34px 38px; }
 .eyebrowRow { display: flex; align-items: center; gap: 10px; }
@@ -35,6 +38,8 @@
 .streakFooter { display: flex; flex-direction: column; gap: 2px; padding-top: 8px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
 .streakCompletedText { color: var(--white); font-family: var(--font-display); font-size: 12.5px; font-weight: 700; }
 .streakSubText { color: #c5b895; font-size: 11px; }
+@media (prefers-reduced-motion: reduce) { .banner::before { animation: none; } }
 @media (min-width: 1025px) { .banner { height: 100%; } }
 @media (min-width: 768px) and (max-width: 1024px) { .textCol { width: 36%; padding: 24px 12px 24px 24px; gap: 12px; } .visualCol { width: 28%; } .panelCol { width: 36%; flex-direction: column; gap: 8px; padding: 16px 20px 16px 12px; } .todayPanel, .streakPanel { width: 100%; flex: 1 1 auto; padding: 12px; } .heading { font-size: clamp(22px, 2.6vw, 28px); } .description { font-size: 12.5px; } .gemAmount { font-size: 20px; } }
 @media (max-width: 767px) { .banner { min-height: 330px; flex-direction: column; border-radius: var(--radius-md); } .visualCol { width: 100%; height: 48%; min-height: 160px; order: 1; } .bannerImage { transform: scale(1.03); } .textCol { width: 100%; height: 52%; padding: 16px 16px 18px; gap: 10px; justify-content: flex-start; order: 2; } .heading { font-size: clamp(20px, 6vw, 26px); } .description { font-size: 12.5px; line-height: 1.4; } .claimButton { width: 100%; } .panelCol { display: none; } }
+@media (max-width: 767px) and (prefers-reduced-motion: no-preference) { .banner::before { inset: -20%; animation-duration: 10.5s; } }
