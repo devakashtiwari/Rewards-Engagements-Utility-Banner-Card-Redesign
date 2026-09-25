@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { MessageCircle, User, Mail, Copy, Check, BookOpen, ChevronRight, MailPlus } from 'lucide-react'
 import { SectionTag, CtaButton, InfoRow } from '../common/BannerUI.jsx'
-import bannerImage from '../../assets/3.Contact Us Banner-Cs2c-h28.jpg'
-import mobileBannerImage from '../../assets/3.Contact Us Banner-Cs2c-h28.jpg'
+import bannerImage from '../../../Images/Desktop/Contact Us Banner Desktop.png'
+import tabletBannerImage from '../../../Images/Tablet/Contact Us Banner Tablet.png'
+import mobileBannerImage from '../../../Images/Mobile/3.Contact Us Banner Mobile.png'
 import styles from './ContactBanner.module.css'
 
 /** Official support contact email address */
@@ -61,7 +62,11 @@ export default function ContactBanner({ onContactSupport, onHelpCenter, onSubmit
       <div className={styles.visualCol}>
         <picture>
           <source
-            media="(max-width: 1024px), (hover: none) and (pointer: coarse)"
+            media="(min-width: 768px) and (max-width: 1024px)"
+            srcSet={tabletBannerImage}
+          />
+          <source
+            media="(max-width: 767px)"
             srcSet={mobileBannerImage}
           />
           <img
@@ -80,6 +85,7 @@ export default function ContactBanner({ onContactSupport, onHelpCenter, onSubmit
             icon={<Mail strokeWidth={2.2} />}
             title="Email Us"
             subtitle={SUPPORT_EMAIL}
+            className={styles.emailRow}
           />
           <button
             type="button"

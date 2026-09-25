@@ -1,6 +1,8 @@
 import { PlayCircle, ArrowRight, Shield, Zap } from 'lucide-react'
 import { SectionTag, EyebrowPill, CtaButton, FeatureChip } from '../common/BannerUI.jsx'
-import bannerImage from '../../assets/B2_Watch_Ad_s_Earn_Banner.avif'
+import bannerImage from '../../../Images/Desktop/Watch Ad s Earn  Desktop.png'
+import tabletBannerImage from '../../../Images/Tablet/Watch Ad s Earn Banner tablet.png'
+import mobileBannerImage from '../../../Images/Mobile/Watch Ad s Earn Banner Mobile 310px.png'
 import styles from './WatchAdBanner.module.css'
 
 /**
@@ -40,21 +42,23 @@ export default function WatchAdBanner({ onWatchAndEarn }) {
         </CtaButton>
       </div>
 
-      {/* Right Column: Video/Wallet Visual Artwork & Floating VE Coin Badges */}
+      {/* Right Column: Video/Wallet Visual Artwork */}
       <div className={styles.visualCol}>
-        <img
-          src={bannerImage}
-          alt="Video player with a play button next to a digital wallet filling with VE coins"
-          className={styles.bannerImage}
-        />
-        <div className={styles.coinLabels}>
-          <span className={`${styles.coinLabel} ${styles.coin1}`}>VE</span>
-          <span className={`${styles.coinLabel} ${styles.coin2}`}>VE</span>
-          <span className={`${styles.coinLabel} ${styles.coin3}`}>VE</span>
-          <span className={`${styles.coinLabel} ${styles.coin4}`}>VE</span>
-          <span className={`${styles.coinLabel} ${styles.coin5}`}>VE</span>
-          <span className={styles.walletLabel}>VE</span>
-        </div>
+        <picture>
+          <source
+            media="(min-width: 768px) and (max-width: 1024px)"
+            srcSet={tabletBannerImage}
+          />
+          <source
+            media="(max-width: 767px)"
+            srcSet={mobileBannerImage}
+          />
+          <img
+            src={bannerImage}
+            alt="Video player with a play button next to a digital wallet filling with VE coins"
+            className={styles.bannerImage}
+          />
+        </picture>
       </div>
     </section>
   )

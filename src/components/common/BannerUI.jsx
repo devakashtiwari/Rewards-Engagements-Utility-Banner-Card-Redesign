@@ -74,13 +74,14 @@ export function FeatureChip({ icon, children }) {
  * @param {React.ReactNode} [action] - Trailing chevron or status element
  * @param {boolean} [interactive=false] - Whether row responds to clicks with hover styles
  * @param {Function} [onClick] - Click handler if interactive
+ * @param {string} [className] - Additional styling hook for responsive variants
  */
-export function InfoRow({ icon, title, subtitle, action, interactive = false, onClick }) {
+export function InfoRow({ icon, title, subtitle, action, interactive = false, onClick, className = '' }) {
   const Tag = interactive ? 'button' : 'div'
   return (
     <Tag
       type={interactive ? 'button' : undefined}
-      className={`${styles.infoRow} ${interactive ? styles.infoRowInteractive : ''}`}
+      className={`${styles.infoRow} ${interactive ? styles.infoRowInteractive : ''} ${className}`.trim()}
       onClick={onClick}
     >
       <span className={styles.infoRowIcon}>{icon}</span>

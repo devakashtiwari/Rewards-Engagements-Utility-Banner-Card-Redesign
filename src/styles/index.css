@@ -7,7 +7,7 @@
      1. Color System
      -------------------------------------------------------------------------- */
   /* Main dark application background - Strictly #161827 per spec */
-  --body-bg: #161827;
+  --body-bg: #090b14;
 
   /* Shared neutral typography & border tokens */
   --white: #ffffff;
@@ -110,7 +110,7 @@ a {
   max-width: 1360px;
   min-width: 0;
   margin: 0 auto;
-  padding: 24px 20px 48px;
+  padding: 28px 20px 56px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -125,11 +125,11 @@ a {
   inset: -10% 0 10%;
   pointer-events: none;
   background:
-    radial-gradient(42% 26% at 20% 12%, rgba(63, 162, 255, 0.12), transparent 70%),
-    radial-gradient(40% 24% at 85% 30%, rgba(154, 104, 255, 0.12), transparent 70%),
-    radial-gradient(45% 28% at 50% 75%, rgba(242, 169, 59, 0.1), transparent 70%);
-  filter: blur(40px);
-  opacity: 0.8;
+    radial-gradient(42% 26% at 15% 8%, rgba(63, 162, 255, 0.16), transparent 70%),
+    radial-gradient(40% 24% at 88% 30%, rgba(154, 104, 255, 0.14), transparent 70%),
+    radial-gradient(45% 28% at 50% 82%, rgba(242, 169, 59, 0.1), transparent 70%);
+  filter: blur(52px);
+  opacity: 0.9;
 }
 
 /* Banner section wrapper animations */
@@ -164,7 +164,7 @@ a {
 /* Laptop / Desktop: 410px - 450px */
 @media (min-width: 1025px) {
   .veloop-app {
-    padding: 24px 24px 56px;
+    padding: 30px 28px 64px;
     gap: 22px;
   }
 

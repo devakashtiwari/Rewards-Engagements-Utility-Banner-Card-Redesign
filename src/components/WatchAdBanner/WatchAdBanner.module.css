@@ -15,7 +15,7 @@
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: 0 18px 42px rgba(1, 7, 18, 0.68), inset 0 0 0 1px rgba(130, 179, 255, 0.08);
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  animation: watchBannerGlow 6s ease-in-out infinite;
 }
 
 .banner:hover {
@@ -94,106 +94,31 @@
   height: 100%;
   object-fit: cover;
   object-position: 68% center;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: watchImageFloat 4.5s ease-in-out infinite;
 }
 
-.banner:hover .bannerImage {
-  transform: scale(1.02);
-}
-
-.coinLabels {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.coinLabel {
-  position: absolute;
-  z-index: 2;
-  transform: translate(-50%, -50%);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 11px;
-  color: #ebf6ff;
-  text-shadow: 0 0 12px rgba(120, 198, 255, 0.8);
-  animation:
-    coinArc 3.5s ease-in-out infinite,
-    coinGlow 2.5s ease-in-out infinite;
-}
-
-.coin1 {
-  left: 71%;
-  top: 14%;
-  animation-delay: 0s;
-}
-
-.coin2 {
-  left: 79%;
-  top: 24%;
-  animation-delay: 0.5s;
-}
-
-.coin3 {
-  left: 74%;
-  top: 35%;
-  animation-delay: 1s;
-}
-
-.coin4 {
-  left: 88%;
-  top: 18%;
-  animation-delay: 1.5s;
-}
-
-.coin5 {
-  left: 84%;
-  top: 44%;
-  animation-delay: 2s;
-}
-
-.walletLabel {
-  position: absolute;
-  z-index: 3;
-  left: 74%;
-  top: 55%;
-  transform: translate(-50%, -50%);
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 38px;
-  color: #8ecafc;
-  letter-spacing: -0.02em;
-  text-shadow: 0 0 18px rgba(89, 170, 255, 0.84);
-  animation: walletGlow 2.8s ease-in-out infinite;
-}
-
-@keyframes coinArc {
+@keyframes watchImageFloat {
   0%, 100% {
-    transform: translate(-50%, -50%) translateY(0);
+    transform: translateY(0);
+  }
+
+  @keyframes watchBannerGlow {
+    0%, 100% {
+      box-shadow: 0 18px 42px rgba(1, 7, 18, 0.68), inset 0 0 0 1px rgba(130, 179, 255, 0.08);
+    }
+    50% {
+      box-shadow: 0 22px 48px rgba(1, 7, 18, 0.72), 0 0 24px rgba(85, 164, 255, 0.1), inset 0 0 0 1px rgba(130, 179, 255, 0.14);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .banner,
+    .bannerImage {
+      animation: none;
+    }
   }
   50% {
-    transform: translate(-50%, -50%) translateY(-6px);
-  }
-}
-
-@keyframes coinGlow {
-  0%, 100% {
-    text-shadow: 0 0 4px rgba(47, 125, 251, 0.4);
-  }
-  50% {
-    text-shadow: 0 0 10px rgba(109, 178, 255, 0.85);
-  }
-}
-
-@keyframes walletGlow {
-  0%, 100% {
-    text-shadow: 0 0 10px rgba(47, 125, 251, 0.4);
-  }
-  50% {
-    text-shadow: 0 0 22px rgba(109, 178, 255, 0.85);
+    transform: translateY(-6px);
   }
 }
 
@@ -231,11 +156,12 @@
 
   .visualCol {
     width: 54%;
+    background: rgba(4, 9, 19, 0.42);
   }
 
   .bannerImage {
-    object-position: 58% center;
-    transform: scale(1.04);
+    object-fit: contain;
+    object-position: center;
   }
 
   .heading {
@@ -246,17 +172,6 @@
     font-size: 13px;
   }
 
-  .coin1 { left: 64%; top: 14%; }
-  .coin2 { left: 72%; top: 25%; }
-  .coin3 { left: 68%; top: 36%; }
-  .coin4 { left: 82%; top: 18%; }
-  .coin5 { left: 80%; top: 45%; }
-
-  .walletLabel {
-    font-size: 30px;
-    left: 69%;
-    top: 56%;
-  }
 }
 
 /* --------------------------------------------------------------------------
@@ -313,15 +228,75 @@
     width: 100%;
   }
 
-  .coin1 { left: 77%; top: 10%; }
-  .coin2 { left: 70%; top: 24%; }
-  .coin3 { left: 78%; top: 30%; }
-  .coin4 { left: 84%; top: 20%; }
-  .coin5 { left: 93%; top: 59%; }
+}
 
-  .walletLabel {
-    font-size: 24px;
-    left: 70%;
-    top: 54%;
+.banner {
+  background:
+    radial-gradient(75% 130% at 82% 8%, rgba(75, 161, 255, 0.16), transparent 58%),
+    linear-gradient(125deg, #050914 0%, #0b172b 54%, #102949 100%);
+  border-color: rgba(113, 187, 255, 0.3);
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.textCol {
+  padding-left: clamp(24px, 3.4vw, 48px);
+}
+
+.heading {
+  text-shadow: 0 8px 28px rgba(0, 0, 0, 0.42);
+}
+
+.visualCol {
+  isolation: isolate;
+}
+
+@media (max-width: 767px) {
+  .banner {
+    min-height: 380px;
+    border-radius: 18px;
+    box-shadow: 0 18px 42px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  }
+
+  .visualCol {
+    height: auto;
+    min-height: 0;
+    flex: 0 0 auto;
+    aspect-ratio: 520 / 310;
+    border-bottom: 1px solid rgba(113, 187, 255, 0.28);
+    background: linear-gradient(180deg, rgba(63, 139, 255, 0.12), rgba(4, 9, 19, 0.16));
+  }
+
+  .bannerImage {
+    object-position: center;
+    object-fit: cover;
+    transform: none;
+    filter: brightness(0.92) saturate(1.08) drop-shadow(0 12px 24px rgba(0, 0, 0, 0.52));
+  }
+
+  .textCol {
+    height: auto;
+    padding: 14px 14px 16px;
+    gap: 8px;
+    background: linear-gradient(180deg, rgba(8, 20, 39, 0.35), rgba(4, 9, 18, 0.8));
+  }
+
+  .heading {
+    font-size: clamp(22px, 6.5vw, 28px);
+  }
+
+  .description {
+    font-size: 12px;
+  }
+
+  .chipRow {
+    gap: 6px;
+  }
+
+  .chipRow :global(.featureChip) {
+    flex: 1;
+    justify-content: center;
+    min-width: 0;
+    padding: 7px 6px;
+    font-size: 11px;
   }
 }

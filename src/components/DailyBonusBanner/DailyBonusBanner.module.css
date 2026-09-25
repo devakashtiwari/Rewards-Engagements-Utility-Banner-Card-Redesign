@@ -1,45 +1,656 @@
-.banner { --banner-gold: #f2b84b; --banner-champagne: #ffe1a0; position: relative; display: flex; width: 100%; align-items: stretch; overflow: hidden; border: 1px solid rgba(242, 169, 59, 0.3); border-radius: var(--radius-lg); background: radial-gradient(62% 120% at 52% 40%, rgba(184, 112, 22, 0.48) 0%, rgba(74, 38, 8, 0.25) 48%, transparent 82%), linear-gradient(115deg, #070708 0%, #17100a 54%, #2b1908 100%); box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45); transition: border-color 0.25s ease, box-shadow 0.25s ease; }
-.banner::before { position: absolute; z-index: 0; inset: -35%; content: ''; background: radial-gradient(30% 40% at 28% 36%, rgba(242, 184, 75, 0.18), transparent 72%), radial-gradient(26% 34% at 78% 68%, rgba(255, 225, 160, 0.12), transparent 72%); animation: dailyBackgroundDrift 15s ease-in-out infinite alternate; pointer-events: none; }
-@keyframes dailyBackgroundDrift { from { transform: translate3d(-4%, 3%, 0) rotate(-2deg); } to { transform: translate3d(4%, -3%, 0) rotate(2deg); } }
-.banner::after { display: none; }
-.banner:hover { border-color: rgba(255, 194, 84, 0.62); box-shadow: 0 20px 48px rgba(224, 137, 32, 0.16), 0 16px 40px rgba(0, 0, 0, 0.5); }
-.banner > * { position: relative; z-index: 1; }
-.textCol, .visualCol, .panelCol { position: relative; z-index: 1; }
-.textCol { display: flex; width: 32%; flex-shrink: 0; flex-direction: column; justify-content: center; gap: 16px; padding: 34px 16px 34px 38px; }
-.eyebrowRow { display: flex; align-items: center; gap: 10px; }
-.eyebrowLabel { color: var(--banner-champagne); font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; }
-.heading { margin: 0; color: var(--white); font-family: var(--font-display); font-size: clamp(26px, 2.6vw, 36px); font-weight: 700; line-height: 1.12; letter-spacing: -0.02em; }
-.headingAccent { color: var(--banner-gold); }
-.description { max-width: 32ch; margin: 0; color: var(--text-soft); font-size: 14px; line-height: 1.55; }
-.claimButton { align-self: flex-start; }
-.visualCol { display: flex; width: 34%; align-items: center; justify-content: center; overflow: hidden; }
-.visualCol picture { display: block; width: 100%; height: 100%; }
-.bannerImage { width: 100%; height: 100%; object-fit: cover; object-position: 48% center; filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.45)); transform: scale(1.05); transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
-.banner:hover .bannerImage { transform: scale(1.08); }
-.panelCol { display: flex; width: 34%; flex-shrink: 0; align-items: center; gap: 12px; padding: 24px 34px 24px 12px; }
-.todayPanel, .streakPanel { border: 1px solid rgba(242, 184, 75, 0.28); border-radius: var(--radius-md); background: rgba(12, 13, 17, 0.74); box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3); backdrop-filter: blur(14px); transition: transform 0.2s ease, border-color 0.2s ease; }
-.todayPanel:hover, .streakPanel:hover { border-color: rgba(255, 220, 139, 0.58); transform: translateY(-2px); }
-.todayPanel { display: flex; flex: 0 0 42%; flex-direction: column; justify-content: center; gap: 7px; padding: 18px 16px; }
-.streakPanel { display: flex; flex: 1; flex-direction: column; justify-content: center; gap: 12px; padding: 18px 16px; }
-.panelLabel { color: #bdb29a; font-family: var(--font-display); font-size: 10px; font-weight: 700; letter-spacing: 0.09em; }
-.gemAmount { color: var(--banner-champagne); font-family: var(--font-display); font-size: clamp(20px, 2vw, 24px); font-weight: 800; line-height: 1.1; text-shadow: 0 0 18px rgba(242, 184, 75, 0.25); }
-.availableNow { display: inline-flex; align-items: center; gap: 6px; color: #dedbd1; font-size: 11.5px; }
-.availableDot, .claimedDot { width: 7px; height: 7px; border-radius: 50%; }
-.availableDot { background: #47d7a0; box-shadow: 0 0 8px rgba(71, 215, 160, 0.8); animation: pulseDot 2s ease-in-out infinite; }
-.claimedDot { background: var(--banner-gold); }
-@keyframes pulseDot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.7; transform: scale(1.2); } }
-.streakHeader { padding-bottom: 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-.streakRow { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
-.streakItem { display: flex; flex-direction: column; align-items: center; gap: 4px; }
-.dayNumber { color: #a39b8a; font-family: var(--font-display); font-size: 9px; }
-.streakDayCircle { display: inline-flex; width: 22px; height: 22px; align-items: center; justify-content: center; border-radius: 50%; font-size: 9px; font-weight: 700; }
-.streakDone { color: #2e2108; background: linear-gradient(135deg, #ffe4a1, #d9942d); box-shadow: 0 2px 10px rgba(230, 154, 44, 0.38); }
-.streakPending { border: 1px dashed rgba(242, 184, 75, 0.42); color: #aaa18f; background: rgba(255, 255, 255, 0.03); }
-.streakFooter { display: flex; flex-direction: column; gap: 2px; padding-top: 8px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
-.streakCompletedText { color: var(--white); font-family: var(--font-display); font-size: 12.5px; font-weight: 700; }
-.streakSubText { color: #c5b895; font-size: 11px; }
-@media (prefers-reduced-motion: reduce) { .banner::before { animation: none; } }
-@media (min-width: 1025px) { .banner { height: 100%; } }
-@media (min-width: 768px) and (max-width: 1024px) { .textCol { width: 36%; padding: 24px 12px 24px 24px; gap: 12px; } .visualCol { width: 28%; } .panelCol { width: 36%; flex-direction: column; gap: 8px; padding: 16px 20px 16px 12px; } .todayPanel, .streakPanel { width: 100%; flex: 1 1 auto; padding: 12px; } .heading { font-size: clamp(22px, 2.6vw, 28px); } .description { font-size: 12.5px; } .gemAmount { font-size: 20px; } }
-@media (max-width: 767px) { .banner { min-height: 330px; flex-direction: column; border-radius: var(--radius-md); } .visualCol { width: 100%; height: 48%; min-height: 160px; order: 1; } .bannerImage { transform: scale(1.03); } .textCol { width: 100%; height: 52%; padding: 16px 16px 18px; gap: 10px; justify-content: flex-start; order: 2; } .heading { font-size: clamp(20px, 6vw, 26px); } .description { font-size: 12.5px; line-height: 1.4; } .claimButton { width: 100%; } .panelCol { display: none; } }
-@media (max-width: 767px) and (prefers-reduced-motion: no-preference) { .banner::before { inset: -20%; animation-duration: 10.5s; } }
+/* ==========================================================================
+   Daily Bonus Banner (Banner 05) - DailyBonusBanner.module.css
+   Warm Gold / Bronze theme showcasing today's bonus & 7-day streak progress.
+   ========================================================================== */
+
+.banner {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  background:
+    radial-gradient(90% 140% at 60% 18%, rgba(126, 72, 18, 0.72) 0%, rgba(56, 28, 5, 0.34) 44%, transparent 74%),
+    linear-gradient(115deg, #100902 0%, #241204 56%, #38200a 100%);
+  border: 1px solid rgba(242, 169, 59, 0.3);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.banner:hover {
+  border-color: rgba(255, 194, 84, 0.62);
+  box-shadow: 0 20px 48px rgba(224, 137, 32, 0.16), 0 16px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* --------------------------------------------------------------------------
+   Left Text Column
+   -------------------------------------------------------------------------- */
+.textCol {
+  position: relative;
+  z-index: 2;
+  width: 32%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  padding: 34px 16px 34px 38px;
+}
+
+.eyebrowRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.eyebrowLabel {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--db-gold);
+  text-transform: uppercase;
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(26px, 2.6vw, 36px);
+  line-height: 1.15;
+  margin: 0;
+  color: var(--white);
+  letter-spacing: -0.02em;
+}
+
+.headingAccent {
+  color: var(--db-gold);
+}
+
+.description {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 14px;
+  line-height: 1.55;
+  max-width: 32ch;
+}
+
+.claimButton {
+  align-self: flex-start;
+}
+
+/* --------------------------------------------------------------------------
+   Middle Visual Artwork Column
+   -------------------------------------------------------------------------- */
+.visualCol {
+  position: relative;
+  width: 34%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.visualCol picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.bannerImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 48% center;
+  transform: scale(1.05);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.45));
+}
+
+.banner:hover .bannerImage {
+  transform: scale(1.08);
+}
+
+/* --------------------------------------------------------------------------
+   Right Column: Today's Bonus & 7-Day Streak
+   -------------------------------------------------------------------------- */
+.panelCol {
+  position: relative;
+  z-index: 2;
+  width: 34%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 34px 24px 12px;
+}
+
+/* Today's Bonus Card */
+.todayPanel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  flex: 0 0 42%;
+  padding: 18px 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(242, 169, 59, 0.28);
+  background: rgba(28, 18, 5, 0.7);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.todayPanel:hover {
+  transform: translateY(-2px);
+  border-color: rgba(242, 169, 59, 0.5);
+}
+
+.panelLabel {
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #bfa980;
+  text-transform: uppercase;
+}
+
+.gemAmount {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2vw, 24px);
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  text-shadow: 0 0 16px rgba(242, 169, 59, 0.3);
+}
+
+.availableNow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  color: #e5dcc7;
+}
+
+.availableDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 8px rgba(52, 211, 153, 0.8);
+  animation: pulseDot 2s ease-in-out infinite;
+}
+
+.claimedDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #f5b93e;
+}
+
+@keyframes pulseDot {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+}
+
+/* 7-Day Streak Card */
+.streakPanel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  flex: 1;
+  padding: 18px 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(242, 169, 59, 0.28);
+  background: rgba(28, 18, 5, 0.7);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.streakPanel:hover {
+  transform: translateY(-2px);
+  border-color: rgba(242, 169, 59, 0.5);
+}
+
+.streakHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.streakRow {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.streakItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.dayNumber {
+  font-family: var(--font-display);
+  font-size: 9px;
+  color: #a4987f;
+}
+
+.streakDayCircle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.streakDone {
+  background: linear-gradient(135deg, #ffd77a, #e69a2c);
+  color: #261601;
+  box-shadow: 0 2px 8px rgba(230, 154, 44, 0.35);
+}
+
+.streakPending {
+  border: 1px dashed rgba(242, 169, 59, 0.4);
+  color: #b3a489;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.streakFooter {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.streakCompletedText {
+  font-family: var(--font-display);
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.streakSubText {
+  font-size: 11px;
+  color: #bfa980;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Layout: Laptop / Desktop (min-width: 1025px)
+   -------------------------------------------------------------------------- */
+@media (min-width: 1025px) {
+  .banner {
+    height: 100%;
+  }
+
+  .textCol {
+    width: 32%;
+    padding: 32px 16px 32px 38px;
+  }
+
+  .visualCol {
+    width: 34%;
+  }
+
+  .panelCol {
+    width: 34%;
+    padding: 24px 34px 24px 12px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Layout: Tablet (768px to 1024px)
+   -------------------------------------------------------------------------- */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .banner {
+    height: 100%;
+  }
+
+  .textCol {
+    width: 36%;
+    padding: 24px 12px 24px 24px;
+    gap: 12px;
+  }
+
+  .visualCol {
+    width: 28%;
+    background: rgba(16, 8, 2, 0.42);
+  }
+
+  .bannerImage {
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .panelCol {
+    width: 36%;
+    flex-direction: column;
+    padding: 16px 20px 16px 12px;
+    gap: 8px;
+  }
+
+  .todayPanel,
+  .streakPanel {
+    width: 100%;
+    flex: 1 1 auto;
+    padding: 12px;
+  }
+
+  .heading {
+    font-size: clamp(22px, 2.6vw, 28px);
+  }
+
+  .description {
+    font-size: 12.5px;
+  }
+
+  .gemAmount {
+    font-size: 20px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Layout: Mobile (max-width: 767px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+  .banner {
+    flex-direction: column;
+    min-height: 330px;
+    max-height: none;
+    height: auto;
+    border-radius: var(--radius-md);
+  }
+
+  .visualCol {
+    width: 100%;
+    order: 1;
+    height: 48%;
+    min-height: 160px;
+  }
+
+  .bannerImage {
+    object-position: 50% center;
+    transform: scale(1.02);
+  }
+
+  .textCol {
+    width: 100%;
+    order: 2;
+    height: 52%;
+    padding: 16px 16px 18px;
+    gap: 10px;
+    justify-content: flex-start;
+  }
+
+  .heading {
+    font-size: clamp(20px, 6vw, 26px);
+  }
+
+  .description {
+    font-size: 12.5px;
+    line-height: 1.4;
+  }
+
+  .claimButton {
+    width: 100%;
+  }
+
+  .panelCol {
+    display: none;
+  }
+}
+
+.banner {
+  background:
+    radial-gradient(80% 135% at 70% 8%, rgba(214, 132, 33, 0.18), transparent 58%),
+    linear-gradient(125deg, #0b0805 0%, #1d1005 54%, #34200b 100%);
+  border-color: rgba(242, 169, 59, 0.34);
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  animation: dailyBannerGlow 6s ease-in-out infinite;
+}
+
+.textCol {
+  padding-left: clamp(24px, 3.4vw, 48px);
+}
+
+.heading {
+  text-shadow: 0 8px 28px rgba(0, 0, 0, 0.42);
+}
+
+.todayPanel,
+.streakPanel {
+  background: rgba(28, 16, 4, 0.8);
+  border-color: rgba(242, 169, 59, 0.34);
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+@media (max-width: 767px) {
+  .visualCol {
+    border-bottom: 1px solid rgba(242, 169, 59, 0.28);
+    background: linear-gradient(180deg, rgba(104, 54, 10, 0.42), rgba(16, 8, 2, 0.2));
+  }
+
+  .bannerImage {
+    object-position: 48% center;
+    filter: brightness(0.92) saturate(1.12) drop-shadow(0 12px 24px rgba(0, 0, 0, 0.5));
+  }
+
+  .textCol {
+    padding: 10px 14px 12px;
+    gap: 7px;
+    background: linear-gradient(180deg, rgba(29, 15, 4, 0.24), rgba(13, 7, 2, 0.7));
+  }
+
+  .heading {
+    font-size: clamp(21px, 6.2vw, 27px);
+    letter-spacing: -0.03em;
+  }
+
+  .claimButton {
+    box-shadow: 0 8px 20px rgba(214, 132, 33, 0.22);
+  }
+
+  .visualCol {
+    height: 140px;
+    min-height: 140px;
+    flex: 0 0 140px;
+  }
+
+  .textCol {
+    height: auto;
+  }
+
+  .panelCol {
+    display: flex;
+    position: static;
+    order: 3;
+    width: 100%;
+    flex-direction: row;
+    padding: 0 14px 10px;
+    gap: 6px;
+  }
+
+  .todayPanel,
+  .streakPanel {
+    width: auto;
+    flex: none;
+    padding: 6px 8px;
+  }
+
+  .todayPanel {
+    flex: 0 0 36%;
+    gap: 3px;
+  }
+
+  .streakPanel {
+    flex: 1;
+    gap: 3px;
+  }
+
+  .panelLabel {
+    font-size: 8px;
+  }
+
+  .gemAmount {
+    font-size: 16px;
+  }
+
+  .availableNow {
+    font-size: 9px;
+  }
+
+  .streakHeader {
+    padding-bottom: 3px;
+  }
+
+  .streakRow {
+    gap: 1px;
+  }
+
+  .streakItem {
+    gap: 2px;
+  }
+
+  .dayNumber {
+    font-size: 8px;
+  }
+
+  .streakFooter {
+    display: none;
+  }
+
+  .streakDayCircle {
+    width: 17px;
+    height: 17px;
+    font-size: 8px;
+  }
+}
+
+@keyframes dailyImageBreath {
+  0%, 100% {
+    filter: brightness(0.92) saturate(1.12) drop-shadow(0 12px 24px rgba(0, 0, 0, 0.5));
+  }
+  50% {
+    filter: brightness(1.04) saturate(1.18) drop-shadow(0 15px 28px rgba(242, 169, 59, 0.22));
+  }
+}
+
+@keyframes dailyCardFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes dailyGemGlow {
+  0%, 100% {
+    text-shadow: 0 0 12px rgba(242, 169, 59, 0.2);
+  }
+
+  @keyframes dailyBannerGlow {
+    0%, 100% {
+      box-shadow: 0 22px 55px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    }
+    50% {
+      box-shadow: 0 24px 58px rgba(0, 0, 0, 0.54), 0 0 26px rgba(242, 169, 59, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(255, 201, 96, 0.48);
+  }
+}
+
+.bannerImage {
+  animation: dailyImageBreath 5s ease-in-out infinite;
+}
+
+.todayPanel,
+.streakPanel {
+  animation: dailyCardFloat 4.5s ease-in-out infinite;
+}
+
+.streakPanel {
+  animation-delay: 0.45s;
+}
+
+.gemAmount {
+  animation: dailyGemGlow 3s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .banner,
+  .bannerImage,
+  .todayPanel,
+  .streakPanel,
+  .gemAmount {
+    animation: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .banner {
+    min-height: 400px;
+    border-radius: 18px;
+  }
+
+  .visualCol {
+    height: auto;
+    min-height: 0;
+    flex: 0 0 auto;
+    aspect-ratio: 1344 / 768;
+    border-bottom-color: rgba(242, 169, 59, 0.34);
+  }
+
+  .bannerImage {
+    object-fit: cover;
+    transform: none;
+  }
+
+  .textCol {
+    padding: 14px 14px 12px;
+    gap: 8px;
+  }
+
+  .heading {
+    font-size: clamp(22px, 6.5vw, 28px);
+  }
+
+  .description {
+    font-size: 12px;
+  }
+
+  .panelCol {
+    padding: 0 14px 12px;
+    gap: 7px;
+  }
+
+  .todayPanel,
+  .streakPanel {
+    border-radius: 12px;
+    padding: 7px 8px;
+  }
+
+  .todayPanel {
+    flex-basis: 38%;
+  }
+}

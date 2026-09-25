@@ -1,8 +1,9 @@
 import { Trophy, ArrowRight } from 'lucide-react'
 import { useCountUp } from '../../hooks/useCountUp.js'
 import { SectionTag, EyebrowPill, CtaButton } from '../common/BannerUI.jsx'
-import bannerImage from '../../assets/B1_Leaderboard_Banner  .png'
-import mobileBannerImage from '../../assets/B1_Leaderboard_Banner-Mobile.png'
+import bannerImage from '../../../Images/Desktop/Leaderboard Banner Desktop.png'
+import tabletBannerImage from '../../../Images/Tablet/Leaderboard Banner Tablet.png'
+import mobileBannerImage from '../../../Images/Mobile/Leaderboard Banner Mobile.png'
 import styles from './LeaderboardBanner.module.css'
 
 /**
@@ -69,7 +70,11 @@ export default function LeaderboardBanner({ onViewLeaderboard }) {
         <div className={styles.imageWrap}>
           <picture>
             <source
-              media="(max-width: 1024px), (hover: none) and (pointer: coarse)"
+              media="(min-width: 768px) and (max-width: 1024px)"
+              srcSet={tabletBannerImage}
+            />
+            <source
+              media="(max-width: 767px)"
               srcSet={mobileBannerImage}
             />
             <img

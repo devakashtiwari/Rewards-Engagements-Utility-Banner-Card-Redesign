@@ -1,8 +1,9 @@
 import { ArrowRight, Gift } from 'lucide-react'
 import { useCountUp } from '../../hooks/useCountUp.js'
 import { SectionTag, CtaButton } from '../common/BannerUI.jsx'
-import bannerImage from '../../assets/4.Follow s Earn Banner--Toly6Q3.jpg'
-import mobileBannerImage from '../../assets/4.Follow s Earn Banner--Toly6Q3.jpg'
+import bannerImage from '../../../Images/Desktop/Follow s Earn Banner Desktop.png'
+import tabletBannerImage from '../../../Images/Tablet/Follow s Earn Banner Tablet.png'
+import mobileBannerImage from '../../../Images/Mobile/Follow s Earn Banner Mobile.png'
 import styles from './FollowEarnBanner.module.css'
 
 /**
@@ -43,7 +44,11 @@ export default function FollowEarnBanner({ onExploreChannels }) {
       <div className={styles.visualCol}>
         <picture>
           <source
-            media="(max-width: 1024px), (hover: none) and (pointer: coarse)"
+            media="(min-width: 768px) and (max-width: 1024px)"
+            srcSet={tabletBannerImage}
+          />
+          <source
+            media="(max-width: 767px)"
             srcSet={mobileBannerImage}
           />
           <img

@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { Gift, Check, Lock } from 'lucide-react'
 import { CtaButton, SectionTag } from '../common/BannerUI.jsx'
-import bannerImage from '../../assets/5.Daily Bonus Banner-IP4_pqcH.jpg'
-import mobileBannerImage from '../../assets/5.Daily Bonus Banner-IP4_pqcH.jpg'
+import bannerImage from '../../../Images/Desktop/Daily Bonus Banner Desktop.png'
+import tabletBannerImage from '../../../Images/Tablet/Daily Bonus Banner Tablet.png'
+import mobileBannerImage from '../../../Images/Mobile/Daily Bonus Banner Mobile.png'
 import styles from './DailyBonusBanner.module.css'
 
 const STREAK_DAYS = [1, 2, 3, 4, 5, 6, 7]
@@ -60,7 +61,11 @@ export default function DailyBonusBanner({ onClaimBonus }) {
       <div className={styles.visualCol}>
         <picture>
           <source
-            media="(max-width: 1024px), (hover: none) and (pointer: coarse)"
+            media="(min-width: 768px) and (max-width: 1024px)"
+            srcSet={tabletBannerImage}
+          />
+          <source
+            media="(max-width: 767px)"
             srcSet={mobileBannerImage}
           />
           <img
