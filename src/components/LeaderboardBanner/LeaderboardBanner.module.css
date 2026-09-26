@@ -226,9 +226,12 @@
 }
 
 @keyframes floatRank {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate(-50%, -50%);
   }
+
   50% {
     transform: translate(-50%, -53%);
   }
@@ -282,7 +285,7 @@
   }
 
   .bannerImage {
-    object-fit: contain;
+    object-fit: cover;
     object-position: center;
   }
 
@@ -300,12 +303,12 @@
   }
 
   .rank-blue {
-    left: 36%;
+    left: 26%;
     top: 63%;
   }
 
   .rank-orange {
-    left: 66%;
+    left: 77%;
     top: 64%;
   }
 
@@ -379,7 +382,7 @@
   }
 
   .rank-blue {
-    left:26%;
+    left: 26%;
     top: 68%;
   }
 

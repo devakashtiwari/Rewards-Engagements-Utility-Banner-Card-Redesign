@@ -91,6 +91,8 @@ export default function ContactBanner({ onContactSupport, onHelpCenter, onSubmit
             title="Email Us"
             subtitle={SUPPORT_EMAIL}
             className={styles.emailRow}
+            interactive
+            onClick={() => window.location.href = `mailto:${SUPPORT_EMAIL}`}
           />
           <button
             type="button"
