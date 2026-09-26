@@ -53,7 +53,12 @@ export default function ContactBanner({ onContactSupport, onHelpCenter, onSubmit
           team.
         </p>
 
-        <CtaButton tone="navy" icon={<MessageCircle size={18} />} onClick={onContactSupport}>
+        <CtaButton
+          tone="navy"
+          className={styles.contactButton}
+          icon={<MessageCircle size={18} />}
+          onClick={onContactSupport}
+        >
           Contact Support
         </CtaButton>
       </div>

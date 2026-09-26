@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Gift, Check, Lock } from 'lucide-react'
-import { CtaButton, SectionTag } from '../common/BannerUI.jsx'
+import { Gift, Check, Lock, Star, Gem } from 'lucide-react'
+import { CtaButton, EyebrowPill } from '../common/BannerUI.jsx'
 import bannerImage from '../../../Images/Desktop/Daily Bonus Banner Desktop.png'
 import tabletBannerImage from '../../../Images/Tablet/Daily Bonus Banner Tablet.png'
 import mobileBannerImage from '../../../Images/Mobile/Daily Bonus Banner Mobile.png'
@@ -32,8 +32,9 @@ export default function DailyBonusBanner({ onClaimBonus }) {
       {/* Left Column: Eyebrow, Heading, Description, & CTA */}
       <div className={styles.textCol}>
         <div className={styles.eyebrowRow}>
-          <SectionTag tone="bronze">5</SectionTag>
-          <span className={styles.eyebrowLabel}>DAILY BONUS</span>
+          <EyebrowPill tone="bronze" icon={<Star size={12} fill="currentColor" />}>
+            DAILY BONUS
+          </EyebrowPill>
         </div>
 
         <h2 id="dailybonus-heading" className={styles.heading}>
@@ -43,7 +44,7 @@ export default function DailyBonusBanner({ onClaimBonus }) {
         </h2>
 
         <p className={styles.description}>
-          Check in regularly and claim your available daily bonus before the opportunity resets.
+          Claim your daily bonus and keep your rewards streak alive.
         </p>
 
         <CtaButton
@@ -80,8 +81,10 @@ export default function DailyBonusBanner({ onClaimBonus }) {
       <div className={styles.panelCol}>
         {/* Today's Bonus Card */}
         <div className={styles.todayPanel}>
-          <span className={styles.panelLabel}>TODAY&apos;S BONUS</span>
-          <span className={styles.gemAmount}>+25 GEMS</span>
+          <span className={styles.gemAmount}>
+            <Gem size={17} className={styles.gemIcon} aria-hidden="true" />
+            +25 GEMS
+          </span>
           <span className={styles.availableNow}>
             {claimed ? 'Claimed Today' : 'Available Now'}
             <span className={claimed ? styles.claimedDot : styles.availableDot} />
@@ -100,7 +103,6 @@ export default function DailyBonusBanner({ onClaimBonus }) {
               const isLocked = day === 7
               return (
                 <div key={day} className={styles.streakItem}>
-                  <span className={styles.dayNumber}>{day}</span>
                   <span
                     className={`${styles.streakDayCircle} ${
                       done ? styles.streakDone : styles.streakPending
@@ -114,6 +116,7 @@ export default function DailyBonusBanner({ onClaimBonus }) {
                       day
                     )}
                   </span>
+                  <span className={styles.dayNumber}>{day}</span>
                 </div>
               )
             })}

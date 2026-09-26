@@ -105,6 +105,15 @@
   transform: scale(1.08);
 }
 
+@keyframes followImageFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
 /* Phone Screen Dynamic Profile Overlay */
 .phoneOverlay {
   position: absolute;
@@ -380,6 +389,7 @@
   .bannerImage {
     object-position: 50% center;
     transform: scale(1.02);
+    animation: followImageFloat 5s ease-in-out infinite;
   }
 
   .phoneOverlay {

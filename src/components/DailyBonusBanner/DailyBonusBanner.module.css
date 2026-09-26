@@ -113,6 +113,15 @@
   transform: scale(1.08);
 }
 
+@keyframes dailyImageFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
 /* --------------------------------------------------------------------------
    Right Column: Today's Bonus & 7-Day Streak
    -------------------------------------------------------------------------- */
@@ -389,6 +398,7 @@
   .bannerImage {
     object-position: 50% center;
     transform: scale(1.02);
+    animation: dailyImageFloat 5s ease-in-out infinite;
   }
 
   .textCol {
@@ -652,5 +662,202 @@
 
   .todayPanel {
     flex-basis: 38%;
+  }
+}
+
+.banner {
+  background:
+    radial-gradient(70% 50% at 50% 42%, rgba(242, 169, 59, 0.09), transparent 78%),
+    #161827;
+  border-color: rgba(242, 196, 110, 0.2);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  animation: none;
+}
+
+.todayPanel,
+.streakPanel {
+  background: #202234;
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  animation: none;
+}
+
+.gemAmount {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: 0;
+  animation: none;
+}
+
+.gemIcon {
+  flex: 0 0 auto;
+  color: #75b9ff;
+  fill: rgba(117, 185, 255, 0.18);
+}
+
+@media (max-width: 767px) {
+  .banner {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 5px;
+    height: 420px;
+    min-height: 420px;
+    padding: 10px 14px;
+    border-radius: 20px;
+  }
+
+  .banner.banner {
+    height: 420px;
+  }
+
+  .textCol {
+    display: contents;
+  }
+
+  .eyebrowRow {
+    order: 2;
+    min-height: 20px;
+  }
+
+  .heading {
+    order: 3;
+    font-size: 26px;
+    line-height: 1.08;
+    letter-spacing: 0;
+  }
+
+  .description {
+    order: 4;
+    max-width: none;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .visualCol {
+    order: 1;
+    width: calc(100% + 28px);
+    height: 150px;
+    aspect-ratio: auto;
+    min-height: 150px;
+    flex: 0 0 150px;
+    margin: -10px -14px 0;
+    border: 0;
+    background: none;
+  }
+
+  .bannerImage {
+    object-fit: cover;
+    object-position: 48% center;
+    transform: none;
+    animation: dailyImageBreath 5s ease-in-out infinite;
+  }
+
+  .claimButton {
+    order: 5;
+    width: 100%;
+    min-height: 44px;
+    flex: 0 0 44px;
+    border-radius: 14px;
+  }
+
+  .panelCol {
+    order: 6;
+    position: static;
+    display: flex;
+    width: 100%;
+    min-height: 66px;
+    flex: 0 0 66px;
+    gap: 8px;
+    padding: 0;
+  }
+
+  .todayPanel,
+  .streakPanel {
+    min-width: 0;
+    padding: 8px 9px;
+    border-radius: 14px;
+  }
+
+  .todayPanel {
+    flex: 0 0 35%;
+    gap: 5px;
+  }
+
+  .gemAmount {
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .gemIcon {
+    width: 15px;
+    height: 15px;
+  }
+
+  .availableNow {
+    gap: 5px;
+    font-size: 10px;
+    white-space: nowrap;
+  }
+
+  .streakPanel {
+    flex: 1;
+    gap: 5px;
+  }
+
+  .streakHeader {
+    padding: 0;
+    border: 0;
+  }
+
+  .panelLabel {
+    font-size: 9px;
+  }
+
+  .streakRow {
+    gap: 2px;
+  }
+
+  .streakItem {
+    gap: 2px;
+  }
+
+  .dayNumber {
+    font-size: 8px;
+  }
+
+  .streakDayCircle {
+    width: 19px;
+    height: 19px;
+    font-size: 8px;
+  }
+
+  .streakFooter {
+    display: none;
+  }
+}
+
+@media (max-width: 359px) {
+  .todayPanel {
+    flex-basis: 40%;
+  }
+
+  .gemAmount {
+    font-size: 12px;
+  }
+
+  .gemIcon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .streakRow {
+    gap: 0;
+  }
+
+  .streakDayCircle {
+    width: 17px;
+    height: 17px;
   }
 }

@@ -327,6 +327,7 @@
 
   .bannerImage {
     filter: brightness(0.92) saturate(1.08) drop-shadow(0 12px 24px rgba(0, 0, 0, 0.48));
+    animation: contactImageBreath 5s ease-in-out infinite;
   }
 
   .textCol {
@@ -376,10 +377,10 @@
 
 @keyframes contactImageBreath {
   0%, 100% {
-    filter: brightness(0.92) saturate(1.08) drop-shadow(0 12px 24px rgba(0, 0, 0, 0.48));
+    filter: brightness(0.97) saturate(0.95) contrast(1.02) drop-shadow(0 11px 22px rgba(0, 0, 0, 0.32));
   }
   50% {
-    filter: brightness(1.02) saturate(1.14) drop-shadow(0 15px 28px rgba(54, 165, 217, 0.2));
+    filter: brightness(1) saturate(0.98) contrast(1.02) drop-shadow(0 13px 24px rgba(104, 166, 218, 0.13));
   }
 }
 
@@ -482,4 +483,61 @@
     min-height: 32px;
     font-size: 11px;
   }
+}
+
+.banner {
+  background: linear-gradient(120deg, #12182a 0%, #152035 100%);
+  border-color: rgba(163, 190, 226, 0.18);
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.045);
+}
+
+.banner:hover {
+  border-color: rgba(150, 191, 233, 0.3);
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.4), 0 0 22px rgba(105, 164, 218, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.visualCol {
+  background: radial-gradient(ellipse 78% 68% at 52% 56%, rgba(104, 166, 218, 0.15) 0%, rgba(80, 132, 183, 0.06) 48%, transparent 78%);
+}
+
+.eyebrowRow > :first-child {
+  color: #a9c8eb;
+  border-color: rgba(161, 192, 228, 0.32);
+  background: rgba(137, 176, 220, 0.08);
+  box-shadow: none;
+}
+
+.eyebrowLabel {
+  color: #abc8e9;
+  letter-spacing: 0.08em;
+}
+
+.heading {
+  text-shadow: none;
+}
+
+.headingAccent {
+  color: #a7d0f6;
+}
+
+.description {
+  color: #c6d1e1;
+}
+
+.panel {
+  background: rgba(12, 19, 35, 0.82);
+  border-color: rgba(147, 180, 220, 0.2);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.textCol .contactButton {
+  background: #86b9ed;
+  color: #101b2c;
+  border-color: rgba(200, 226, 252, 0.72);
+  box-shadow: 0 6px 18px rgba(72, 144, 207, 0.2);
+}
+
+.textCol .contactButton:hover {
+  background: #98c8f5;
+  box-shadow: 0 8px 22px rgba(72, 144, 207, 0.25);
 }

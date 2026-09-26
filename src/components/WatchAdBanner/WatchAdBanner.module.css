@@ -97,28 +97,28 @@
   animation: watchImageFloat 4.5s ease-in-out infinite;
 }
 
+@keyframes watchBannerGlow {
+  0%, 100% {
+    box-shadow: 0 18px 42px rgba(1, 7, 18, 0.68), inset 0 0 0 1px rgba(130, 179, 255, 0.08);
+  }
+  50% {
+    box-shadow: 0 22px 48px rgba(1, 7, 18, 0.72), 0 0 24px rgba(85, 164, 255, 0.1), inset 0 0 0 1px rgba(130, 179, 255, 0.14);
+  }
+}
+
 @keyframes watchImageFloat {
   0%, 100% {
     transform: translateY(0);
   }
-
-  @keyframes watchBannerGlow {
-    0%, 100% {
-      box-shadow: 0 18px 42px rgba(1, 7, 18, 0.68), inset 0 0 0 1px rgba(130, 179, 255, 0.08);
-    }
-    50% {
-      box-shadow: 0 22px 48px rgba(1, 7, 18, 0.72), 0 0 24px rgba(85, 164, 255, 0.1), inset 0 0 0 1px rgba(130, 179, 255, 0.14);
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .banner,
-    .bannerImage {
-      animation: none;
-    }
-  }
   50% {
     transform: translateY(-6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .banner,
+  .bannerImage {
+    animation: none;
   }
 }
 
@@ -271,6 +271,7 @@
     object-fit: cover;
     transform: none;
     filter: brightness(0.92) saturate(1.08) drop-shadow(0 12px 24px rgba(0, 0, 0, 0.52));
+    animation: watchImageFloat 4.5s ease-in-out infinite;
   }
 
   .textCol {
